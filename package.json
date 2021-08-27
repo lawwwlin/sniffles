@@ -3,13 +3,21 @@
   "version": "0.1.0",
   "private": true,
   "author": {
-    "name" : "Antony Chan",
-    "email" : "ac.chan@live.com",
-    "url" : "https://github.com/AcChrome"
-  }, 
+    "name": "Antony Chan",
+    "email": "ac.chan@live.com",
+    "url": "https://github.com/AcChrome"
+  },
   "contributors": [
-    {"name":"Catherine Hu","email":"catherinehu.9898@gmail.com","url":"https://github.com/cthu97"},
-    {"name":"Lawrence Lin","email":"lawwwlin@gmail.com","url":"https://github.com/lawwwlin"}
+    {
+      "name": "Catherine Hu",
+      "email": "catherinehu.9898@gmail.com",
+      "url": "https://github.com/cthu97"
+    },
+    {
+      "name": "Lawrence Lin",
+      "email": "lawwwlin@gmail.com",
+      "url": "https://github.com/lawwwlin"
+    }
   ],
   "dependencies": {
     "@material-ui/core": "^4.12.3",

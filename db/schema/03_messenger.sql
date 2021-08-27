@@ -1,8 +1,0 @@
-DROP TABLE IF EXISTS messenger CASCADE;
-CREATE TABLE messenger (
-  id SERIAL PRIMARY KEY NOT NULL,
-  text VARCHAR(255) NOT NULL,
-  sender_id INTEGER REFERENCES profile(id) ON DELETE CASCADE,
-  receiver_id INTEGER REFERENCES profile(id) ON DELETE CASCADE,
-  timestamp TIMESTAMP
-);
