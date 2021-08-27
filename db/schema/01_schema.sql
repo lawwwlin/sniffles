@@ -3,19 +3,23 @@ DROP TABLE IF EXISTS profile CASCADE;
 DROP TABLE IF EXISTS candidate CASCADE;
 DROP TABLE IF EXISTS messenger CASCADE;
 
+-- create types
+CREATE TYPE valid_gender AS ENUM ('male', 'female');
+CREATE TYPE valid_size AS ENUM ('small', 'medium', 'big');
+
 -- create tables
 CREATE TABLE profile (
   id SERIAL PRIMARY KEY NOT NULL,
   name VARCHAR(255) NOT NULL,
   breed VARCHAR(255) NOT NULL,
   location VARCHAR(255) NOT NULL,
-  gender ENUM(male, female),
+  gender valid_gender,
   age INTEGER,
-  size ENUM(small, medium, big),
+  size valid_size,
   owner VARCHAR(255) NOT NULL,
   email VARCHAR(255) NOT NULL,
   password VARCHAR(255) NOT NULL,
-  photo IMAGE,
+  imageUrl VARCHAR(255) NOT NULL,
   description VARCHAR(255) NOT NULL
 );
 
