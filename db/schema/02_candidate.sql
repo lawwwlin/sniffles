@@ -2,7 +2,7 @@ DROP TABLE IF EXISTS candidate CASCADE;
 CREATE TABLE candidate (
   id SERIAL PRIMARY KEY NOT NULL,
   approve BOOLEAN,
-  dog_id INTEGER REFERENCES profile(id) ON DELETE CASCADE,
+  profile_id INTEGER REFERENCES profile(id) ON DELETE CASCADE,
   candidate_id INTEGER REFERENCES profile(id) ON DELETE CASCADE,
   timestamp TIMESTAMP
 );
