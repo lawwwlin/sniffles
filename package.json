@@ -2,12 +2,13 @@
   "name": "sniffles",
   "version": "0.1.0",
   "private": true,
-  "author": {
-    "name": "Antony Chan",
-    "email": "ac.chan@live.com",
-    "url": "https://github.com/AcChrome"
-  },
+  
   "contributors": [
+    {
+      "name": "Antony Chan",
+      "email": "ac.chan@live.com",
+      "url": "https://github.com/AcChrome"
+    },
     {
       "name": "Catherine Hu",
       "email": "catherinehu.9898@gmail.com",
