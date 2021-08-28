@@ -7,8 +7,7 @@ require('dotenv').config();
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
-const appointmentRouter = require('./routes/appointment');
-//const testRouter = require('./routes/test');
+const profileRouter = require('./routes/profile');
 
 const app = express();
 
@@ -23,7 +22,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/appointments', appointmentRouter)
+app.use('/profile', profileRouter)
 app.use("/test",(req,res)=>{
     console.log("this a test ");
 });

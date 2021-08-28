@@ -1,0 +1,2 @@
+INSERT INTO profile (name, breed, location, gender, age, size, owner, email, password, imageUrl, description)
+VALUES ('Bigboi', 'Maltese', 'Vancouver', 'male', 3, 'small', 'BigBoiOwner', 'a@a.com', 'a', 'https://tinyurl.com/kb7dhhck', 'actually very smol');
