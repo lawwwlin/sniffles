@@ -11,7 +11,7 @@ const profileRouter = require('./routes/profile');
 
 const app = express();
 
-const db = require("./db")
+// const db = require("./db")
 
 app.use(cors());
 app.use(logger('dev'));
@@ -22,7 +22,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/profile', profileRouter(db))
+app.use('/profile', profileRouter);
 app.use("/test",(req,res)=>{
     console.log("this a test ");
 });
