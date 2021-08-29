@@ -2,6 +2,8 @@
 DROP TABLE IF EXISTS profile CASCADE;
 DROP TABLE IF EXISTS candidate CASCADE;
 DROP TABLE IF EXISTS messenger CASCADE;
+DROP TYPE IF EXISTS valid_gender CASCADE;
+DROP TYPE IF EXISTS valid_size CASCADE;
 
 -- create types
 CREATE TYPE valid_gender AS ENUM ('male', 'female');
