@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-//const chat = require('../chat');
+const chat = require('../chat');
 const socketio = require('socket.io');
 /**
  * Module dependencies.
@@ -27,7 +27,7 @@ app.set('port', port);
      methods: ['GET', 'POST']
    }
  });
- //chat(io);
+ chat(io);
  
 /**
  * Listen on provided port, on all network interfaces.

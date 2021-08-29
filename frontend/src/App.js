@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import io from 'socket.io-client';
 import './App.css';
+import Messages from './Messages/Messages';
+import MessageInput from './Messages/MessageInput';
 
 function App() {
 
@@ -15,11 +17,12 @@ function App() {
     return (
       <div className="App">
         <header className="app-header">
-          Connected?
+          Sniffles?
         </header>
         { socket ? (
           <div className="chat-container">
-            <h3>Connected</h3>
+            <Messages socket={socket}/>
+            <MessageInput socket={socket}/>
           </div>
         ) : (
           <div>Not Connected</div>
