@@ -5,7 +5,7 @@ function Messages({ socket }) {
   const [messages, setMessages] = useState({});
 
   useEffect(() => {
-    const messageListener = (message) => {
+    const messageListener = (message) => {    //if we wanted to put messages into database we'd intercept this part?
       setMessages((prevMessages) => {
         const newMessages = {...prevMessages};
         newMessages[message.id] = message;
