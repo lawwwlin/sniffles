@@ -1,7 +1,7 @@
 -- drop existing tables
 DROP TABLE IF EXISTS profile CASCADE;
 DROP TABLE IF EXISTS candidate CASCADE;
-DROP TABLE IF EXISTS messenger CASCADE;
+DROP TABLE IF EXISTS message CASCADE;
 DROP TYPE IF EXISTS valid_gender CASCADE;
 DROP TYPE IF EXISTS valid_size CASCADE;
 
@@ -35,7 +35,7 @@ CREATE TABLE candidate (
 );
 
 
-CREATE TABLE messenger (
+CREATE TABLE message (
   id SERIAL PRIMARY KEY NOT NULL,
   text VARCHAR(255) NOT NULL,
   sender_id INTEGER REFERENCES profile(id) ON DELETE CASCADE,

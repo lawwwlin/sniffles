@@ -8,7 +8,7 @@ VALUES
 (true, 1, 2),
 (true, 2, 1);
 
-/* INSERT INTO messenger (text, sender_id, receiver_id)
+INSERT INTO message (text, sender_id, receiver_id)
 VALUES
-("Wauw cute doggo", 1, 2),
-("thank you", 2, 1); */
+('Wauw cute doggo', 1, 2),
+('thank you', 2, 1);
