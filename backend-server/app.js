@@ -6,12 +6,11 @@ const cors = require('cors');
 require('dotenv').config();
 
 const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
 const profileRouter = require('./routes/profile');
+const candidateRouter = require('./routes/candidate');
+const messageRouter = require('./routes/message');
 
 const app = express();
-
-// const db = require("./db")
 
 app.use(cors());
 app.use(logger('dev'));
@@ -21,11 +20,11 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/profile', profileRouter);
-app.use("/test",(req,res)=>{
-    console.log("this a test ");
-});
-//app.use('/test', testRouter);
+app.use('/api', profileRouter);
+app.use('/api', candidateRouter);
+app.use('/api', messageRouter);
+// app.use("/api",(req,res)=>{
+//     console.log("this a test ");
+// });
 
 module.exports = app;
