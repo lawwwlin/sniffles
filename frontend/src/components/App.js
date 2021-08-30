@@ -1,11 +1,27 @@
 import React, { useEffect, useState } from "react";
 import TopNav from "./TopNav";
 import Profile from "./Profile";
+import ProfileEdit from "./ProfileEdit";
 import io from "socket.io-client";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
 
-function App() {
+const profile = {
+  id: 1,
+  imageURL: 'https://tinyurl.com/kb7dhhck',
+  name: 'Bigboi',
+  breed: 'Maltese',
+  location: 'Vancouver',
+  gender: 'male',
+  age: 3,
+  size: 'small',
+  owner: 'BigBoiOwner',
+  email: 'a@a.com',
+  password: 'a',
+  description: 'actually very smol'
+}
+
+function App(props) {
   const [socket, setSocket] = useState(null);
 
   useEffect(() => {
@@ -18,6 +34,11 @@ function App() {
     <div className="App">
       <Router>
         <Switch>
+        <Route path="/profileEdit">
+            <TopNav />
+            <ProfileEdit />
+          </Route>
+
           <Route path="/profile">
             <TopNav />
             <Profile />
