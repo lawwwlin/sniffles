@@ -3,8 +3,7 @@ const router = express.Router();
 const db = require("../db/index");
 
 /* GET profiles listing. */
-router.get("/", (req, res) => {
-  //console.log("we are hitting the appointments route")
+router.get("/profile", (req, res) => {
   db.query("Select * from profile")
     .then((data) => {
       const profiles = data.rows;
