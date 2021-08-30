@@ -41,6 +41,10 @@ class Connection {
     messages.add(message);
     this.sendMessage(message);
   }
+  
+  disconnect() {
+    users.delete(this.socket);
+  }
 }
 
 function chat(io) {
