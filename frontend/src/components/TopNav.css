@@ -1,0 +1,16 @@
+.topnav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid black;
+}
+
+/* .topnav_logo {
+  height: 40px;
+  object-fit:contain;
+} */
+
+.topnav_icon {
+  padding: 20px;
+  
+}
