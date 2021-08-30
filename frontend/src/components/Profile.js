@@ -18,6 +18,8 @@ const profile = {
 }
 
 function Profile() {
+
+  
   return (
     <div className="profile">
       <h3>Profile page</h3>
