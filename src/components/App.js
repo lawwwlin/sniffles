@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import TopNav from "./TopNav";
 import Candidate from './Candidate';
 import Profile from "./Profile";
-import Setting from "./Setting";
+import ProfileEdit from "./ProfileEdit";
 import io from "socket.io-client";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
@@ -20,9 +20,9 @@ function App(props) {
     <div className="App">
       <Router>
         <Switch>
-        <Route path="/setting">
+        <Route path="/profileEdit">
             <TopNav />
-            <Setting />
+            <ProfileEdit />
           </Route>
 
           <Route path="/profile">

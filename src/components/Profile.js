@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./Profile.css";
-import SettingsIcon from '@material-ui/icons/Settings';
 import { Link } from "react-router-dom";
 
 const profile = {
@@ -41,11 +40,14 @@ function Profile() {
       <h3>owner: {profile.owner}</h3>
       <h3>email: {profile.email}</h3>
       <h3>description: {profile.description}</h3>
-      <Link to="/Setting">
-        <button>Setting</button>
+      <Link to="/profileEdit">
+        <button>Edit</button>
       </Link>
     </div>
   );
 }
 
 export default Profile;
+
+<div style={{backgroundImage: `url(${profile.imageURL})`}} 
+className="profile_pic"></div>
