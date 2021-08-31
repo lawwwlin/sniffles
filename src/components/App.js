@@ -9,14 +9,9 @@ import io from "socket.io-client";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
 
+import Chat from './Chat/Chat';
+import Login from './Login/Login'
 function App(props) {
-  const [socket, setSocket] = useState(null);
-
-  useEffect(() => {
-    const newSocket = io(`http://${window.location.hostname}:3001`);
-    setSocket(newSocket);
-    return () => newSocket.close();
-  }, [setSocket]);
 
   return (
     <div className="App">
@@ -31,11 +26,9 @@ function App(props) {
             <TopNav />
             <MessageScreen />
           </Route>
-          <Route path="/messages">
-            <TopNav />
-            <MessengerList />
+          <Route path="/login" component={Login}/>
+          <Route path="/messages" component={Chat}/>
 
-          </Route>
           <Route path="/profile">
             <TopNav />
             <Profile />
