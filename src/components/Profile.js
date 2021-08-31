@@ -24,10 +24,12 @@ function Profile(props) {
   const [profile, setProfile] = useState(props.profile);
 
   function onClick() {
+    console.log("profile click")
     setEditMode(true);
   }
 
   function save(profile) {
+    console.log("profile is:" , profile)
     setProfile(profile);
     setEditMode(false);
   }
@@ -38,18 +40,18 @@ function Profile(props) {
         (<div className="profile">
           <h3>Profile page</h3>
           <img className="profile_pic" 
-          src={props.profile.imageURL}
-          alt={props.profile.name}
+          src={profile.imageUrl}
+          alt={profile.name}
           />
-          <h3>name: {props.profile.name}</h3>
-          <h3>breed: {props.profile.breed}</h3>
-          <h3>gender: {props.profile.gender}</h3>
-          <h3>age: {props.profile.age}</h3>
-          <h3>size: {props.profile.size}</h3>
-          <h3>location: {props.profile.location}</h3>
-          <h3>owner: {props.profile.owner}</h3>
-          <h3>email: {props.profile.email}</h3>
-          <h3>description: {props.profile.description}</h3>
+          <h3>name: {profile.name}</h3>
+          <h3>breed: {profile.breed}</h3>
+          <h3>gender: {profile.gender}</h3>
+          <h3>age: {profile.age}</h3>
+          <h3>size: {profile.size}</h3>
+          <h3>location: {profile.location}</h3>
+          <h3>owner: {profile.owner}</h3>
+          <h3>email: {profile.email}</h3>
+          <h3>description: {profile.description}</h3>
           <IconButton onClick={onClick}>
             <EditIcon className="profile_icon" fontSize="large"/>
           </IconButton>
@@ -57,7 +59,7 @@ function Profile(props) {
       }
       { editMode &&
         (<ProfileEdit 
-          profile={props.profile}
+          profile={profile}
           onSave={save}
         />)
       }

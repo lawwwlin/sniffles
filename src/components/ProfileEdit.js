@@ -21,10 +21,9 @@ function ProfileEdit(props) {
       password = {props.profile.password}
       imageUrl = {props.profile.imageUrl}
       description = {props.profile.description}
-      onSave = {props.save}
+      onSave = {props.onSave}
     />
     </Card>
-
   </div>
 }
 

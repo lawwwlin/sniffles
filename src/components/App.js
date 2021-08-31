@@ -11,7 +11,7 @@ import "./App.css";
 
 const profile = {
   id: 1,
-  imageURL: 'https://tinyurl.com/kb7dhhck',
+  imageUrl: 'https://tinyurl.com/kb7dhhck',
   name: 'Bigboi',
   breed: 'Maltese',
   location: 'Vancouver',

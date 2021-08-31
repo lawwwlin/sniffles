@@ -44,7 +44,8 @@ function Form(props) {
   const [owner, setOwner] = useState(props.owner || "");
   const [email, setEmail] = useState(props.email || "");
   const [description, setDescription] = useState(props.description || "");
-  const [values, setValues] = React.useState({
+  const [imageUrl, setimageUrl] = useState(props.imageUrl || "");
+  const [values, setValues] = useState({
     password: props.password || "",
     showPassword: false
   });
@@ -52,10 +53,10 @@ function Form(props) {
   const dogGender = ["male", "female"];
   const dogSizes = ["small", "medium", "large"];
 
-  const onSubmit = function (event) {
+  const onSubmit = function(event) {
     event.preventDefault();
     console.log("submit clicked");
-    const profile = {name, breed, gender, age, size, location, owner, email, description, password: props.password}
+    const profile = {name, breed, gender, age, size, location, owner, email, description, password: values.password, imageUrl}
     props.onSave(profile);
   };
 
@@ -69,7 +70,7 @@ function Form(props) {
 
   return (
     <div className="form">
-      <form autoComplete="off" className={classes.root} onSubmit={onSubmit}>
+      <form autoComplete="off" className={classes.root} onSubmit={e => onSubmit(e)}>
         <FormControl>
           <InputLabel htmlFor="name">Name</InputLabel>
           <Input 
@@ -206,7 +207,6 @@ function Form(props) {
             }
           />
         </FormControl>
-        <Link to="/profile">
         <Button 
           type = "submit"
           variant="contained"
@@ -214,7 +214,7 @@ function Form(props) {
           startIcon={<SaveIcon />}
         >
           Save
-        </Button></Link>
+        </Button>
       </form>
     </div>
   );
