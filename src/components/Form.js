@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import clsx from 'clsx';
 import "./Form.css";
+import { Link } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import { FormControl, Input, InputLabel, FormHelperText, FilledInput, OutlinedInput, Button, TextField, MenuItem, InputAdornment, IconButton } from '@material-ui/core';
 import SaveIcon from '@material-ui/icons/Save';
@@ -33,6 +34,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Form(props) {
   const classes = useStyles();
+  console.log("form props", props);
   const [name, setName] = useState(props.name || "");
   const [breed, setBreed] = useState(props.breed || "");
   const [gender, setGender] = useState(props.gender || "");
@@ -43,7 +45,7 @@ function Form(props) {
   const [email, setEmail] = useState(props.email || "");
   const [description, setDescription] = useState(props.description || "");
   const [values, setValues] = React.useState({
-    password: '',
+    password: props.password || "",
     showPassword: false
   });
 
@@ -52,11 +54,9 @@ function Form(props) {
 
   const onSubmit = function (event) {
     event.preventDefault();
-    console.log("submit clicked")
-    if (email) {
-      console.log("email exist")
-      //login(email, password);
-    }
+    console.log("submit clicked");
+    const profile = {name, breed, gender, age, size, location, owner, email, description, password: props.password}
+    props.onSave(profile);
   };
 
   const handleChange = (prop) => (event) => {
@@ -129,9 +129,6 @@ function Form(props) {
             label="Size"
             value={size}
             onChange={(e) => {setSize(e.target.value)}}
-            // SelectProps={{
-            //   native: true,
-            // }}
             >
             {dogSizes.map((option) => (
               <MenuItem key={option} value={option}>
@@ -209,7 +206,7 @@ function Form(props) {
             }
           />
         </FormControl>
-
+        <Link to="/profile">
         <Button 
           type = "submit"
           variant="contained"
@@ -217,7 +214,7 @@ function Form(props) {
           startIcon={<SaveIcon />}
         >
           Save
-        </Button>
+        </Button></Link>
       </form>
     </div>
   );
