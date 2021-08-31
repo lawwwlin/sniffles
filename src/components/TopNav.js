@@ -23,11 +23,11 @@ function TopNav() {
       </Link>
 
       <Link to="/join">
-        <buton>join</buton>
+        <button>Login</button>
       </Link>
 
       <Link to="/chat">
-        <buton>chat</buton>
+        <button>chat</button>
       </Link>
 
       <Link to="/messages">

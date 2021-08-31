@@ -9,7 +9,7 @@ import io from "socket.io-client";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
 import Chat from "./Chat/Chat";
-import Join from "./Chat/Join";
+import Login from "./Login/Login";
 
 function App(props) {
   const [socket, setSocket] = useState(null);
@@ -37,7 +37,7 @@ function App(props) {
             <TopNav />
             <MessengerList />
           </Route>
-          <Route path="/join" component={Join}/>
+          <Route path="/join" component={Login}/>
           <Route path="/chat" component={Chat}/>
           <Route path="/profile">
             <TopNav />
