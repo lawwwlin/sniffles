@@ -22,6 +22,7 @@ function App(props) {
     <div className="App">
       <Router>
         <Switch>
+
         <Route path="/edit">
             <TopNav />
             <ProfileEdit />
@@ -33,6 +34,7 @@ function App(props) {
           <Route path="/messages">
             <TopNav />
             <MessengerList />
+
           </Route>
           <Route path="/profile">
             <TopNav />
