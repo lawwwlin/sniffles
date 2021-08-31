@@ -1,11 +1,14 @@
 import React from "react";
-import "./Profile.css";
+import "./ProfileEdit.css";
 import Form from "./Form.js";
+import Card from '@material-ui/core/Card';
 
 function ProfileEdit(props) {
+
   return <div className="profileEdit">
     <h3>Profile edit page</h3>
 
+    <Card className="edit-form-card">
     <Form 
       name = {props.name}
       breed = {props.breed}
@@ -17,6 +20,7 @@ function ProfileEdit(props) {
       email = {props.email}
       description = {props.description}
     />
+    </Card>
 
   </div>
 }
