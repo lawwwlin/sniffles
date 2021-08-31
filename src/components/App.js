@@ -46,6 +46,14 @@ function App(props) {
             <Profile />
           </Route>
 
+          <Route path="/login">
+            <Login />
+          </Route>
+
+          <Route path="/register">
+            <Register />
+          </Route>
+
           <Route path="/home">
             <Home />
           </Route>
