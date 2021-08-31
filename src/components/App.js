@@ -3,7 +3,6 @@ import TopNav from "./TopNav";
 import Candidate from './Candidate';
 import Profile from "./Profile";
 import ProfileEdit from "./ProfileEdit";
-import Messenger from "./Messenger";
 import MessengerList from "./MessengerList";
 import MessageScreen from "./MessageScreen";
 import io from "socket.io-client";
@@ -27,22 +26,18 @@ function App(props) {
             <TopNav />
             <ProfileEdit />
           </Route>
-
           <Route path="/messages/:candidate">
             <TopNav />
             <MessageScreen />
           </Route>
-
           <Route path="/messages">
             <TopNav />
             <MessengerList />
           </Route>
-
           <Route path="/profile">
             <TopNav />
             <Profile />
           </Route>
-
           <Route path="/">
             <TopNav />
             <Candidate />
