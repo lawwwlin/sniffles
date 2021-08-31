@@ -24,3 +24,32 @@
 .swipe {
   position: absolute;
 }
+
+.button {
+  position: fixed;
+  bottom: 10vh;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+
+}
+
+.button .MuiIconButton-root {
+  background-color: white;
+  box-shadow: 0px 10px 53px 0px rgba(0, 0, 0, 0.3) !important;
+}
+
+.button_notInterested {
+  padding: 3vw !important;
+  color: red !important;
+}
+
+.button_replay {
+  padding: 3vw !important;
+  color: orange !important;
+}
+
+.button_loyalty {
+  padding: 3vw !important;
+  color: green !important;
+}
