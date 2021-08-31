@@ -31,6 +31,7 @@ function Profile(props) {
   function save(profile) {
     console.log("profile is:" , profile)
     setProfile(profile);
+    // call axios
     setEditMode(false);
   }
 
