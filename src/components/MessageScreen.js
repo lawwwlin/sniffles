@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./MessageScreen.css";
 
+
 const candidate = {
   name: "dog1",
   matchtime: "06/09/21"

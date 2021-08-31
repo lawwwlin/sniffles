@@ -8,6 +8,8 @@ import MessageScreen from "./MessageScreen";
 import io from "socket.io-client";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
+import Chat from "./Chat/Chat";
+import Join from "./Chat/Join";
 
 function App(props) {
   const [socket, setSocket] = useState(null);
@@ -34,8 +36,9 @@ function App(props) {
           <Route path="/messages">
             <TopNav />
             <MessengerList />
-
           </Route>
+          <Route path="/join" component={Join}/>
+          <Route path="/chat" component={Chat}/>
           <Route path="/profile">
             <TopNav />
             <Profile />
