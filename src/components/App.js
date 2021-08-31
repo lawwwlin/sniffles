@@ -3,6 +3,8 @@ import TopNav from "./TopNav";
 import Candidate from './Candidate';
 import Profile from "./Profile";
 import ProfileEdit from "./ProfileEdit";
+import MessengerList from "./MessengerList";
+import MessageScreen from "./MessageScreen";
 import io from "socket.io-client";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
@@ -20,27 +22,35 @@ function App(props) {
     <div className="App">
       <Router>
         <Switch>
-        <Route path="/profileEdit">
+
+        <Route path="/edit">
             <TopNav />
             <ProfileEdit />
           </Route>
+          <Route path="/messages/:candidate">
+            <TopNav />
+            <MessageScreen />
+          </Route>
+          <Route path="/messages">
+            <TopNav />
+            <MessengerList />
 
+          </Route>
           <Route path="/profile">
             <TopNav />
             <Profile />
           </Route>
-
           <Route path="/">
             <TopNav />
             <Candidate />
-            <header className="app-header">Connected?</header>
+            {/* <header className="app-header">Connected?</header>
             {socket ? (
               <div className="chat-container">
                 <h3>Connected</h3>
               </div>
             ) : (
               <div>Not Connected</div>
-            )}
+            )} */}
           </Route>
         </Switch>
       </Router>

@@ -1,0 +1,26 @@
+.messageScreen_msg {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+}
+
+.messageScreen_text {
+  margin-left: 10px;
+  background-color: lightgray;
+  padding: 15px;
+  border-radius: 20px;
+}
+
+.messageScreen_match {
+  text-align: center;
+  padding: 20px;
+  color: gray;
+}
+
+.messageScreen_textUser {
+  margin-left: auto;
+  background-color: #FF9999;
+  color: white;
+  padding: 15px;
+  border-radius: 20px;
+}

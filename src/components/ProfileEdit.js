@@ -1,7 +1,6 @@
 import React from "react";
 import "./Profile.css";
 import Form from "./Form.js";
-import { isPropertySignature } from "typescript";
 
 function ProfileEdit(props) {
   return <div className="profileEdit">

@@ -3,6 +3,7 @@ import "./TopNav.css";
 import PersonIcon from "@material-ui/icons/Person";
 import TextsmsIcon from "@material-ui/icons/Textsms";
 import IconButton from "@material-ui/core/IconButton";
+import PetsIcon from '@material-ui/icons/Pets';
 import { Link } from "react-router-dom";
 
 function TopNav() {
@@ -10,19 +11,21 @@ function TopNav() {
     <div className="topnav">    
       <Link to="/profile">
         <IconButton>
-          <PersonIcon className="topnav_icon" fontSize="large" />
+          <PersonIcon className="topNav_icon" fontSize="large" />
         </IconButton>
         </Link>
 
       <Link to="/">
         <IconButton>
-          <h2>TOP NAV: LOGO AREA</h2>
+        <PetsIcon className="topNav_logo" fontSize="large" />
         </IconButton>
       </Link>
 
+      <Link to="/messages">
       <IconButton>
-        <TextsmsIcon className="topnav_icon" fontSize="large" />
+        <TextsmsIcon className="topNav_icon" fontSize="large" />
       </IconButton>
+      </Link>
     </div>
   );
 }

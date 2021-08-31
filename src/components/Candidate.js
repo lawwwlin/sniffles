@@ -2,6 +2,11 @@ import React, { useState } from "react";
 import "./Candidate.css";
 import DogCard from "react-tinder-card";
 
+import ReplayIcon from '@material-ui/icons/Replay';
+import NotInterestedIcon from '@material-ui/icons/NotInterested';
+import LoyaltyIcon from '@material-ui/icons/Loyalty';
+import IconButton from "@material-ui/core/IconButton";
+
 function Candidate() {
   const [candidates, setCandidates] = useState([
     {
@@ -28,9 +33,21 @@ function Candidate() {
             className="card"
           >
             <h2>{candidate.name}</h2>
+         
           </div>
         </DogCard>
       ))}
+         <div className="button">
+           <IconButton>
+            <NotInterestedIcon className="button_notInterested" fontSize ="large" />
+            </IconButton>
+            <IconButton>
+            <ReplayIcon className="button_replay" fontSize ="large" />
+            </IconButton>
+            <IconButton>
+            <LoyaltyIcon className="button_loyalty" fontSize ="large" />
+            </IconButton>
+            </div>
     </div>
   );
 }
