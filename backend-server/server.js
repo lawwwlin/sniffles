@@ -43,9 +43,11 @@ const router = require('./router');
 const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
+const chatRoomRouter = require("./routes/chatRoom");
 
 app.use(cors());
 app.use(router);
+app.use("/chatroom", chatRoomRouter);
 
 io.on('connect', (socket) => {
   socket.on('join', ({ name, room }, callback) => {
