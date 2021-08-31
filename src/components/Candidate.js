@@ -6,16 +6,21 @@ import ReplayIcon from '@material-ui/icons/Replay';
 import NotInterestedIcon from '@material-ui/icons/NotInterested';
 import LoyaltyIcon from '@material-ui/icons/Loyalty';
 import IconButton from "@material-ui/core/IconButton";
+import LocationOnIcon from '@material-ui/icons/LocationOn';
 
 function Candidate() {
   const [candidates, setCandidates] = useState([
     {
       name: "dog1",
       url: "https://images.pexels.com/photos/1805164/pexels-photo-1805164.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      info: "I like to sniff things",
+      location: "Vancouver"
     },
     {
       name: "dog2",
       url: "https://images.pexels.com/photos/164186/pexels-photo-164186.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      info: "Gimme treatz",
+      location: "Richmond"
     },
   ]);
 
@@ -32,7 +37,11 @@ function Candidate() {
             style={{ backgroundImage: `url(${candidate.url})` }}
             className="card"
           >
-            <h2>{candidate.name}</h2>
+            <div className="candidate_info">
+            <h1>{candidate.name}</h1>
+            <h3><LocationOnIcon className="location" />{candidate.location}</h3>
+            <h3>{candidate.info}</h3>
+            </div>
          
           </div>
         </DogCard>

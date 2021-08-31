@@ -1,24 +1,50 @@
 .card {
   position:relative;
-  width: 600px;
-  padding: 20px;
-  max-width: 85vw;
-  height: 50vh;
-  border-radius: 20px;
+  /* width: 600px; */
+  width: 100em;
+  padding: 10px;
+  max-width: 95vw;
+  height: 85vh;
+  border-radius: 15px;
   background-color: cover;
   background-position: center;
 }
 
-.card > h2 {
+ .candidate_info{
   position: absolute;
-  bottom: 10px;
+  font-size: 25px;
+  padding-left: 10px;
+  bottom: 160px;
   color: white;
 }
+
+
+/* .card > h1 {
+  position: absolute;
+  font-size: 60px;
+  padding-left: 10px;
+  bottom: 200px;
+  color: white;
+}
+
+.card > h2 {
+  position: absolute;
+  bottom: 5em;
+  color: white;
+}
+
+.card > h3 {
+  position: absolute;
+  font-size: 25px;
+  padding-left: 10px;
+  bottom: 150px;
+  color: white;
+} */
 
 .candidate {
   display:flex;
   justify-content: center;
-  margin-top: 5vh;
+  margin-top: 1vh;
 }
 
 .swipe {
@@ -27,29 +53,31 @@
 
 .button {
   position: fixed;
-  bottom: 10vh;
-  width: 100%;
+  bottom: 3vh;
+  width: 90%;
   display: flex;
   justify-content: space-evenly;
-
+  
 }
 
 .button .MuiIconButton-root {
   background-color: white;
+  opacity: 60%;
   box-shadow: 0px 10px 53px 0px rgba(0, 0, 0, 0.3) !important;
 }
 
 .button_notInterested {
-  padding: 3vw !important;
+  padding: .5em !important;
   color: red !important;
+  
 }
 
 .button_replay {
-  padding: 3vw !important;
+  padding: .5em !important;
   color: orange !important;
 }
 
 .button_loyalty {
-  padding: 3vw !important;
+  padding: .5em !important;
   color: green !important;
 }
