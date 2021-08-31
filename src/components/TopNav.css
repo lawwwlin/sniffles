@@ -1,16 +1,15 @@
-.topnav {
+.topNav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid darkg;
 }
 
-/* .topnav_logo {
-  height: 40px;
-  object-fit:contain;
-} */
+.topNav_logo {
+  color: brown;
+}
 
-.topnav_icon {
+.topNav_icon {
   padding: 20px;
   
 }

@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import "./Profile.css";
+import EditIcon from '@material-ui/icons/Edit';
+import IconButton from "@material-ui/core/IconButton";
 import { Link } from "react-router-dom";
 
 const profile = {
@@ -40,8 +42,12 @@ function Profile() {
       <h3>owner: {profile.owner}</h3>
       <h3>email: {profile.email}</h3>
       <h3>description: {profile.description}</h3>
-      <Link to="/profileEdit">
-        <button>Edit</button>
+      
+      <Link to="/edit">
+      <IconButton>
+        <EditIcon className="profile_icon" fontSize="large" />
+      </IconButton>
+
       </Link>
     </div>
   );
