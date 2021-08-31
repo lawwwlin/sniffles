@@ -12,19 +12,19 @@ function TopNav() {
       
       <Link to="/profile">
         <IconButton>
-          <PersonIcon className="topNav_icon" fontSize="large" />
+          <PersonIcon className="topNav_icon" style={{ fontSize: 40 }} />
         </IconButton>
         </Link>
 
       <Link to="/">
         <IconButton>
-        <PetsIcon className="topNav_logo" fontSize="large" />
+        <PetsIcon className="topNav_logo" style={{ fontSize: 60 }} />
         </IconButton>
       </Link>
 
       <Link to="/messages">
       <IconButton>
-        <TextsmsIcon className="topNav_icon" fontSize="large" />
+        <TextsmsIcon className="topNav_icon" style={{ fontSize: 40 }} />
       </IconButton>
       </Link>
     </div>
