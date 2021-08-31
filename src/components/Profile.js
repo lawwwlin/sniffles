@@ -54,3 +54,6 @@ function Profile() {
 }
 
 export default Profile;
+
+<div style={{backgroundImage: `url(${profile.imageURL})`}} 
+className="profile_pic"></div>
