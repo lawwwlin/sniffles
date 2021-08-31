@@ -12,13 +12,14 @@ import Chat from "./Chat/Chat";
 import Join from "./Chat/Join";
 
 function App(props) {
-  const [socket, setSocket] = useState(null);
+  // const [socket, setSocket] = useState(null);
 
-  useEffect(() => {
-    const newSocket = io(`http://${window.location.hostname}:3001`);
-    setSocket(newSocket);
-    return () => newSocket.close();
-  }, [setSocket]);
+  // useEffect(() => {
+  //   const ENDPOINT = 'localhost:3001';
+  //   const socket = io(ENDPOINT, { transports: ['websocket', 'polling'] })
+  //   setSocket(socket);
+  //   return () => socket.close();
+  // }, [setSocket]);
 
   return (
     <div className="App">
