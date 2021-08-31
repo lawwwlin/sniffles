@@ -1,0 +1,31 @@
+.home {
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  margin-top: -50px;
+  margin-left: -100px;
+}
+
+.home_newUser{
+  
+  display: inline-block;
+  border-radius: 60px;
+  /* box-shadow: 0px 0px 2px #888; */
+  padding: 0.125em 0.15em;
+  color: white;
+  background-color: rgb(255, 130, 151);
+}
+
+.home_login {
+  
+  display: inline-block;
+  border-radius: 60px;
+  /* box-shadow: 0px 0px 2px #888; */
+  padding: 0.125em 0.15em;
+  color: white;
+  background-color: rgb(81, 81, 247);
+}
+
+.icon_text {
+  font-size: 20px;
+}

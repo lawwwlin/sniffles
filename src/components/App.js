@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
 import TopNav from "./TopNav";
+import Home from "./Home";
+import Register from "./Register";
+import Login from "./Login";
 import Candidate from './Candidate';
 import Profile from "./Profile";
 import ProfileEdit from "./ProfileEdit";
@@ -27,19 +30,34 @@ function App(props) {
             <TopNav />
             <ProfileEdit />
           </Route>
+
           <Route path="/messages/:candidate">
             <TopNav />
             <MessageScreen />
           </Route>
+
           <Route path="/messages">
             <TopNav />
             <MessengerList />
+            </Route>
 
-          </Route>
           <Route path="/profile">
             <TopNav />
             <Profile />
           </Route>
+
+          <Route path="/login">
+            <Login />
+          </Route>
+
+          <Route path="/register">
+            <Register />
+          </Route>
+
+          <Route path="/home">
+            <Home />
+          </Route>
+
           <Route path="/">
             <TopNav />
             <Candidate />
