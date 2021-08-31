@@ -28,13 +28,13 @@ const profile = {
 }
 
 function App(props) {
-  const [socket, setSocket] = useState(null);
+  // const [socket, setSocket] = useState(null);
 
-  useEffect(() => {
-    const newSocket = io(`http://${window.location.hostname}:3001`);
-    setSocket(newSocket);
-    return () => newSocket.close();
-  }, [setSocket]);
+  // useEffect(() => {
+  //   const newSocket = io(`http://${window.location.hostname}:3001`);
+  //   setSocket(newSocket);
+  //   return () => newSocket.close();
+  // }, [setSocket]);
 
   return (
     <div className="App">
