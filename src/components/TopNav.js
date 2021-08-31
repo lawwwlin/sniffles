@@ -22,6 +22,14 @@ function TopNav() {
         </IconButton>
       </Link>
 
+      <Link to="/join">
+        <buton>join</buton>
+      </Link>
+
+      <Link to="/chat">
+        <buton>chat</buton>
+      </Link>
+
       <Link to="/messages">
       <IconButton>
         <TextsmsIcon className="topNav_icon" fontSize="large" />
