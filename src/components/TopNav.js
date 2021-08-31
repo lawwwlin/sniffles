@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 
 function TopNav() {
   return (
-    <div className="topnav">    
+    <div className="topNav">    
       <Link to="/profile">
         <IconButton>
           <PersonIcon className="topNav_icon" fontSize="large" />
