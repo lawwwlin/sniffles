@@ -38,16 +38,16 @@ const cors = require('cors');
 
 const { addUser, removeUser, getUser, getUsersInRoom } = require('./users');
 
-const router = require('./router');
+const router = require('./routes/index');
 
 const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
-const chatRoomRouter = require("./routes/chatRoom");
+// const chatRoomRouter = require("./routes/chatrooms");
 
 app.use(cors());
 app.use(router);
-app.use("/chatroom", chatRoomRouter);
+// app.use("/chatroom", chatRoomRouter);
 
 io.on('connect', (socket) => {
   socket.on('join', ({ name, room }, callback) => {
@@ -83,4 +83,4 @@ io.on('connect', (socket) => {
   })
 });
 
-server.listen(process.env.PORT || 5000, () => console.log(`Server has started.`));
+server.listen(process.env.PORT || 3001, () => console.log(`Server has started.`));
