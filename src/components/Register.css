@@ -1,0 +1,9 @@
+.register {
+  /* display: flex; */
+  text-align: center;
+}
+
+.register_create {
+  justify-content: center;
+  
+}

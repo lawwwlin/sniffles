@@ -77,7 +77,7 @@ function Candidate(props) {
         >
           <div
             style={{ backgroundImage: `url(${candidate.url})` }}
-            className="card"
+            className="candidate_card"
           >
             <div className="candidate_info">
               <h1>{candidate.name}</h1>
