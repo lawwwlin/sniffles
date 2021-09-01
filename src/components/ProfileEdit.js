@@ -8,7 +8,8 @@ function ProfileEdit(props) {
 
   console.log("profileedit props", props);
   
-  return <div className="profileEdit">
+  return (
+  <div className="profileEdit">
 
     <h3>Profile edit page</h3>
 
@@ -29,6 +30,7 @@ function ProfileEdit(props) {
     />
     </Card>
   </div>
+  );
 }
 
 export default ProfileEdit;
