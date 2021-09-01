@@ -15,13 +15,13 @@ function TopNav() {
         </IconButton>
         </Link>
 
-      <Link to="/">
+      <Link to="/candidate">
         <IconButton>
         <PetsIcon className="topNav_logo" style={{ fontSize: 60 }} />
         </IconButton>
       </Link>
 
-      <Link to="/messages">
+      <Link to="/message">
       <IconButton>
         <TextsmsIcon className="topNav_icon" style={{ fontSize: 40 }} />
       </IconButton>
