@@ -18,6 +18,10 @@
   color: white;
 }
 
+.candidate_none {
+  justify-content: center;
+}
+
 .candidate {
   display:flex;
   justify-content: center;

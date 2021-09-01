@@ -23,7 +23,7 @@ router.get("/message/:sender", (req, res) => {
 // axios.post(`/api/message/${sender_id}`, { message })
 // message = {sender_id: xxx, receiver_id: xxx, text: adfadsf}
 router.post("/message/:sender", (req, res) => {
-  const { text, sender_id, receiver_id} = request.body.candidate;
+  const { text, sender_id, receiver_id} = req.body.candidate;
   db.query(`
     INSERT INTO message (text, sender_id, receiver_id) VALUES ($1, $2, $3)
   `, [text, sender_id, receiver_id])
