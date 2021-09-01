@@ -2,14 +2,7 @@ import React, { useEffect, useState } from "react";
 import Candidate from "./Candidate";
 import axios from "axios";
 
-//IL
 export default function CandidateList({ profile }) {
-  //get all profiles that arent the current user
-  //axios here
-  //map thru profile
-  /*  useEffect(() => {
-    fetchCandidates();
-  }, []); */
   const [candidates, setCandidates] = useState([]);
 
   useEffect(() => {
@@ -32,19 +25,7 @@ export default function CandidateList({ profile }) {
       />
     );
   });
-
-  //console.log(profileList)
   return (
-    <section className="interviewers">
-      <h4 className="interviewers__header text--light">Candidate List</h4>
-      <ul className="interviewers__list">{parsedCandidates}</ul> 
-    </section>
+      <ul className="candidates__list">{parsedCandidates}</ul> 
   );
 }
-
-/*   const fetchCandidates = async () => {
-    const candidates = await axios.get(`/api/profile`);
-    console.log(candidates.data);
-    return candidates;
-  }; 
-*/
