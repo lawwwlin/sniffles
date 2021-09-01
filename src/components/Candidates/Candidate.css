@@ -8,6 +8,7 @@
   border-radius: 15px;
   background-color: cover;
   background-position: center;
+  margin-right: 2.5em;
 }
 
  .candidate_info{
@@ -22,6 +23,10 @@
   display:flex;
   justify-content: center;
   margin-top: 1vh;
+}
+
+.candidate_none {
+  padding-top: 12em;
 }
 
 .swipe {
