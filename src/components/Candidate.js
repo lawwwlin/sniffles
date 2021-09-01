@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./Candidate.css";
 import DogCard from "react-tinder-card";
+import CandidateInfo from './CandidateInfo';
 
 
 import NotInterestedIcon from '@material-ui/icons/NotInterested';
@@ -47,7 +48,7 @@ function Candidate() {
   }
 
   const infoClick = () => {
-    <Card />
+    // <CandidateInfo open={candidate.name}></CandidateInfo>
     // setCandidates(prev => !prev)
     console.log('info: info button');
   }
