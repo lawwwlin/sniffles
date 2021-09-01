@@ -1,25 +1,50 @@
 import React, { useEffect } from "react";
 import classNames from "classnames";
-import axios from "axios";
-import CandidatesList from './CandidatesList';
 
-export default function Candidate({ name, imageUrl, setCandidate }) {
-  let candidateClass = classNames("candidate");
+//front end stuff
+import ReplayIcon from "@material-ui/icons/Replay";
+import NotInterestedIcon from "@material-ui/icons/NotInterested";
+import LoyaltyIcon from "@material-ui/icons/Loyalty";
+import IconButton from "@material-ui/core/IconButton";
+import LocationOnIcon from "@material-ui/icons/LocationOn";
+import DogCard from "react-tinder-card";
 
-  const fetchCandidates = async () => {
-    const candidates = await axios.get("/api/candidate/1/2");
-    console.log(candidates.data[0].profile_id);
-  };
-
-  useEffect(() => {
-    fetchCandidates();
-  }, []);
+//ILI
+//key, id, name, imageUrl, location, info 
+export default function Candidate(props){
+  console.log("candidates: ", props);
 
   return (
-    <section className="interviewers">
-      <h4 className="candidates_header">Candidates</h4>
-      <ul>{CandidatesList}</ul>
-    </section>
+    <div className="candidate">
+      <h1>candidate is here</h1>
+      <DogCard className="swipe" key={name} preventSwipe={["up", "down"]}>
+        <div style={{ backgroundImage: `url(${imageUrl})` }} className="card">
+          <div className="candidate_info">
+            <h1>{name}</h1>
+            <h3>
+              <LocationOnIcon className="location" />
+              {location}
+            </h3>
+            <h3>{info}</h3>
+          </div>
+        </div>
+      </DogCard>
+
+      <div className="button">
+        <IconButton>
+          <NotInterestedIcon
+            className="button_notInterested"
+            fontSize="large"
+          />
+        </IconButton>
+        <IconButton>
+          <ReplayIcon className="button_replay" fontSize="large" />
+        </IconButton>
+        <IconButton>
+          <LoyaltyIcon className="button_loyalty" fontSize="large" />
+        </IconButton>
+      </div>
+    </div>
   );
 }
 

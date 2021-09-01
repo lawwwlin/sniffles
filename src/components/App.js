@@ -82,7 +82,10 @@ function App(props) {
 
           <Route path="/Candidate">
             <TopNav />
-            <Candidates />
+            <CandidatesList
+            profile={profile}
+
+            />
           </Route>
 
           <MainProvider>

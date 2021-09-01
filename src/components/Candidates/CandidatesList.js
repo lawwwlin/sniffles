@@ -1,55 +1,47 @@
-import React, {useState} from 'react';
-import Candidate from './Candidate';
- 
-//front end stuff
-import ReplayIcon from '@material-ui/icons/Replay';
-import NotInterestedIcon from '@material-ui/icons/NotInterested';
-import LoyaltyIcon from '@material-ui/icons/Loyalty';
-import IconButton from "@material-ui/core/IconButton";
-import LocationOnIcon from '@material-ui/icons/LocationOn';
-import DogCard from "react-tinder-card";
+import React, { useEffect, useState } from "react";
+import Candidate from "./Candidate";
+import axios from "axios";
 
-export default function Candidates(candidates) {
-  const candidateList = candidates.data.map(candidate => {
-    return <Candidate
-    name={candidate.profile_id}
-    />
-  })
+//IL
+export default function CandidateList({ profile }) {
+  //get all profiles that arent the current user
+  //axios here
+  //map thru profile
+  /*  useEffect(() => {
+    fetchCandidates();
+  }, []); */
 
+  
+  const profileList = axios.get("/api/profile")
+  .then((data) => {
+    const profiles = data.data
+    console.log('profiles: ', profiles)
+    profiles.map((candidate) => {
+      return (
+        <Candidate
+        key={candidate.id} 
+        id={candidate.id} 
+        name={candidate.name}
+        imageUrl={candidate.imageUrl}
+        location={candidate.location}
+        info={candidate.info} />
+      );
+    });
+  });
+
+  console.log(profileList)
   return (
-    <div className="candidate">
-      <h1>candidate is here</h1>
-      {candidates.map((candidate) => (
-        <DogCard
-          className="swipe"
-          key={candidate.name}
-          preventSwipe={["up", "down"]}
-        >
-          <div
-            style={{ backgroundImage: `url(${candidate.url})` }}
-            className="card"
-          >
-            <div className="candidate_info">
-            <h1>{candidate.name}</h1>
-            <h3><LocationOnIcon className="location" />{candidate.location}</h3>
-            <h3>{candidate.info}</h3>
-            </div>
-         
-          </div>
-        </DogCard>
-      ))}
-         <div className="button">
-           <IconButton>
-            <NotInterestedIcon className="button_notInterested" fontSize ="large" />
-            </IconButton>
-            <IconButton>
-            <ReplayIcon className="button_replay" fontSize ="large" />
-            </IconButton>
-            <IconButton>
-            <LoyaltyIcon className="button_loyalty" fontSize ="large" />
-            </IconButton>
-            </div>
-    </div>
+    <section className="interviewers">
+    <h4 className="interviewers__header text--light">Candidate List</h4>
+    <ul className="interviewers__list">{profileList}</ul>
+  </section>
   );
 }
 
+
+/*   const fetchCandidates = async () => {
+    const candidates = await axios.get(`/api/profile`);
+    console.log(candidates.data);
+    return candidates;
+  }; 
+*/
