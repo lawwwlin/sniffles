@@ -42,7 +42,7 @@ const Login = () => {
     }
 
     return (
-        <div className='login' flexDirection='column' mb='8'>
+        <div className='login' mb='8'>
             <h1 as="h1" size="4xl" mb='8' fontFamily='DM Sans' fontWeight='600' letterSpacing='-2px'>Chattr.io</h1>
             <div className="form" gap='1rem' flexDirection={{ base: "column", md: "row" }}>
               <InputLabel htmlFor="name">Name</InputLabel>

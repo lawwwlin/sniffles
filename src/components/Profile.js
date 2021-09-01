@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Profile.css";
-import EditIcon from '@material-ui/icons/Edit';
+import EditIcon from "@material-ui/icons/Edit";
 import IconButton from "@material-ui/core/IconButton";
 import ProfileEdit from "./ProfileEdit";
 
@@ -24,22 +24,22 @@ function Profile(props) {
   const [profile, setProfile] = useState(props.profile);
 
   function onClick() {
-    console.log("profile click")
+    console.log("profile click");
     setEditMode(true);
   }
 
   function save(profile) {
-    console.log("profile is:" , profile)
+    console.log("profile is:", profile);
     setProfile(profile);
     // call axios
     setEditMode(false);
   }
 
   return (
-    <article> 
-      { !editMode &&
-        (<div className="profile">
-          <h3>Profile page</h3>
+    <article>
+      {!editMode && (
+        <div className="profile">
+          {/* <h3>Profile page</h3>
           <img className="profile_pic" 
           src={profile.imageUrl}
           alt={profile.name}
@@ -52,18 +52,29 @@ function Profile(props) {
           <h3>location: {profile.location}</h3>
           <h3>owner: {profile.owner}</h3>
           <h3>email: {profile.email}</h3>
-          <h3>description: {profile.description}</h3>
-          <IconButton onClick={onClick}>
-            <EditIcon className="profile_icon" fontSize="large"/>
-          </IconButton>
-        </div>)
-      }
-      { editMode &&
-        (<ProfileEdit 
-          profile={profile}
-          onSave={save}
-        />)
-      }
+          <h3>description: {profile.description}</h3> */}
+
+          <div
+            style={{ backgroundImage: `url(${profile.imageUrl})` }}
+            className="profile_card"
+          >
+            <div className="profile_info">
+              <h1>{profile.name}</h1>
+              <h3>
+                {/* <LocationOnIcon className="location" /> */}
+                {profile.location}
+              </h3>
+              <h3>{profile.description}</h3>
+            </div>
+            <div className="profile_button">
+            <IconButton size="small" onClick={onClick}>
+              <EditIcon className="profile_icon" style={{ fontSize: 50 }} />
+            </IconButton>
+            </div>
+          </div>
+        </div>
+      )}
+      {editMode && <ProfileEdit profile={profile} onSave={save} />}
     </article>
   );
 }

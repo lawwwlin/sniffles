@@ -1,9 +1,9 @@
-.card {
+.candidate_card {
   position:relative;
-  /* width: 600px; */
-  width: 100em;
+  width: 800px;
+  /* width: 100em; */
   padding: 10px;
-  max-width: 95vw;
+  max-width: 85vw;
   height: 85vh;
   border-radius: 15px;
   background-color: cover;
@@ -52,32 +52,33 @@
 }
 
 .button {
-  position: fixed;
+  position: absolute;
   bottom: 3vh;
-  width: 90%;
+  width: 98%;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
   
 }
 
 .button .MuiIconButton-root {
   background-color: white;
-  opacity: 60%;
+  opacity: 70%;
   box-shadow: 0px 10px 53px 0px rgba(0, 0, 0, 0.3) !important;
 }
 
 .button_notInterested {
-  padding: .5em !important;
+  padding: .2em !important;
   color: red !important;
   
 }
 
-.button_replay {
-  padding: .5em !important;
-  color: orange !important;
+.button_moreInfo {
+  padding: .2em !important;
+  color: rgb(0, 0, 255) !important;
 }
 
 .button_loyalty {
-  padding: .5em !important;
-  color: green !important;
+  
+  padding: .2em !important;
+  color: rgb(0, 209, 0) !important;
 }
