@@ -30,6 +30,10 @@
   font-size: 20px;
 }
 
-login_logo {
+.login_logo {
   color: brown;
+  margin-left: 1em;
+}
+
+.login_logoText {
 }

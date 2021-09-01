@@ -9,8 +9,8 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import Button from '@material-ui/core/Button';
-import PetsIcon from '@material-ui/icons/Pets';
+import Button from "@material-ui/core/Button";
+import PetsIcon from "@material-ui/icons/Pets";
 import { Link } from "react-router-dom";
 
 function Home(props) {
@@ -45,30 +45,33 @@ function Home(props) {
           aria-labelledby="form-dialog-title"
         >
           <DialogContent>
-            <DialogTitle><PetsIcon className="login_logo"/>  Log in to Sniffles</DialogTitle>
+          
+            <DialogTitle className="login_title"><PetsIcon className="login_logo" style={{ fontSize: 50 }} />
+            <span className="login_logoText">Log in to Sniffles</span>
+            </DialogTitle>
             <DialogContentText></DialogContentText>
             <TextField
-            autoFocus
-            margin="dense"
-            id="email"
-            label="Email Address"
-            type="text"
-            fullWidth
-          />
-             <TextField
-            autoFocus
-            margin="dense"
-            id="pass"
-            label="Password"
-            type="text"
-            fullWidth
-          />
+              autoFocus
+              margin="dense"
+              id="email"
+              label="Email Address"
+              type="text"
+              fullWidth
+            />
+            <TextField
+              autoFocus
+              margin="dense"
+              id="pass"
+              label="Password"
+              type="text"
+              fullWidth
+            />
           </DialogContent>
           <DialogActions>
-          <Button onClick={handleClose} color="primary">
-            Log in
-          </Button>
-        </DialogActions>
+            <Button onClick={handleClose} color="primary">
+              Log in
+            </Button>
+          </DialogActions>
         </Dialog>
         {/* </Link> */}
         <span className="icon_text">Login</span>
