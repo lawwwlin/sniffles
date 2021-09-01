@@ -5,12 +5,18 @@ import Register from "./Register";
 import Login from "./Login";
 import Candidate from './Candidate';
 import Profile from "./Profile";
-import ProfileEdit from "./ProfileEdit";
 import MessengerList from "./MessengerList";
 import MessageScreen from "./MessageScreen";
-import io from "socket.io-client";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
+
+// chat
+import ChatLogin from './Login/Login'
+import Chat from './Chat/Chat'
+import { SocketProvider } from '../socketContext'
+import { MainProvider } from '../mainContext'
+import { UsersProvider } from '../usersContext'
+// import DefaultPage from './components/DefaultPage'
 
 const profile = {
   id: 1,
@@ -28,13 +34,6 @@ const profile = {
 }
 
 function App(props) {
-  const [socket, setSocket] = useState(null);
-
-  useEffect(() => {
-    const newSocket = io(`http://${window.location.hostname}:3001`);
-    setSocket(newSocket);
-    return () => newSocket.close();
-  }, [setSocket]);
 
   return (
     <div className="App">
@@ -69,18 +68,29 @@ function App(props) {
             <Home />
           </Route>
 
-          <Route path="/">
+          <Route path="/Candidate">
             <TopNav />
             <Candidate />
-            {/* <header className="app-header">Connected?</header>
-            {socket ? (
-              <div className="chat-container">
-                <h3>Connected</h3>
-              </div>
-            ) : (
-              <div>Not Connected</div>
-            )} */}
           </Route>
+
+          <MainProvider>
+            <UsersProvider>
+              <SocketProvider>
+                {/* <Flex className="App" align='center' justifyContent='center'> */}
+                      <Route path='/message'>
+                        <TopNav />
+                        <ChatLogin />
+                      </Route>
+                      
+                      <Route path='/chat'>
+                        <TopNav />
+                        <Chat />
+                      </Route>
+                {/* </Flex> */}
+              </SocketProvider>
+            </UsersProvider>
+          </MainProvider>
+
         </Switch>
       </Router>
     </div>
