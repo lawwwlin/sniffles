@@ -29,6 +29,11 @@ export default function CandidateList({ profile }) {
         imageUrl={candidate.imageurl}
         location={candidate.location}
         info={candidate.description}
+        breed={candidate.breed}
+        gender={candidate.gender}
+        age={candidate.age}
+        size={candidate.size}
+        owner={candidate.owner}
       />
     );
   });
