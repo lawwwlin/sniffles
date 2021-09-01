@@ -2,14 +2,13 @@ import React, { useContext, useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { MainContext } from '../../mainContext'
 import { SocketContext } from '../../socketContext'
-import { Box, Flex, Heading, IconButton, Text, Menu, Button, MenuButton, MenuList, MenuItem } from "@chakra-ui/react"
-import { FiList } from 'react-icons/fi'
-import { BiMessageDetail } from 'react-icons/bi'
-import { RiSendPlaneFill } from 'react-icons/ri'
 import ScrollToBottom from 'react-scroll-to-bottom';
 import './Chat.scss'
 import { UsersContext } from '../../usersContext'
+import { TextField, Input, Button } from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
+import SendIcon from '@material-ui/icons/Send';
+import MessageIcon from '@material-ui/icons/Message';
 
 const Chat = () => {
     const { name, room, setName, setRoom } = useContext(MainContext)
@@ -31,6 +30,7 @@ const Chat = () => {
 
         socket.on("notification", notif => {
           function alert() {
+            console.log("notification", notif);
             <Alert severity="success">
               {notif.description}
             </Alert>
@@ -51,55 +51,75 @@ const Chat = () => {
         history.go(0)
     }
 
+    // temp function before passing in props
+    let recipient = "";
+    if (users) {
+      const user = users.find(user => user.name !== name);
+      if (user) {
+        recipient = user.name;
+      }
+    }
+
     return (
-        <Flex className='room' flexDirection='column' width={{ base: "100%", sm: '575px' }} height={{ base: "100%", sm: "auto" }}>
-            <Heading className='heading' as='h4' bg='white' p='1rem 1.5rem' borderRadius='10px 10px 0 0'>
-                <Flex alignItems='center' justifyContent='space-between'>
-                    <Menu >
-                        <MenuButton as={IconButton} icon={<FiList />} isRound='true' bg='blue.300' color='white' />
-                        <MenuList>
-                            {
-                                users && users.map(user => {
-                                    return (
-                                        <MenuItem minH='40px' key={user.id}>
-                                            <Text fontSize='sm'>{user.name}</Text>
-                                        </MenuItem>
-                                    )
-                                })
-                            }
-                        </MenuList>
-                    </Menu>
-                    <Flex alignItems='center' flexDirection='column' flex={{ base: "1", sm: "auto" }}>
-                        <Heading fontSize='lg'> {room.slice(0, 1).toUpperCase() + room.slice(1)}</Heading>
-                        <Flex alignItems='center'><Text mr='1' fontWeight='400' fontSize='md' opacity='.7' letterSpacing='0' >{name}</Text><Box h={2} w={2} borderRadius='100px' bg='green.300'></Box></Flex>
-                    </Flex>
-                    <Button color='gray.500' fontSize='sm' onClick={logout}  >Logout</Button>
-                </Flex>
-            </Heading>
+        <div className='room'>
+            <h4 className='heading'>
+              {/* <Menu >
+                  <MenuButton as={IconButton} icon={<FiList />} isRound='true' bg='blue.300' color='white' />
+                  <MenuList>
+                      {
+                          users && users.map(user => {
+                              return (
+                                  <MenuItem minH='40px' key={user.id}>
+                                      <h3>{user.name}</h3>
+                                  </MenuItem>
+                              )
+                          })
+                      }
+                  </MenuList>
+              </Menu> */}
+              <div className='room-title'>
+                  <h3> room: {room.slice(0, 1).toUpperCase() + room.slice(1)}, message to {recipient}</h3>
+                  <div className='user-title'><h4>Logged in as: {name}</h4></div>
+              </div>
+              {/* remove logout button later and add back button*/}
+              <Button onClick={logout}  >Logout</Button>
+            </h4>
 
 
             <ScrollToBottom className='messages' debug={false}>
                 {messages.length > 0 ?
                     messages.map((msg, i) =>
-                    (<Box key={i} className={`message ${msg.user === name ? "my-message" : ""}`} m=".2rem 0">
-                        <Text fontSize='xs' opacity='.7' ml='5px' className='user'>{msg.user}</Text>
-                        <Text fontSize='sm' className='msg' p=".4rem .8rem" bg='white' borderRadius='15px' color='white'>{msg.text}</Text>
-                    </Box>)
+                    (<div className={`message ${msg.user === name ? "my-message" : ""}`}>
+                        <h6 className='user'>{msg.user}</h6>
+                        <h4 className='msg'>{msg.text}</h4>
+                    </div>)
                     )
                     :
-                    <Flex alignItems='center' justifyContent='center' mt='.5rem' bg='#EAEAEA' opacity='.2' w='100%'>
-                        <Box mr='2'>-----</Box>
-                        <BiMessageDetail fontSize='1rem' />
-                        <Text ml='1' fontWeight='400'>No messages</Text>
-                        <Box ml='2'>-----</Box>
-                    </Flex>
+                    <div className='empty-message'>
+                        <div>-----</div>
+                        <MessageIcon />
+                        <h4> No messages </h4>
+                        <div>-----</div>
+                    </div>
                 }
             </ScrollToBottom>
             <div className='form'>
-                <input type="text" placeholder='Enter Message' value={message} onChange={e => setMessage(e.target.value)} />
-                <IconButton colorScheme='green' isRound='true' icon={<RiSendPlaneFill />} onClick={handleSendMessage} disabled={message === '' ? true : false}>Send</IconButton>
+                <TextField 
+                  type="text" 
+                  label="Enter Message"
+                  value={message} onChange={e => setMessage(e.target.value)}
+                  variant="outlined"
+                />
+                <Button 
+                  variant="contained"
+                  color='primary' 
+                  startIcon={<SendIcon />} 
+                  onClick={handleSendMessage} 
+                  disabled={message === '' ? true : false}>
+                  Send
+                </Button>
             </div>
-        </Flex>
+        </div>
 
     )
 }

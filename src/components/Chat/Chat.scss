@@ -1,19 +1,49 @@
 .room{
     box-shadow: 1px 1px 10px rgba(0,0,0,.1);
     border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    // width: { base: "100%", sm: '575px' };
+    // height={{ base: "100%", sm: "auto" }}
     .heading{
-        font-family: 'DM Sans';
-        color: rgb(70, 70, 70);
-        font-size: 2rem;
-        font-weight: 500;
-        z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: 'DM Sans';
+      color: rgb(70, 70, 70);
+      font-size: 2rem;
+      font-weight: 500;
+      z-index: 1000;
+    }
+
+    .room-title{
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .user-title{
+      display: flex;
+      align-items: center;
     }
 
     .messages{
         background:#EAEAEA;
         .message{
+          padding: 0.1em;
+            .user{
+              padding-left: 0.8em;
+              padding-right: 0.8em;
+              padding-bottom: 0.5em;
+            }
             .msg{
                 color: rgba(0,0,0,.7);
+                background: white;
+                border-radius: 0.8em;
+                padding-left: 0.8em;
+                padding-right: 0.8em;
+                padding-top: 0.5em;
+                padding-bottom: 0.5em;
             }
         }
         .my-message{
@@ -22,8 +52,13 @@
                 display: none;
             }
             .msg{
-                color: white;
-                background: #408EEA;
+              color: white;
+              background: #408EEA;
+              border-radius: 0.8em;
+              padding-left: 0.8em;
+              padding-right: 0.8em;
+              padding-top: 0.5em;
+              padding-bottom: 0.5em;
             }
         }
 
@@ -38,6 +73,15 @@
         min-height:400px;
         max-height:400px;
         padding: 1rem;
+    }
+
+    .empty-message{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #EAEAEA;
+      opacity: 0.2;
+      width: 100%;
     }
     
     .form{
