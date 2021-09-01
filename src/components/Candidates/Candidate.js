@@ -1,3 +1,29 @@
+import React, { useEffect } from "react";
+import classNames from "classnames";
+import axios from "axios";
+import CandidatesList from './CandidatesList';
+
+export default function Candidate({ name, imageUrl, setCandidate }) {
+  let candidateClass = classNames("candidate");
+
+  const fetchCandidates = async () => {
+    const candidates = await axios.get("/api/candidate/1/2");
+    console.log(candidates.data[0].profile_id);
+  };
+
+  useEffect(() => {
+    fetchCandidates();
+  }, []);
+
+  return (
+    <section className="interviewers">
+      <h4 className="candidates_header">Candidates</h4>
+      <ul>{CandidatesList}</ul>
+    </section>
+  );
+}
+
+/* 
 import React, { useState } from "react";
 import "./Candidate.css";
 import DogCard from "react-tinder-card";
@@ -61,4 +87,4 @@ function Candidate() {
   );
 }
 
-export default Candidate;
+export default Candidate; */

@@ -19,11 +19,25 @@ router.get("/candidate/:profile/:candidate", (req, res) => {
     });
 });
 
+//get profile of candidate
+router.get("/candidate/:profile", (req, res) => {
+  const profileId = req.params.profile;
+  db.query(`SELECT * from profile where id= $1`, [profileId])
+  .then((data) => {
+    const candidateProfile = data.rows;
+    res.json(candidateProfile);
+  })
+  .catch((err) => {
+    res.status(500).json({ error: err.message });
+  });
+});
+
+
 /* create candidate upon swipe */
 // axios.post(`/api/candidate/${id}`, { candidate })
 // candidate = {profile_id: xxx, candidate_dog_id: xxx, approve: true/false}
 router.post("/candidate/:profile", (req, res) => {
-  const { approve, profile_id, candidate_dog_id} = request.body.candidate;
+  const { approve, profile_id, candidate_dog_id} = req.body.candidate;
   db.query(`
     INSERT INTO candidate (approve, profile_id, candidate_dog_id) VALUES ($1, $2, $3)
   `, [approve, profile_id, candidate_dog_id])
