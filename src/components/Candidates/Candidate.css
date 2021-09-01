@@ -18,29 +18,6 @@
   color: white;
 }
 
-
- .card > h1 {
-  position: absolute;
-  font-size: 60px;
-  padding-left: 10px;
-  bottom: 200px;
-  color: white;
-}
-
-.card > h2 {
-  position: absolute;
-  bottom: 5em;
-  color: white;
-}
-
-.card > h3 {
-  position: absolute;
-  font-size: 25px;
-  padding-left: 10px;
-  bottom: 150px;
-  color: white;
-} 
-
 .candidate {
   display:flex;
   justify-content: center;
