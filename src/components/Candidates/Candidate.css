@@ -19,7 +19,7 @@
 }
 
 
-/* .card > h1 {
+ .card > h1 {
   position: absolute;
   font-size: 60px;
   padding-left: 10px;
@@ -39,7 +39,7 @@
   padding-left: 10px;
   bottom: 150px;
   color: white;
-} */
+} 
 
 .candidate {
   display:flex;

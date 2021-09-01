@@ -10,34 +10,37 @@ export default function CandidateList({ profile }) {
   /*  useEffect(() => {
     fetchCandidates();
   }, []); */
+  const [candidates, setCandidates] = useState([]);
 
-  
-  const profileList = axios.get("/api/profile")
-  .then((data) => {
-    const profiles = data.data
-    console.log('profiles: ', profiles)
-    profiles.map((candidate) => {
-      return (
-        <Candidate
-        key={candidate.id} 
-        id={candidate.id} 
-        name={candidate.name}
-        imageUrl={candidate.imageUrl}
-        location={candidate.location}
-        info={candidate.info} />
-      );
+  useEffect(() => {
+    axios.get("/api/profile").then((data) => {
+      const profiles = data.data;
+      console.log("profiles: ", profiles);
+      setCandidates([...profiles]);
     });
+  }, []);
+
+   const parsedCandidates = candidates.map((candidate) => {
+    return (
+      <Candidate
+        key={candidate.id}
+        id={candidate.id}
+        name={candidate.name}
+        imageUrl={candidate.imageurl}
+        location={candidate.location}
+        info={candidate.description}
+      />
+    );
   });
 
-  console.log(profileList)
+  //console.log(profileList)
   return (
     <section className="interviewers">
-    <h4 className="interviewers__header text--light">Candidate List</h4>
-    <ul className="interviewers__list">{profileList}</ul>
-  </section>
+      <h4 className="interviewers__header text--light">Candidate List</h4>
+      <ul className="interviewers__list">{parsedCandidates}</ul> 
+    </section>
   );
 }
-
 
 /*   const fetchCandidates = async () => {
     const candidates = await axios.get(`/api/profile`);

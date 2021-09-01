@@ -84,7 +84,6 @@ function App(props) {
             <TopNav />
             <CandidatesList
             profile={profile}
-
             />
           </Route>
 

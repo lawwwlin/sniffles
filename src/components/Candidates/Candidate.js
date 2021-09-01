@@ -12,6 +12,15 @@ import DogCard from "react-tinder-card";
 //ILI
 //key, id, name, imageUrl, location, info 
 export default function Candidate(props){
+  const {
+    key,
+    id,
+    name,
+    imageUrl,
+    location,
+    info
+    }
+    = props
   console.log("candidates: ", props);
 
   return (
