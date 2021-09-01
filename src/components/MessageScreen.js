@@ -12,12 +12,16 @@ function MessageScreen(props) {
     {
       name: "dog1",
       img: "https://images.pexels.com/photos/1805164/pexels-photo-1805164.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-      text: "Is this doggo?"
+      text: "Is this doggo?",
+      matchtime: "06/09/21"
     },
     {
       text: "Mebe UwU"
     },
   ]);
+
+  
+
   return (
     <div className="messageScreen">
       <h2>spicy DMs</h2>
