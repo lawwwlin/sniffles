@@ -13,7 +13,7 @@ export default function CandidateList({ profile }) {
     });
   }, []);
 
-   const parsedCandidates = candidates.map((candidate) => {
+  /*  const parsedCandidates = candidates.map((candidate) => {
     return (
       <Candidate
         key={candidate.id}
@@ -29,8 +29,9 @@ export default function CandidateList({ profile }) {
         owner={candidate.owner}
       />
     );
-  });
+  }); */
+
   return (
-      <ul className="candidates__list">{parsedCandidates}</ul> 
+      <ul className="candidates__list"><Candidate candidate={candidates}/></ul> 
   );
 }

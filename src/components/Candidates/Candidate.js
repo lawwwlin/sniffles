@@ -18,8 +18,8 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 //ILI
 //key, id, name, imageUrl, location, info
 export default function Candidate(props) {
-  const { key, id, name, imageUrl, location, info, breed, gender, age, size, owner } = props;
-  console.log("candidates: ", props);
+  console.log("props.candidate:  ", props.candidate);
+  const { candidate: candidates } = props;
 
   const reject = () => {
     console.log("info: no button");
@@ -31,11 +31,10 @@ export default function Candidate(props) {
 
   const [open, setOpen] = useState(false);
   const [desc, setDesc] = useState([]);
-  const [candidates, setCandidates] = useState([]);
 
-  const handleClickOpen = (candidateName) => {
+  const handleClickOpen = (candidate, candidateName) => {
     candidates.filter((dog) => {
-      if (name === candidateName) {
+      if (dog.name === candidateName) {
         setDesc(dog);
       }
     });
@@ -49,18 +48,25 @@ export default function Candidate(props) {
   return (
     <div className="candidate">
       <h1 className="candidate_none">Das all the doggos for now</h1>
-      <DogCard className="swipe" key={name} preventSwipe={["up", "down"]}>
-        <div style={{ backgroundImage: `url(${imageUrl})` }} className="candidate_card">
-          <div className="candidate_info">
-            <h1>{name}</h1>
-            <h3>
-              <LocationOnIcon className="location" />
-              {location}
-            </h3>
-            <h3>{info}</h3>
-          </div>
-
-          <div className="button">
+      {candidates.map((candidate) => (
+        <DogCard
+          className="swipe"
+          key={candidate.name}
+          preventSwipe={["up", "down"]}
+        >
+          <div
+            style={{ backgroundImage: `url(${candidate.imageurl})` }}
+            className="candidate_card"
+          >
+            <div className="candidate_info">
+              <h1>{candidate.name}</h1>
+              <h3>
+                <LocationOnIcon className="location" />
+                {candidate.location}
+              </h3>
+              <h3>{candidate.info}</h3>
+            </div>
+            <div className="button">
               <IconButton size="small" onClick={reject}>
                 <NotInterestedIcon
                   className="button_notInterested"
@@ -68,31 +74,32 @@ export default function Candidate(props) {
                 />
               </IconButton>
 
-              <IconButton size="small"  onClick={ () => handleClickOpen(name) }>
+              <IconButton
+                size="small"
+                onClick={() => handleClickOpen(candidate, candidate.name)}
+              >
                 <InfoOutlinedIcon
                   className="button_moreInfo"
                   style={{ fontSize: 65 }}
                 />
               </IconButton>
               <Dialog
-                  open={open}
-                  onClose={handleClose}
-                  aria-labelledby="form-dialog-title"
-                >
-                  <DialogContent>
-                    <DialogTitle>
-                    {name}
-                    </DialogTitle>
-                    <DialogContentText>
-                      <p>Location: {location}</p>
-                      <p>Breed: {breed}</p>
-                      <p>Gender: {gender}</p>
-                      <p>Age: {age}</p>
-                      <p>Size: {size}</p>
-                      <p>Owner: {owner}</p>
-                    </DialogContentText>
-                  </DialogContent>
-                </Dialog>
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="form-dialog-title"
+              >
+                <DialogContent>
+                  <DialogTitle>{desc.name}</DialogTitle>
+                  <DialogContentText>
+                    <p>Location: {desc.location}</p>
+                    <p>Breed: {desc.breed}</p>
+                    <p>Gender: {desc.gender}</p>
+                    <p>Age: {desc.age}</p>
+                    <p>Size: {desc.size}</p>
+                    <p>Owner: {desc.owner}</p>
+                  </DialogContentText>
+                </DialogContent>
+              </Dialog>
 
               <IconButton size="small" onClick={like}>
                 <LoyaltyOutlinedIcon
@@ -101,9 +108,9 @@ export default function Candidate(props) {
                 />
               </IconButton>
             </div>
-          
-        </div>
-      </DogCard>
+          </div>
+        </DogCard>
+      ))}
     </div>
   );
 }
