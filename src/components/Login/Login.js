@@ -33,6 +33,7 @@ const Login = () => {
                 )
             }
             history.push('/chat')
+            console.log('connected to', room)
             return (
               <Alert severity="success">
                 {`Welcome to ${room}`}
@@ -42,9 +43,9 @@ const Login = () => {
     }
 
     return (
-        <div className='login' mb='8'>
-            <h1 as="h1" size="4xl" mb='8' fontFamily='DM Sans' fontWeight='600' letterSpacing='-2px'>Chattr.io</h1>
-            <div className="form" gap='1rem'>
+        <div className='login'>
+            <h1 fontFamily='DM Sans'>Chattr.io</h1>
+            <div className="form">
               <InputLabel htmlFor="name">Name</InputLabel>
               <Input 
                 variant='filled'

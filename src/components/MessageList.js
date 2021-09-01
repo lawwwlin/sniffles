@@ -1,8 +1,8 @@
 import React from "react";
 import Messenger from "./Messenger";
-import "./MessengerList.css";
+import "./MessageList.css";
 
-function MessengerList() {
+function MessageList() {
   return (
     <div className="messengerList">
       <h3>View your DMs</h3>
@@ -23,4 +23,4 @@ function MessengerList() {
   );
 }
 
-export default MessengerList;
+export default MessageList;
