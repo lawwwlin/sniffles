@@ -1,4 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import RegisterForm from "./RegisterForm";
+import axios from "axios";
+
+export function OnCreate(profile) {
+  const [newProfile, setNewProfile] = ([]);
+
+  console.log('profile', profile)
+  useEffect(() => {
+    axios.post(`/api/profile`, profile).then((data) => {
+      const user = data.data;
+      setNewProfile([user]);
+    });
+  }, []);
+
+  return (
+      console.log('user:', newProfile)
+  )
+}
+
+/* import React, { useState } from "react";
 import "./Register.css";
 import Form from "./Form.js";
 import Card from "@material-ui/core/Card";
@@ -53,4 +73,4 @@ function Register(props) {
   );
 }
 
-export default Register;
+*/
