@@ -63,7 +63,7 @@ function Home(props) {
               margin="dense"
               id="pass"
               label="Password"
-              type="text"
+              type="password"
               fullWidth
             />
           </DialogContent>
