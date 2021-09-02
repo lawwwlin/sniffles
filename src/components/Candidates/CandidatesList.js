@@ -8,7 +8,6 @@ export default function CandidateList({ profile }) {
   useEffect(() => {
     axios.get("/api/profile").then((data) => {
       const profiles = data.data;
-      console.log("profiles: ", profiles);
       setCandidates([...profiles]);
     });
   }, []);

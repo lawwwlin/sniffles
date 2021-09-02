@@ -9,6 +9,7 @@ import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined";
 import LoyaltyOutlinedIcon from "@material-ui/icons/LoyaltyOutlined";
 import IconButton from "@material-ui/core/IconButton";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
+import BookmarkIcon from '@material-ui/icons/Bookmark';
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
@@ -45,6 +46,15 @@ export default function Candidate(props) {
     setOpen(false);
   };
 
+  const onSwipe = (direction) => {
+    if (direction === "right") {
+      console.log('right for like')
+    }
+    if (direction === "left") {
+      console.log('left for rejected')
+    }
+  };
+
   return (
     <div className="candidate">
       <h1 className="candidate_none">Das all the doggos for now</h1>
@@ -53,6 +63,7 @@ export default function Candidate(props) {
           className="swipe"
           key={candidate.name}
           preventSwipe={["up", "down"]}
+          onSwipe={onSwipe}  
         >
           <div
             style={{ backgroundImage: `url(${candidate.imageurl})` }}
@@ -64,8 +75,11 @@ export default function Candidate(props) {
                 <LocationOnIcon className="location" />
                 {candidate.location}
               </h3>
-              <h3>{candidate.info}</h3>
+              <h3>
+                < BookmarkIcon />
+                {candidate.description}</h3>
             </div>
+            
             <div className="button">
               <IconButton size="small" onClick={reject}>
                 <NotInterestedIcon

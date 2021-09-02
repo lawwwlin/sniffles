@@ -24,6 +24,10 @@ function Home(props) {
     setOpen(false);
   };
 
+  const login = () => {
+    console.log('login')
+  };
+
   return (
     <div className="home">
       <div>
@@ -35,7 +39,7 @@ function Home(props) {
         <span className="icon_text">Create Account</span>
       </div>
       <div>
-        {/* <Link to="/login"> */}
+        
         <IconButton onClick={handleClickOpen}>
           <LockOpenIcon className="home_login" style={{ fontSize: 60 }} />
         </IconButton>
@@ -68,12 +72,12 @@ function Home(props) {
             />
           </DialogContent>
           <DialogActions>
-            <Button onClick={handleClose} color="primary">
+            <Button onClick={login} color="primary">
               Log in
             </Button>
           </DialogActions>
         </Dialog>
-        {/* </Link> */}
+        
         <span className="icon_text">Login</span>
       </div>
     </div>
