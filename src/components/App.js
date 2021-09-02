@@ -5,7 +5,7 @@ import Register from "./Register";
 import Login from "./Login";
 import Candidate from './Candidate';
 import Profile from "./Profile";
-import MessageList from "./MessageList";
+import ChatRoomList from "./ChatRoomList";
 import MessageScreen from "./MessageScreen";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
@@ -45,7 +45,7 @@ function App(props) {
 
           <Route path="/messages">
             <TopNav />
-            <MessageList />
+            <ChatRoomList />
             </Route>
 
           <Route path="/profile">
@@ -74,13 +74,9 @@ function App(props) {
 
           <MainProvider>
             <UsersProvider>
-              <SocketProvider>
-                      <Route path='/message'>
-                        <TopNav />
-                        <ChatLogin />
-                      </Route>
-                      
+              <SocketProvider>                      
                       <Route path='/chat'>
+                        <ChatLogin />
                         <TopNav />
                         <Chat 
                           profile={profile}
