@@ -1,20 +1,21 @@
 const users = []
 
 const addUser = (id, name, room) => {
-    const existingUser = users.find(user => user.name.trim().toLowerCase() === name.trim().toLowerCase())
-
-    if (existingUser) return { error: "Username has already been taken" }
-    if (!name && !room) return { error: "Username and room are required" }
-    if (!name) return { error: "Username is required" }
-    if (!room) return { error: "Room is required" }
-
-    const user = { id, name, room }
-    users.push(user)
-    return { user }
+  const existingUser = users.find(user => user.name.trim().toLowerCase() === name.trim().toLowerCase())
+  
+  if (existingUser) return { error: "Username has already been taken" }
+  if (!name && !room) return { error: "Username and room are required" }
+  if (!name) return { error: "Username is required" }
+  if (!room) return { error: "Room is required" }
+  
+  const user = { id, name, room }
+  users.push(user)
+  console.log('users list after adding user', users)
+  return { user }
 }
 
 const getUser = id => {
-    let user = users.find(user => user.id == id)
+    let user = users.find(user => user.id === id)
     return user
 }
 

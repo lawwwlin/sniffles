@@ -9,9 +9,9 @@ import { UsersContext } from '../../usersContext'
 
 const Login = () => {
     const socket = useContext(SocketContext)
-    const { name, setName, room, setRoom } = useContext(MainContext)
-    const history = useHistory()
-    const { setUsers } = useContext(UsersContext)
+    const { name, setName, room, setRoom } = useContext(MainContext);
+    const history = useHistory();
+    const { setUsers } = useContext(UsersContext);
 
     //Checks to see if there's a user already present
 

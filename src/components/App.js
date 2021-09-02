@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import TopNav from "./TopNav";
 import Home from "./Home";
 import Register from "./Register";
@@ -33,7 +33,7 @@ const profile = {
   description: 'actually very smol'
 }
 
-function App(props) {
+function App() {
   return (
     <div className="App">
       <Router>
@@ -43,10 +43,7 @@ function App(props) {
             <MessageScreen />
           </Route>
 
-          <Route path="/messages">
-            <TopNav />
-            <ChatRoomList />
-            </Route>
+          
 
           <Route path="/profile">
             <TopNav />
@@ -72,19 +69,27 @@ function App(props) {
             <Candidate />
           </Route>
 
-          <MainProvider>
-            <UsersProvider>
-              <SocketProvider>                      
-                      <Route path='/chat'>
-                        <ChatLogin />
-                        <TopNav />
-                        <Chat 
-                          profile={profile}
-                        />
-                      </Route>
-              </SocketProvider>
-            </UsersProvider>
-          </MainProvider>
+          
+            <MainProvider>
+              <UsersProvider>
+                <SocketProvider>
+
+                <Route path="/messages">
+            <TopNav />
+            <ChatRoomList 
+              profile={profile}
+            />
+            </Route>
+
+                <Route path='/message'>
+                  <TopNav />
+                  {/* <ChatLogin /> */}
+                    <Chat />
+                  </Route>
+                </SocketProvider>
+              </UsersProvider>
+            </MainProvider>
+          
 
         </Switch>
       </Router>

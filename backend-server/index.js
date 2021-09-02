@@ -31,6 +31,7 @@ app.use('/api', messageRouter);
 io.on('connection', (socket) => {
   socket.on('login', ({ name, room }, callback) => {
       const { user, error } = addUser(socket.id, name, room)
+      console.log("socket", socket.id,  'user', name, 'room', room);
       if (error) return callback(error)
       socket.join(user.room)
       socket.in(room).emit('notification', { title: 'Someone\'s here', description: `${user.name} just entered the room` })
@@ -40,15 +41,16 @@ io.on('connection', (socket) => {
 
   socket.on('sendMessage', message => {
       const user = getUser(socket.id)
+      console.log(socket.id);
       io.in(user.room).emit('message', { user: user.name, text: message });
   })
 
   socket.on("disconnect", () => {
       console.log("User disconnected");
-      const user = deleteUser(socket.id)
+      const user = deleteUser(socket)
       if (user) {
-          io.in(user.room).emit('notification', { title: 'Someone just left', description: `${user.name} just left the room` })
-          io.in(user.room).emit('users', getUsers(user.room))
+        io.in(user.room).emit('notification', { title: 'Someone just left', description: `${user.name} just left the room` })
+        io.in(user.room).emit('users', getUsers(user.room))
       }
   })
 })

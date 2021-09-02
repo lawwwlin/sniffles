@@ -42,16 +42,16 @@ const getProfile = (receiver_id) => {
   return recipientProfile;
 }
 
-
-function ChatRoomList() {
+// recieve profile of current logged in user
+function ChatRoomList(props) {
 
   const chatRoomItems = chatRooms.map((room) => {
     return <ChatRoom
       key={room.id}
-      room_id={room.id}
-      sender_id={room.sender_id}
-      receiver_id={room.receiver_id}
-      profile={getProfile(room.receiver_id)}
+      room_id={room.id.toString()}
+      sender_id={room.sender_id.toString()}
+      sender_name={props.profile.name}
+      receiver_profile={getProfile(room.receiver_id)}
     />
   })
 

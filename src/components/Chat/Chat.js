@@ -6,11 +6,13 @@ import ScrollToBottom from 'react-scroll-to-bottom';
 import './Chat.scss';
 import { UsersContext } from '../../usersContext';
 import { TextField, Input, Button, Snackbar } from '@material-ui/core';
-import Alert from '@material-ui/lab/Alert';
+// import Alert from '@material-ui/lab/Alert';
 import SendIcon from '@material-ui/icons/Send';
 import MessageIcon from '@material-ui/icons/Message';
 import axios from 'axios';
+import { useLocation } from "react-router-dom";
 
+// required info: sender_id, receiver_id, room_id, sender_name
 const Chat = (props) => {
   const { name, room, setName, setRoom } = useContext(MainContext);
   const socket = useContext(SocketContext);
@@ -18,16 +20,12 @@ const Chat = (props) => {
   const [messages, setMessages] = useState([]);
   const { users } = useContext(UsersContext);
   const history = useHistory();
+  const location = useLocation();
+  const { receiver_profile, sender_id } = location.state;
   // const [open, setOpen] = React.useState(false);
 
   // temp function before passing in props
-  let recipient = "";
-  if (users) {
-    const user = users.find(user => user.name !== name);
-    if (user) {
-      recipient = user.name;
-    }
-  };
+  const recipient = receiver_profile;
 
   // const handleClose = (event, reason) => {
   //   if (reason === 'clickaway') {
@@ -57,7 +55,7 @@ const Chat = (props) => {
       socket.emit('sendMessage', message, () => setMessage(''));
       setMessage('');
       console.log(message);
-      axios.post(`http://localhost:3001/api/message/${name}`, {sender_id: name, receiver_id: recipient, text: message})
+      axios.post(`http://localhost:3001/api/message/${sender_id}`, {sender_id, receiver_id: recipient.id, text: message})
         .then(() => {
           console.log('message saved?');
         })
@@ -66,7 +64,7 @@ const Chat = (props) => {
 
   const logout = () => {
       setName(''); setRoom('');
-      history.push('/message');
+      history.push('/messages');
       history.go(0);
   };
 
@@ -74,8 +72,8 @@ const Chat = (props) => {
     <div className='room'>
       <h4 className='heading'>
         <div className='room-title'>
-          <h3> room: {room.slice(0, 1).toUpperCase() + room.slice(1)}, message to {recipient}</h3>
-          <div className='user-title'><h4>Logged in as: {name}</h4></div>
+          <h3> room: {room.slice(0, 1).toUpperCase() + room.slice(1)}, message to {recipient.name}</h3>
+          <div className='user-title'><h4>Current User: {name}</h4></div>
         </div>
         {/* remove logout button later and add back button*/}
         <Button onClick={logout}  >Logout</Button>
@@ -83,11 +81,12 @@ const Chat = (props) => {
 
       <ScrollToBottom className='messages' debug={false}>
             <div className='match-time'>
-              <h4> You matched with {recipient} on -insert-timestamp-here- </h4>
+              <h4> You matched with {recipient.name} on -insert-timestamp-here- </h4>
             </div>
           {messages.length > 0 ?
             messages.map((msg, i) =>
             (<div key={i} className={`message ${msg.user === name ? "my-message" : ""}`}>
+              {console.log(msg)}
               <h6 className='user'>{msg.user}</h6>
               <h4 className='msg'>{msg.text}</h4>
             </div>)
