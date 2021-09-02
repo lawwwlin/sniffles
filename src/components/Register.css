@@ -3,7 +3,16 @@
   text-align: center;
 }
 
+.register_title {
+  margin-right: 2em;
+}
+
 .register_create {
   justify-content: center;
   
+}
+
+.register_icon {
+  color: brown;
+  margin-right: 0.1em;
 }

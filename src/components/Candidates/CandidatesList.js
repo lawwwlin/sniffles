@@ -8,7 +8,6 @@ console.log(profile)
   useEffect(() => {
     axios.get(`/api/profile/${profile.profileID}`).then((data) => {
       const profiles = data.data;
-      console.log("profiles: ", profiles);
       setCandidates([...profiles]);
     });
   }, []);
