@@ -11,7 +11,6 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
 
 // chat
-import ChatLogin from "./Login/Login";
 import Chat from "./Chat/Chat";
 import { SocketProvider } from "../socketContext";
 import { MainProvider } from "../mainContext";
@@ -74,7 +73,6 @@ function App() {
                 </Route>
 
                 <Route path="/message">
-                  <TopNav />
                   <Chat />
                 </Route>
 

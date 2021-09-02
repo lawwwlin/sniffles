@@ -22,7 +22,7 @@ function ChatRoom({ room_id, sender_id, receiver_profile, sender_name }) {
   }
 
   const logIn = () => {
-    const name = sender_id;
+    const name = sender_name;
     const room = room_id;
     socket.emit('login', { name, room }, error => {
       console.log('after log in', room, name);

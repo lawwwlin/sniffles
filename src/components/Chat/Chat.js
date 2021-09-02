@@ -5,8 +5,7 @@ import { SocketContext } from '../../socketContext';
 import ScrollToBottom from 'react-scroll-to-bottom';
 import './Chat.scss';
 import { UsersContext } from '../../usersContext';
-import { TextField, Input, Button, Snackbar } from '@material-ui/core';
-// import Alert from '@material-ui/lab/Alert';
+import { TextField, Button } from '@material-ui/core';
 import SendIcon from '@material-ui/icons/Send';
 import MessageIcon from '@material-ui/icons/Message';
 import axios from 'axios';
@@ -22,18 +21,9 @@ const Chat = (props) => {
   const history = useHistory();
   const location = useLocation();
   const { receiver_profile, sender_id } = location.state;
-  // const [open, setOpen] = React.useState(false);
 
   // temp function before passing in props
   const recipient = receiver_profile;
-
-  // const handleClose = (event, reason) => {
-  //   if (reason === 'clickaway') {
-  //     return;
-  //   }
-
-  //   setOpen(false);
-  // };
 
   // logout when the active history entry changes
   window.onpopstate = e => logout();
@@ -50,11 +40,6 @@ const Chat = (props) => {
     socket.on("message", msg => {
       setMessages(messages => [...messages, msg]);
     });
-
-    // socket.on("notification", notif => {
-    //   console.log("notification", notif);
-    //   setOpen(true)
-    // });
   }, [socket]);
 
   const handleSendMessage = () => {
@@ -83,7 +68,7 @@ const Chat = (props) => {
           <div className='user-title'><h4>Current User: {name}</h4></div>
         </div>
         {/* remove logout button later and add back button*/}
-        <Button onClick={logout}  >Logout</Button>
+        <Button onClick={logout}> Back </Button>
       </h4>
 
       <ScrollToBottom className='messages' debug={false}>
@@ -123,13 +108,6 @@ const Chat = (props) => {
           Send
         </Button>  
       </div>
-
-      {/* {open && 
-        (<Snackbar open={open} autoHideDuration={6000} onClose={handleClose} anchorOrigin={{ vertical: 'bottom', horizontal: 'right'}}> 
-          <Alert onClose={handleClose} severity="success">
-            connected
-          </Alert>
-        </Snackbar>)} */}
     </div>
   );
 };
