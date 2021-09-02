@@ -18,7 +18,7 @@ const Chat = (props) => {
   const socket = useContext(SocketContext);
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
-  const { users } = useContext(UsersContext);
+  const { setUsers } = useContext(UsersContext);
   const history = useHistory();
   const location = useLocation();
   const { receiver_profile, sender_id } = location.state;
@@ -39,6 +39,12 @@ const Chat = (props) => {
   window.onpopstate = e => logout();
   //Checks to see if there's a user present
   useEffect(() => { if (!name) return history.push('/') }, [history, name]);
+
+  useEffect(() => {
+    socket.on("users", users => {
+        setUsers(users)
+    })
+  })
 
   useEffect(() => {
     socket.on("message", msg => {
@@ -63,7 +69,8 @@ const Chat = (props) => {
   };
 
   const logout = () => {
-      setName(''); setRoom('');
+      setName(''); 
+      setRoom('');
       history.push('/messages');
       history.go(0);
   };

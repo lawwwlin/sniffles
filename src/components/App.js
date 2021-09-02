@@ -3,7 +3,7 @@ import TopNav from "./TopNav";
 import Home from "./Home";
 import Register from "./Register";
 import Login from "./Login";
-import Candidate from './Candidate';
+import Candidate from "./Candidate";
 import Profile from "./Profile";
 import ChatRoomList from "./ChatRoomList";
 import MessageScreen from "./MessageScreen";
@@ -11,27 +11,27 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
 
 // chat
-import ChatLogin from './Login/Login'
-import Chat from './Chat/Chat'
-import { SocketProvider } from '../socketContext'
-import { MainProvider } from '../mainContext'
-import { UsersProvider } from '../usersContext'
+import ChatLogin from "./Login/Login";
+import Chat from "./Chat/Chat";
+import { SocketProvider } from "../socketContext";
+import { MainProvider } from "../mainContext";
+import { UsersProvider } from "../usersContext";
 // import DefaultPage from './components/DefaultPage'
 
 const profile = {
   id: 1,
-  imageUrl: 'https://tinyurl.com/kb7dhhck',
-  name: 'Bigboi',
-  breed: 'Maltese',
-  location: 'Vancouver',
-  gender: 'male',
+  imageUrl: "https://tinyurl.com/kb7dhhck",
+  name: "Bigboi",
+  breed: "Maltese",
+  location: "Vancouver",
+  gender: "male",
   age: 3,
-  size: 'small',
-  owner: 'BigBoiOwner',
-  email: 'a@a.com',
-  password: 'a',
-  description: 'actually very smol'
-}
+  size: "small",
+  owner: "BigBoiOwner",
+  email: "a@a.com",
+  password: "a",
+  description: "actually very smol",
+};
 
 function App() {
   return (
@@ -43,13 +43,9 @@ function App() {
             <MessageScreen />
           </Route>
 
-          
-
           <Route path="/profile">
             <TopNav />
-            <Profile 
-              profile={profile}
-            />
+            <Profile profile={profile} />
           </Route>
 
           <Route path="/login">
@@ -69,28 +65,22 @@ function App() {
             <Candidate />
           </Route>
 
-          
-            <MainProvider>
-              <UsersProvider>
-                <SocketProvider>
-
+          <MainProvider>
+            <UsersProvider>
+              <SocketProvider>
                 <Route path="/messages">
-            <TopNav />
-            <ChatRoomList 
-              profile={profile}
-            />
-            </Route>
-
-                <Route path='/message'>
                   <TopNav />
-                  {/* <ChatLogin /> */}
-                    <Chat />
-                  </Route>
-                </SocketProvider>
-              </UsersProvider>
-            </MainProvider>
-          
+                  <ChatRoomList profile={profile} />
+                </Route>
 
+                <Route path="/message">
+                  <TopNav />
+                  <Chat />
+                </Route>
+
+              </SocketProvider>
+            </UsersProvider>
+          </MainProvider>
         </Switch>
       </Router>
     </div>

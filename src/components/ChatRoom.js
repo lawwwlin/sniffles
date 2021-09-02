@@ -16,6 +16,7 @@ function ChatRoom({ room_id, sender_id, receiver_profile, sender_name }) {
   const { name, setName, room, setRoom } = useContext(MainContext);
 
   const setValues = async () => {
+    console.log('setting values');
     setName(sender_name);
     setRoom(room_id);
   }
@@ -33,7 +34,7 @@ function ChatRoom({ room_id, sender_id, receiver_profile, sender_name }) {
             </Alert>
           )
       }
-      history.push('/chat')
+      // history.push('/chat')
       console.log('connected to', room_id)
       return (
         <Alert severity="success">
@@ -45,18 +46,18 @@ function ChatRoom({ room_id, sender_id, receiver_profile, sender_name }) {
 
   const onClick = () => {
 
-    console.log(sender_name, room_id)
+    console.log('before setting values', sender_name, room_id)
     
     setValues()
       .then(() => {
-        console.log('after setting values', room, name);
         logIn();
       })
   }
 
   return (
     <div className="messenger">
-      <Link to={{
+      <Link 
+        to={{
         pathname: "/message",
         state: {
           room_id,
@@ -65,7 +66,7 @@ function ChatRoom({ room_id, sender_id, receiver_profile, sender_name }) {
           receiver_profile
         }}}
         onClick={onClick}
-        >
+      >
           <Avatar className="messenger_pic" alt={receiver_profile.name} src={receiver_profile.url} />
       </Link>
       <div className="messenger_info">
