@@ -121,9 +121,9 @@ export default function Candidate(props) {
       <Dialog
         open={open}
         onClose={handleClose}
-        aria-labelledby="form-dialog-title"
+        // aria-labelledby="form-dialog-title"
       >
-        <DialogContent className="dialog">
+        <DialogContent className="candidate_dialog">
           <DialogTitle>{desc.name}</DialogTitle>
           <DialogContentText>
             <p>Location: {desc.location}</p>

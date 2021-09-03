@@ -22,3 +22,7 @@
 .messenger_pic {
   margin-right: 20px;
 }
+
+.messenger_delete {
+  color: red;
+} 
