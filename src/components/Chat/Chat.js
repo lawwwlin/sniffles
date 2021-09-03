@@ -13,14 +13,14 @@ import { useLocation } from "react-router-dom";
 
 // required info: sender_id, receiver_id, room_id, sender_name
 const Chat = (props) => {
+  const location = useLocation();
+  const { receiver_profile, sender_id, chatroom } = location.state;
   const { name, room, setName, setRoom } = useContext(MainContext);
   const socket = useContext(SocketContext);
   const [message, setMessage] = useState('');
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState(JSON.parse(chatroom.messages));
   const { setUsers } = useContext(UsersContext);
   const history = useHistory();
-  const location = useLocation();
-  const { receiver_profile, sender_id } = location.state;
 
   // temp function before passing in props
   const recipient = receiver_profile;
@@ -30,17 +30,26 @@ const Chat = (props) => {
   //Checks to see if there's a user present
   useEffect(() => { if (!name) return history.push('/') }, [history, name]);
 
-  useEffect(() => {
-    socket.on("users", users => {
-        setUsers(users)
-    })
-  })
+  // useEffect(() => {
+  //   socket.on("users", users => {
+  //       setUsers(users)
+  //   })
+  // })
 
   useEffect(() => {
     socket.on("message", msg => {
       setMessages(messages => [...messages, msg]);
     });
-  }, [socket]);
+    console.log("check msgs before axios:", messages);
+    const chatroom = {profile1_id: sender_id, profile2_id: recipient.id, messages: messages}
+    console.log('profile1', sender_id, 'profile2', recipient.id)
+
+    axios.put(`http://localhost:3001/api/chatroom/`, {chatroom})
+      .then((res) => {
+        console.log('chatroom saved?', res)
+      })
+      .catch(error => console.log(error));
+  }, [socket, messages]);
 
   const handleSendMessage = () => {
       socket.emit('sendMessage', message, () => setMessage(''));
@@ -64,7 +73,7 @@ const Chat = (props) => {
     <div className='room'>
       <h4 className='heading'>
         <div className='room-title'>
-          <h3> room: {room.slice(0, 1).toUpperCase() + room.slice(1)}, message to {recipient.name}</h3>
+          <h3> room: {chatroom.id}, message to {recipient.name}</h3>
           <div className='user-title'><h4>Current User: {name}</h4></div>
         </div>
         {/* remove logout button later and add back button*/}

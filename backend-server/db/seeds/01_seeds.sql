@@ -13,7 +13,7 @@ VALUES
 (true, 1, 2),
 (true, 2, 1);
 
-INSERT INTO message (text, sender_id, receiver_id)
+INSERT INTO chatroom (profile1_id, profile2_id, messages)
 VALUES
-('Wauw cute doggo', 1, 2),
-('thank you', 2, 1);
+(1, 2, '[{"user":"Bigboi","text":"hi im Bigboi"}, {"user":"temp user two","text":"hello there!"}, {"user":"Bigboi","text":"wanna meet somewhere?"}, {"user":"temp user two","text":"sure!"}]'),
+(1, 3, '[{"user":"Bigboi","text":"hello"}, {"user":"Bigboi","text":"you are fat"}, {"user":"Puff","text":"no! im poofy"}]');

@@ -8,6 +8,7 @@ const indexRouter = require('./routes/index');
 const profileRouter = require('./routes/profile');
 const candidateRouter = require('./routes/candidate');
 const messageRouter = require('./routes/message');
+const chatroomRouter = require('./routes/chatroom');
 
 const app = require('express')();
 const http = require('http').createServer(app);
@@ -27,6 +28,7 @@ app.use('/', indexRouter);
 app.use('/api', profileRouter);
 app.use('/api', candidateRouter);
 app.use('/api', messageRouter);
+app.use('/api', chatroomRouter);
 
 io.on('connection', (socket) => {
   socket.on('login', ({ name, room }, callback) => {

@@ -9,7 +9,7 @@ import { MainContext } from '../mainContext'
 
 
 // 
-function ChatRoom({ room_id, sender_id, receiver_profile, sender_name }) {
+function ChatRoom({ room_id, sender_id, receiver_profile, sender_name, chatroom }) {
 
   const history = useHistory();
   const socket = useContext(SocketContext)
@@ -19,7 +19,7 @@ function ChatRoom({ room_id, sender_id, receiver_profile, sender_name }) {
     console.log('setting values');
     setName(sender_name);
     setRoom(room_id);
-  }
+  };
 
   const logIn = () => {
     const name = sender_name;
@@ -42,7 +42,7 @@ function ChatRoom({ room_id, sender_id, receiver_profile, sender_name }) {
         </Alert>
       )
     })
-  }
+  };
 
   const onClick = () => {
 
@@ -52,7 +52,27 @@ function ChatRoom({ room_id, sender_id, receiver_profile, sender_name }) {
       .then(() => {
         logIn();
       })
-  }
+  };
+
+  const getLastMessageInChatroom = (room) => {
+    const messages = JSON.parse(room.messages);
+    return messages.at(-1).text;
+  };
+
+  const getTimeAgo = (time) => {
+    // time in seconds
+    const timeAgo = (Date.now()/1000 - time)
+    console.log("timeAgo:",timeAgo)
+    if (timeAgo < 60) {
+      return `${parseInt(timeAgo)} seconds ago`;
+    }
+    if (timeAgo < 3600) {
+      return `${parseInt(timeAgo / 60)} minutes ago`;
+    }
+    if (timeAgo < 86400) {
+      return `${parseInt(timeAgo / 3600)} hours`;
+    }
+  };
 
   return (
     <div className="messenger">
@@ -60,7 +80,7 @@ function ChatRoom({ room_id, sender_id, receiver_profile, sender_name }) {
         to={{
         pathname: "/message",
         state: {
-          room_id,
+          chatroom,
           sender_id,
           sender_name,
           receiver_profile
@@ -71,10 +91,10 @@ function ChatRoom({ room_id, sender_id, receiver_profile, sender_name }) {
       </Link>
       <div className="messenger_info">
         <h2>{receiver_profile.name}</h2>
-        <p>sample message text</p>
+        <p>{getLastMessageInChatroom(chatroom)}</p>
       </div>
       <p messenger_timestamp className="messenger_timestamp">
-        -insert-timestamp-here-
+        {getTimeAgo(chatroom.updatedat)}
       </p>
     </div>
   );
