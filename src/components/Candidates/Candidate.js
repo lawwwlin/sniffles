@@ -124,15 +124,16 @@ export default function Candidate(props) {
         // aria-labelledby="form-dialog-title"
       >
         <DialogContent className="candidate_dialog">
-          <DialogTitle>{desc.name}</DialogTitle>
-          <DialogContentText>
+          <h2>{desc.name}</h2>
+          <br/>
+          
             <p>Location: {desc.location}</p>
             <p>Breed: {desc.breed}</p>
             <p>Gender: {desc.gender}</p>
             <p>Age: {desc.age}</p>
             <p>Size: {desc.size}</p>
             <p>Owner: {desc.owner}</p>
-          </DialogContentText>
+          <br/>
         </DialogContent>
       </Dialog>
     </div>
