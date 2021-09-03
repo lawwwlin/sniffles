@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import TopNav from "./TopNav";
 import Home from "./Home";
 import RegisterForm from "./RegisterForm";
 import Login from "./Login";
 import Profile from "./Profile";
-import MessengerList from "./MessengerList";
+import ChatRoomList from "./ChatRoomList";
 import MessageScreen from "./MessageScreen";
 import {
   BrowserRouter as Router,
@@ -21,7 +21,6 @@ import Candidate from "./Candidates/Candidate";
 import axios from "axios";
 
 // chat
-import ChatLogin from "./Login/Login";
 import Chat from "./Chat/Chat";
 import { SocketProvider } from "../socketContext";
 import { MainProvider } from "../mainContext";
@@ -45,7 +44,7 @@ const profile = {
   description: "actually very smol",
 };
 
-function App(props) {
+function App() {
   return (
     <div className="App">
       <Router>
@@ -56,11 +55,6 @@ function App(props) {
           <Route path="/messages/:candidate">
             <TopNav />
             <MessageScreen />
-          </Route>
-
-          <Route path="/messages">
-            <TopNav />
-            <MessengerList />
           </Route>
 
           <Route path="/profile">
@@ -88,17 +82,15 @@ function App(props) {
           <MainProvider>
             <UsersProvider>
               <SocketProvider>
-                {/* <Flex className="App" align='center' justifyContent='center'> */}
-                <Route path="/message">
+                <Route path="/messages">
                   <TopNav />
-                  <ChatLogin />
+                  <ChatRoomList profile={profile} />
                 </Route>
 
-                <Route path="/chat">
-                  <TopNav />
+                <Route path="/message">
                   <Chat />
                 </Route>
-                {/* </Flex> */}
+
               </SocketProvider>
             </UsersProvider>
           </MainProvider>

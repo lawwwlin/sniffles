@@ -21,7 +21,7 @@ function TopNav() {
         </IconButton>
       </Link>
 
-      <Link to="/message">
+      <Link to="/messages">
       <IconButton>
         <TextsmsIcon className="topNav_icon" style={{ fontSize: 40 }} />
       </IconButton>
