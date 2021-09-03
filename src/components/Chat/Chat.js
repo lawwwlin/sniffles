@@ -37,17 +37,21 @@ const Chat = (props) => {
   // })
   useEffect(() => {
     socket.on("message", msg => {
-      setMessages(messages => [...messages, msg]);
+      setMessages(messages => [...messages, msg])
     });
-    console.log("check msgs before axios:", messages);
-    const room = {id: chatroom.id, profile1_id: sender_id, profile2_id: recipient.id, messages: messages}
-    console.log('profile1', sender_id, 'profile2', recipient.id)
-    console.log('profile1', sender_id, 'profile2', recipient.id)
-    axios.put(`http://localhost:3001/api/chatroom/${chatroom.id}`, {room})
-      .then((res) => {
-        console.log('chatroom saved?', res)
-      })
-      .catch(error => console.log(error));
+    console.log("stringify", JSON.stringify(messages))
+    console.log("msg from db", chatroom.messages)
+    if (JSON.stringify(messages) !== chatroom.messages) {
+      console.log("check msgs before axios:", messages);
+      const room = {id: chatroom.id, profile1_id: sender_id, profile2_id: recipient.id, messages: messages}
+      console.log('profile1', sender_id, 'profile2', recipient.id)
+      console.log('profile1', sender_id, 'profile2', recipient.id)
+      axios.put(`http://localhost:3001/api/chatroom/${chatroom.id}`, {room})
+        .then((res) => {
+          console.log('chatroom saved?', res)
+        })
+        .catch(error => console.log(error));
+    }
   }, [socket, messages]);
   
   

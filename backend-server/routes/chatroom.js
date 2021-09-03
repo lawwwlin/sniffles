@@ -90,7 +90,7 @@ router.put("/chatroom/:room_id", (req, res) => {
   console.log(`checking stringify: `, msgs);
   db.query(`
     INSERT INTO chatroom (id, profile1_id, profile2_id, messages) VALUES ($1, $2, $3, $4)
-    ON CONFLICT (id, messages) DO
+    ON CONFLICT (id) DO
     UPDATE SET messages = $4
   `, [id, profile1_id, profile2_id, msgs])
     .then((data) => {
