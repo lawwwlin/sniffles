@@ -34,7 +34,6 @@ const useStyles = makeStyles((theme) => ({
 
 function Form(props) {
   const classes = useStyles();
- // console.log("form props", props);
   const [name, setName] = useState(props.name || "");
   const [breed, setBreed] = useState(props.breed || "");
   const [gender, setGender] = useState(props.gender || "");
@@ -44,11 +43,15 @@ function Form(props) {
   const [owner, setOwner] = useState(props.owner || "");
   const [email, setEmail] = useState(props.email || "");
   const [description, setDescription] = useState(props.description || "");
-  const [imageUrl, setimageUrl] = useState(props.imageUrl || "");
+  const [imageUrl, setimageUrl] = useState(
+    props.imageUrl ||
+      ""
+  );
   const [values, setValues] = useState({
     password: props.password || "",
-    showPassword: false
+    showPassword: false,
   });
+
 
   const dogGender = ["male", "female"];
   const dogSizes = ["small", "medium", "large"];
@@ -92,6 +95,20 @@ function Form(props) {
             value={breed}
             onChange={(e) => {setBreed(e.target.value)}}
             placeholder="What kind of doggo?"
+          />
+        </FormControl>
+
+        <FormControl>
+          <InputLabel htmlFor="imageUrl">imageUrl</InputLabel>
+          <Input
+            className="form__create-input"
+            name="imageUrl"
+            type="text"
+            value={imageUrl}
+            onChange={(e) => {
+              setimageUrl(e.target.value);
+            }}
+            placeholder="doggie profile pic"
           />
         </FormControl>
 
@@ -213,7 +230,7 @@ function Form(props) {
           color="primary"
           startIcon={<SaveIcon />}
         >
-          Save
+          {props.submit}
         </Button>
       </form>
     </div>

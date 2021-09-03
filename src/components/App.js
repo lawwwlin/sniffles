@@ -1,7 +1,7 @@
 import React from "react";
 import TopNav from "./TopNav";
 import Home from "./Home";
-import RegisterForm from "./RegisterForm";
+import Form from "./Form";
 import Login from "./Login";
 import Profile from "./Profile";
 import ChatRoomList from "./ChatRoomList";
@@ -27,7 +27,7 @@ import { MainProvider } from "../mainContext";
 import { UsersProvider } from "../usersContext";
 import Candidates from "./Candidates/CandidatesList";
 
-import { OnCreate } from "./Register";
+import onSave from "./Register";
 
 const profile = {
   id: 1,
@@ -67,7 +67,7 @@ function App() {
           </Route>
 
           <Route path="/register">
-            <RegisterForm onCreate={OnCreate} />
+            <Form onSave={onSave} submit={"Create"}/>
           </Route>
 
           <Route path="/home">
