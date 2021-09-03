@@ -15,6 +15,7 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
+import Fab from "@material-ui/core/Fab";
 
 //ILI
 //key, id, name, imageUrl, location, info
@@ -57,7 +58,12 @@ export default function Candidate(props) {
 
   return (
     <div className="candidate">
-      <h1 className="candidate_none">Your doggo a little thirsty.</h1>
+      <div className="candidate_card" id="candidate_cardNone">
+        <div className="candidate_none">
+        <h1>You a bit too thirsty for doggos👀</h1>
+        <h1>Drink some water and swipe again later🥵</h1>
+        </div>
+      </div>
       {candidates.map((candidate) => (
         <DogCard
           className="swipe"
@@ -70,7 +76,9 @@ export default function Candidate(props) {
             className="candidate_card"
           >
             <div className="candidate_info">
+            <Fab variant="extended" disabled aria-label="like" style={{ fontSize: 20 }}>
               <h1 className="candidate_name">{candidate.name}</h1>
+              </Fab>
               <h3>
                 <LocationOnIcon className="location" />
                 {candidate.location}
@@ -115,7 +123,7 @@ export default function Candidate(props) {
         onClose={handleClose}
         aria-labelledby="form-dialog-title"
       >
-        <DialogContent>
+        <DialogContent className="dialog">
           <DialogTitle>{desc.name}</DialogTitle>
           <DialogContentText>
             <p>Location: {desc.location}</p>

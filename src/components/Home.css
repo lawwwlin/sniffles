@@ -1,16 +1,32 @@
-.home {
+.home_icon {
   position: fixed;
-  top: 40%;
+  top: 55%;
   left: 50%;
   margin-top: -50px;
   margin-left: -100px;
+}
+
+.home_logo {
+  color: brown;
+  position: fixed;
+  margin-top: 2em;
+  margin-left: -100px;
+  left: 55%; 
+}
+
+.home_welcome {
+  position: fixed;
+  left: 43%;
+  margin-top: 5.5em;
+  margin-left: -100px
+  
 }
 
 .home_newUser{
   
   display: inline-block;
   border-radius: 60px;
-  /* box-shadow: 0px 0px 2px #888; */
+  box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
   padding: 0.125em 0.15em;
   color: white;
   background-color: rgb(255, 130, 151);
@@ -20,7 +36,7 @@
   
   display: inline-block;
   border-radius: 60px;
-  /* box-shadow: 0px 0px 2px #888; */
+  box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
   padding: 0.125em 0.15em;
   color: white;
   background-color: rgb(81, 81, 247);

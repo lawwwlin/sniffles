@@ -22,6 +22,10 @@
   color: white;
 }
 
+.candidate_name{
+  color: white;
+}
+
 .candidate {
   display:flex;
   justify-content: center;
@@ -29,7 +33,13 @@
 }
 
 .candidate_none {
-  padding-top: 12em;
+  color: aliceblue;
+  padding-top: 20em;
+  text-align: center;
+}
+
+#candidate_cardNone {
+  background-color: grey;
 }
 
 .swipe {
@@ -71,3 +81,5 @@
   padding: .2em !important;
   color: rgb(0, 209, 0) !important;
 }
+
+.dialog {}

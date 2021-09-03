@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Profile.css";
 import EditIcon from "@material-ui/icons/Edit";
 import IconButton from "@material-ui/core/IconButton";
+import Fab from "@material-ui/core/Fab";
 import ProfileEdit from "./ProfileEdit";
 
 import { makeStyles } from "@material-ui/core/styles";
@@ -21,10 +22,11 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: 700,
     marginTop: 30,
     marginBottom: 40,
-    paddingBottom: 10,
+    paddingBottom: 5,
+    boxShadow: "rgb(38, 57, 77) 0px 20px 30px -10px;",
   },
   media: {
-    height: 0,
+    height: 100,
     paddingTop: "56.25%", // 16:9
   },
   expand: {
@@ -36,6 +38,13 @@ const useStyles = makeStyles((theme) => ({
   },
   expandOpen: {
     transform: "rotate(180deg)",
+  },
+  edit: {
+    "& > *": {
+      margin: theme.spacing(1),
+      backgroundColor: "#ff008f",
+      
+    },
   },
 }));
 
@@ -96,10 +105,7 @@ function Profile(props) {
           <h3>description: {profile.description}</h3> */}
 
           <Card className={classes.root}>
-            <CardHeader
-              title={profile.name}
-              subheader="Profile"
-            />
+            <CardHeader title={profile.name} subheader="Profile" />
             <CardMedia
               className={classes.media}
               image={profile.imageUrl}
@@ -107,17 +113,17 @@ function Profile(props) {
             />
             <CardContent>
               <Typography variant="body2" color="textSecondary" component="p">
-                <h1>view and edit info</h1>
+                {profile.description}
               </Typography>
             </CardContent>
             <CardActions disableSpacing>
-              <IconButton
-                aria-label="add to favorites"
-                size="small"
-                onClick={onClick}
-              >
-                <EditIcon className="profile_icon" style={{ fontSize: 35 }} />
-              </IconButton>
+          
+                <div className={classes.edit}>
+                  <Fab color="secondary" aria-label="edit" onClick={onClick}>
+                    <EditIcon className="profile_icon" style={{ fontSize: 35 }}/>
+                  </Fab>
+                </div>
+              
               <IconButton
                 className={clsx(classes.expand, {
                   [classes.expandOpen]: expanded,
@@ -131,11 +137,16 @@ function Profile(props) {
             </CardActions>
             <Collapse in={expanded} timeout="auto" unmountOnExit>
               <CardContent>
-                <Typography paragraph>Method:</Typography>
-                <Typography paragraph>info box 0?</Typography>
-                <Typography paragraph>info box 1?</Typography>
-                <Typography paragraph>info box 2?</Typography>
-                <Typography>info 3 xd</Typography>
+                <Typography paragraph>
+                  <h3>More Info:</h3>
+                </Typography>
+                <Typography paragraph>Breed: {profile.breed}</Typography>
+                <Typography paragraph>Age: {profile.age}</Typography>
+                <Typography paragraph>Gender: {profile.gender}</Typography>
+                <Typography paragraph>Size: {profile.size}</Typography>
+                <Typography paragraph>Location: {profile.location}</Typography>
+                <Typography paragraph>Owner: {profile.owner}</Typography>
+                <Typography paragraph>Email: {profile.email}</Typography>
               </CardContent>
             </Collapse>
           </Card>
