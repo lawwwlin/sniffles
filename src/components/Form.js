@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Form(props) {
   const classes = useStyles();
-  console.log("form props", props);
+ // console.log("form props", props);
   const [name, setName] = useState(props.name || "");
   const [breed, setBreed] = useState(props.breed || "");
   const [gender, setGender] = useState(props.gender || "");
