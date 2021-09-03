@@ -113,7 +113,7 @@ function ChatRoom({ room_id, sender_id, receiver_profile, sender_name, chatroom 
       </Link>
       <div className="messenger_info">
         <h2>{receiver_profile.name}<IconButton onClick={handleClickOpen}><InfoOutlinedIcon /></IconButton></h2>
-        <p>sample message text</p>
+        <p>{getLastMessageInChatroom(chatroom)}</p>
       </div>
       <p messenger_timestamp className="messenger_timestamp">
         {getTimeAgo(chatroom.updatedat)}
