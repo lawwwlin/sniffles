@@ -22,6 +22,12 @@
   color: white;
 }
 
+.candidate_none {
+  color: aliceblue;
+  padding-top: 20em;
+  text-align: center;
+}
+
 .candidate_name{
   color: white;
 }
@@ -30,12 +36,6 @@
   display:flex;
   justify-content: center;
   margin-top: 1vh;
-}
-
-.candidate_none {
-  color: aliceblue;
-  padding-top: 20em;
-  text-align: center;
 }
 
 #candidate_cardNone {
