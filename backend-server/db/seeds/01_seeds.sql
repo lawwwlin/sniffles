@@ -6,7 +6,11 @@ VALUES
 ('Ace', 'Shiba Inu', 'Port Coquitlam', 'male', 5, 'medium', 'Luffy', 'd@d.com', '123', 'https://images.pexels.com/photos/4587993/pexels-photo-4587993.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260', 'I like long walks'),
 ('Diesel', 'Husky', 'Vancouver', 'male', 2, 'medium', 'Will', 'e@e.com', '123', 'https://images.pexels.com/photos/4681107/pexels-photo-4681107.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940', 'We outside please'),
 ('Gucci', 'Maltese', 'Richmond', 'female', 1, 'small', 'Kim', 'f@f.com', '123', 'https://images.pexels.com/photos/2877086/pexels-photo-2877086.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940', 'Gimme food plz'),
-('Casper', 'German Sheperd', 'New Westminster', 'male', 3, 'medium', 'Umi', 'g@g.com', '123', 'https://images.pexels.com/photos/6606825/pexels-photo-6606825.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940', 'I want ball');
+('Casper', 'German Sheperd', 'New Westminster', 'male', 3, 'medium', 'Umi', 'g@g.com', '123', 'https://images.pexels.com/photos/6606825/pexels-photo-6606825.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940', 'I want ball'),
+('Lucky', 'Corgi', 'Richmond', 'male', 8, 'small', 'Oscar', 'h@h.com', '123', 'https://images.pexels.com/photos/164186/pexels-photo-164186.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940', 'Gimme treatz'),
+('Avery', 'Golden Retriever', 'Port Moody', 'female', 7, 'big', 'Ashley', 'i@i.com', '123', 'https://images.pexels.com/photos/1001976/pexels-photo-1001976.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940', 'Looking for doggo homie'),
+('Cody', 'Pug', 'Vancouver', 'male', 4, 'small', 'Nick', 'j@j.com', '123', 'https://images.pexels.com/photos/374898/pexels-photo-374898.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940', 'I actually like to be inside'),
+('Eva', 'Beagle', 'Burnaby', 'female', 5, 'small', 'Ella', 'k@k.com', '123', 'https://images.pexels.com/photos/7421920/pexels-photo-7421920.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940', 'It has been ruff out here');
 
 INSERT INTO candidate (approve, profile_id, candidate_dog_id)
 VALUES
