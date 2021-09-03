@@ -17,6 +17,11 @@ import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 const useStyles = makeStyles((theme) => ({
+  typography: {
+    fontFamily: [
+      'Quicksand',
+    ].join(','),
+  },
   root: {
     width: 700,
     maxWidth: 700,
