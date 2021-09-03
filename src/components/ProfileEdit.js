@@ -68,6 +68,7 @@ function ProfileEdit(props) {
       imageUrl = {profile.imageUrl}
       description = {profile.description}
       onSave = {onSave}
+      submit={"Save"}
     />
     </Card>
   </div>

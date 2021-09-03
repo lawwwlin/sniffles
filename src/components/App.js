@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import TopNav from "./TopNav";
 import Home from "./Home";
-import RegisterForm from "./RegisterForm";
+import Form from "./Form";
 import Login from "./Login";
 import Profile from "./Profile";
 import MessengerList from "./MessengerList";
@@ -28,7 +28,7 @@ import { MainProvider } from "../mainContext";
 import { UsersProvider } from "../usersContext";
 import Candidates from "./Candidates/CandidatesList";
 
-import { OnCreate } from "./Register";
+import onSave from "./Register";
 
 const profile = {
   id: 1,
@@ -73,7 +73,7 @@ function App(props) {
           </Route>
 
           <Route path="/register">
-            <RegisterForm onCreate={OnCreate} />
+            <Form onSave={onSave} submit={"Create"}/>
           </Route>
 
           <Route path="/home">
