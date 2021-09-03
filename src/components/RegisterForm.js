@@ -87,7 +87,7 @@ function Form(props) {
       imageUrl,
     };
     console.log("profile", profile);
-     axios
+    axios
       .post("/api/profile", profile)
       .then((res) => {
         console.log("done", res);

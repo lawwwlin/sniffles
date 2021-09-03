@@ -47,30 +47,30 @@ router.post("/profile", (req, res) => {
   const {
     name,
     breed,
-    location,
     gender,
+    location,
     age,
     size,
     owner,
     email,
+    description,
     password,
     imageUrl,
-    description,
   } = req.body;
   db.query(
-    `INSERT INTO profile (age, breed, description, email, gender, imageurl, location, name, owner, password, size) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING id;`,
+    `INSERT INTO profile (age, breed, description, email, gender, imageurl, location, name, owner, password, size) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING id;`,
     [
-      name,
-      breed,
-      location,
-      gender,
       age,
-      size,
-      owner,
-      email,
-      password,
-      imageUrl,
+      breed,
       description,
+      email,
+      gender,
+      imageUrl,
+      location,
+      name,
+      owner,
+      password,
+      size,
     ]
   )
     .then((data) => {
@@ -78,7 +78,7 @@ router.post("/profile", (req, res) => {
       res.json(profile);
     })
     .catch((err) => {
-      console.log(err.response)
+      res.status(500).json({ error: err.message });
     });
 });
 module.exports = router;
