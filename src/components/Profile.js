@@ -2,7 +2,51 @@ import React, { useState } from "react";
 import "./Profile.css";
 import EditIcon from "@material-ui/icons/Edit";
 import IconButton from "@material-ui/core/IconButton";
+import Fab from "@material-ui/core/Fab";
 import ProfileEdit from "./ProfileEdit";
+
+import { makeStyles } from "@material-ui/core/styles";
+import clsx from "clsx";
+import Card from "@material-ui/core/Card";
+import CardHeader from "@material-ui/core/CardHeader";
+import CardMedia from "@material-ui/core/CardMedia";
+import CardContent from "@material-ui/core/CardContent";
+import CardActions from "@material-ui/core/CardActions";
+import Collapse from "@material-ui/core/Collapse";
+import Typography from "@material-ui/core/Typography";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    width: 700,
+    maxWidth: 700,
+    marginTop: 30,
+    marginBottom: 40,
+    paddingBottom: 5,
+    boxShadow: "rgb(38, 57, 77) 0px 20px 30px -10px;",
+  },
+  media: {
+    height: 100,
+    paddingTop: "56.25%", // 16:9
+  },
+  expand: {
+    transform: "rotate(0deg)",
+    marginLeft: "auto",
+    transition: theme.transitions.create("transform", {
+      duration: theme.transitions.duration.shortest,
+    }),
+  },
+  expandOpen: {
+    transform: "rotate(180deg)",
+  },
+  edit: {
+    "& > *": {
+      margin: theme.spacing(1),
+      backgroundColor: "#ff008f",
+      
+    },
+  },
+}));
 
 // const profile = {
 //   id: 1,
@@ -22,6 +66,12 @@ import ProfileEdit from "./ProfileEdit";
 function Profile(props) {
   const [editMode, setEditMode] = useState(false);
   const [profile, setProfile] = useState(props.profile);
+  const classes = useStyles();
+  const [expanded, setExpanded] = React.useState(false);
+
+  const handleExpandClick = () => {
+    setExpanded(!expanded);
+  };
 
   function onClick() {
     console.log("profile click");
@@ -54,24 +104,52 @@ function Profile(props) {
           <h3>email: {profile.email}</h3>
           <h3>description: {profile.description}</h3> */}
 
-          <div
-            style={{ backgroundImage: `url(${profile.imageUrl})` }}
-            className="profile_card"
-          >
-            <div className="profile_info">
-              <h1>{profile.name}</h1>
-              <h3>
-                {/* <LocationOnIcon className="location" /> */}
-                {profile.location}
-              </h3>
-              <h3>{profile.description}</h3>
-            </div>
-            <div className="profile_button">
-            <IconButton size="small" onClick={onClick}>
-              <EditIcon className="profile_icon" style={{ fontSize: 50 }} />
-            </IconButton>
-            </div>
-          </div>
+          <Card className={classes.root}>
+            <CardHeader title={profile.name} subheader="Profile" />
+            <CardMedia
+              className={classes.media}
+              image={profile.imageUrl}
+              title="profile pic"
+            />
+            <CardContent>
+              <Typography variant="body2" color="textSecondary" component="p">
+                {profile.description}
+              </Typography>
+            </CardContent>
+            <CardActions disableSpacing>
+          
+                <div className={classes.edit}>
+                  <Fab color="secondary" aria-label="edit" onClick={onClick}>
+                    <EditIcon className="profile_icon" style={{ fontSize: 35 }}/>
+                  </Fab>
+                </div>
+              
+              <IconButton
+                className={clsx(classes.expand, {
+                  [classes.expandOpen]: expanded,
+                })}
+                onClick={handleExpandClick}
+                aria-expanded={expanded}
+                aria-label="show more"
+              >
+                <ExpandMoreIcon />
+              </IconButton>
+            </CardActions>
+            <Collapse in={expanded} timeout="auto" unmountOnExit>
+              <CardContent>
+                <Typography paragraph>
+                  <h3>More Info:</h3>
+                </Typography>
+                <Typography paragraph>Breed: {profile.breed}</Typography>
+                <Typography paragraph>Age: {profile.age}</Typography>
+                <Typography paragraph>Gender: {profile.gender}</Typography>
+                <Typography paragraph>Size: {profile.size}</Typography>
+                <Typography paragraph>Location: {profile.location}</Typography>
+                <Typography paragraph>Owner: {profile.owner}</Typography>
+                <Typography paragraph>Email: {profile.email}</Typography>
+              </CardContent>
+            </Collapse>
+          </Card>
         </div>
       )}
       {editMode && <ProfileEdit profile={profile} onSave={save} />}
@@ -80,3 +158,23 @@ function Profile(props) {
 }
 
 export default Profile;
+
+/*
+         <div
+            style={{ backgroundImage: `url(${profile.imageUrl})` }}
+            className="profile_card"
+          >
+            <div className="profile_info">
+              <h1>{profile.name}</h1>
+              <h3>
+                {profile.location}
+              </h3>
+              <h3>{profile.description}</h3>
+            </div>
+            <div className="profile_button">
+              <IconButton size="small" onClick={onClick}>
+                <EditIcon className="profile_icon" style={{ fontSize: 50 }} />
+              </IconButton>
+            </div>
+          </div>
+          */
