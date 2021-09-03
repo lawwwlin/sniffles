@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import Candidate from "./Candidate";
 import axios from "axios";
 
-export default function CandidateList({ profile }) {
+export default function CandidateList(profile) {
   const [candidates, setCandidates] = useState([]);
-
+console.log(profile)
   useEffect(() => {
-    axios.get("/api/profile").then((data) => {
+    axios.get(`/api/profile/${profile.profileID}`).then((data) => {
       const profiles = data.data;
       setCandidates([...profiles]);
     });

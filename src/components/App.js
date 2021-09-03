@@ -81,7 +81,7 @@ function App(props) {
           <Route path="/Candidate">
             <TopNav />
             <CandidatesList
-            profile={profile}
+            profileID ={profile.id}
             />
           </Route>
 

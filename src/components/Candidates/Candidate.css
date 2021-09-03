@@ -23,6 +23,7 @@
 }
 
 .candidate_none {
+
   color: aliceblue;
   padding-top: 20em;
   text-align: center;
@@ -30,7 +31,6 @@
 
 .candidate_name{
   color: white;
-}
 
 .candidate {
   display:flex;
@@ -81,5 +81,3 @@
   padding: .2em !important;
   color: rgb(0, 209, 0) !important;
 }
-
-.dialog {}
