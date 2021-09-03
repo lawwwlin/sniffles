@@ -4,11 +4,6 @@
   
 }
 
-.register_title {
-  margin-top: 1em;
-  margin-right: 2em;
-}
-
 .register_create {
   justify-content: center;
   padding-bottom: 1em; 
@@ -16,5 +11,5 @@
 
 .register_icon {
   color: brown;
-  margin-right: 0.1em;
+  margin-top: 0.5em;
 }
