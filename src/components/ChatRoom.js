@@ -78,7 +78,7 @@ function ChatRoom({ room_id, sender_id, receiver_profile, sender_name, chatroom 
 
   const getLastMessageInChatroom = (room) => {
     const messages = JSON.parse(room.messages);
-    return messages.at(-1).text;
+    return messages[messages.length-1].text;
   };
 
   const getTimeAgo = (time) => {

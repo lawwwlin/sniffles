@@ -69,7 +69,8 @@ function ChatRoomList(props) {
 
   const chatRoomItems = chatrooms.map((room) => {
     console.log("room", room)
-    console.log("room msgs:", JSON.parse(room.messages).at(-1).text)
+    console.log("room msgs", typeof JSON.parse(room.messages))
+    console.log("JSON.PARSE ROOM", JSON.parse(room.messages))
     console.log("room time", room.updatedat)
     console.log("current time", Date.now())
     return (
