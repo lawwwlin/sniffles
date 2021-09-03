@@ -54,7 +54,15 @@ function Home(props) {
   };
 
   return (
+    
     <div className="home">
+      <div className="home_logo">
+      <PetsIcon className="home_paws" style={{ fontSize: 100 }} />
+      </div>
+      
+      <h1 className="home_welcome">Welcome to Sniffles!</h1>
+      
+      <div className="home_icon">
       <div>
         <Link to="/register">
           <IconButton>
@@ -64,10 +72,14 @@ function Home(props) {
         <span className="icon_text">Create Account</span>
       </div>
       <div>
-        
         <IconButton onClick={handleClickOpen}>
           <LockOpenIcon className="home_login" style={{ fontSize: 60 }} />
         </IconButton>
+        
+        
+        
+        <span className="icon_text">Login</span>
+        </div>
         <Dialog
           open={open}
           onClose={handleClose}
@@ -117,8 +129,6 @@ function Home(props) {
             </Button>
           </DialogActions>
         </Dialog>
-        
-        <span className="icon_text">Login</span>
       </div>
     </div>
   );

@@ -4,13 +4,14 @@
   /* width: 100em; */
   padding: 10px;
   max-width: 85vw;
-  height: 85vh;
+  height: 82vh;
   border-radius: 15px;
   background-color: cover;
   background-position: center;
   margin-right: 2.5em;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  
+  margin-top: 1em;
+  margin-bottom: 1em;
 }
 
  .candidate_info{
@@ -22,7 +23,14 @@
 }
 
 .candidate_none {
-  justify-content: center;
+
+  color: aliceblue;
+  padding-top: 20em;
+  text-align: center;
+}
+
+.candidate_name{
+  color: white;
 }
 
 .candidate {
@@ -31,8 +39,8 @@
   margin-top: 1vh;
 }
 
-.candidate_none {
-  padding-top: 12em;
+#candidate_cardNone {
+  background-color: grey;
 }
 
 .swipe {

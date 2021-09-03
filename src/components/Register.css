@@ -1,15 +1,17 @@
 .register {
   /* display: flex; */
   text-align: center;
+  
 }
 
 .register_title {
+  margin-top: 1em;
   margin-right: 2em;
 }
 
 .register_create {
   justify-content: center;
-  
+  padding-bottom: 1em; 
 }
 
 .register_icon {
