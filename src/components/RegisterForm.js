@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Form(props) {
   const classes = useStyles();
-  // console.log("form props", props);
+  //console.log("form props", props);
   const [name, setName] = useState(props.name || "a");
   const [breed, setBreed] = useState(props.breed || "a");
   const [gender, setGender] = useState(props.gender || "male");
@@ -70,7 +70,7 @@ function Form(props) {
   const dogGender = ["male", "female"];
   const dogSizes = ["small", "medium", "large"];
 
-  const onSubmit = function (event) {
+  const onSubmit = async function (event) {
     event.preventDefault();
     console.log("submit clicked");
     const profile = {
@@ -86,15 +86,15 @@ function Form(props) {
       password: values.password,
       imageUrl,
     };
-    axios({
-      method: "post",
-      url: "/api/profile",
-      data: profile
-    })
-    .then((res => {
-      console.log(res)
-    })
-    .catch((err) => {throw err}));
+    console.log("profile", profile);
+     axios
+      .post("/api/profile", profile)
+      .then((res) => {
+        console.log("done", res);
+      })
+      .catch((err) => {
+        console.log("error", err.response);
+      });
   };
 
   const handleChange = (prop) => (event) => {

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+/* import React, { useEffect, useState } from "react";
 import RegisterForm from "./RegisterForm";
 import axios from "axios";
 
@@ -16,7 +16,7 @@ export function OnCreate(profile) {
   return (
       console.log('user:', newProfile)
   )
-}
+} */
 
 /* import React, { useState } from "react";
 import "./Register.css";

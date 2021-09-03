@@ -3,9 +3,8 @@ const router = express.Router();
 const db = require("../db/index");
 
 /* GET all profiles listing */
-router.get("/profile/", (req, res) => {
-  const profileID = req.params.profile;
-  db.query(`Select * from profile`, [profileID])
+router.get("/profiles", (req, res) => {
+  db.query(`Select * from profile`)
     .then((data) => {
       const profiles = data.rows;
       res.json(profiles);
@@ -55,11 +54,11 @@ router.post("/profile", (req, res) => {
     owner,
     email,
     password,
-    imageurl,
+    imageUrl,
     description,
   } = req.body;
   db.query(
-    `INSERT INTO profile (name, breed, location, gender, age, size, owner, email, password, imageurl, description) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING id;`,
+    `INSERT INTO profile (age, breed, description, email, gender, imageurl, location, name, owner, password, size) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING id;`,
     [
       name,
       breed,
@@ -70,7 +69,7 @@ router.post("/profile", (req, res) => {
       owner,
       email,
       password,
-      imageurl,
+      imageUrl,
       description,
     ]
   )
