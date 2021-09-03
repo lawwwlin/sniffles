@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import TopNav from "./TopNav";
 import Home from "./Home";
-import Register from "./Register";
+import RegisterForm from "./RegisterForm";
 import Login from "./Login";
 import Profile from "./Profile";
 import MessengerList from "./MessengerList";
@@ -18,7 +18,7 @@ import "./App.css";
 // import getCandidatesForDog from './Candidates/helpers/selectors'
 import CandidatesList from "./Candidates/CandidatesList";
 import Candidate from "./Candidates/Candidate";
-import axios from 'axios';
+import axios from "axios";
 
 // chat
 import ChatLogin from "./Login/Login";
@@ -27,6 +27,8 @@ import { SocketProvider } from "../socketContext";
 import { MainProvider } from "../mainContext";
 import { UsersProvider } from "../usersContext";
 import Candidates from "./Candidates/CandidatesList";
+
+import { OnCreate } from "./Register";
 
 const profile = {
   id: 1,
@@ -71,7 +73,7 @@ function App(props) {
           </Route>
 
           <Route path="/register">
-            <Register />
+            <RegisterForm onCreate={OnCreate} />
           </Route>
 
           <Route path="/home">
@@ -80,9 +82,7 @@ function App(props) {
 
           <Route path="/Candidate">
             <TopNav />
-            <CandidatesList
-            profileID ={profile.id}
-            />
+            <CandidatesList profileID={profile.id} />
           </Route>
 
           <MainProvider>

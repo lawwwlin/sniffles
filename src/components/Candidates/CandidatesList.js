@@ -6,7 +6,7 @@ export default function CandidateList(profile) {
   const [candidates, setCandidates] = useState([]);
 console.log(profile)
   useEffect(() => {
-    axios.get(`/api/profile/${profile.profileID}`).then((data) => {
+    axios.get(`/api/profiles/${profile.profileID}`).then((data) => {
       const profiles = data.data;
       setCandidates([...profiles]);
     });
