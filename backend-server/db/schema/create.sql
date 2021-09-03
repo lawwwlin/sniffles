@@ -42,3 +42,15 @@ CREATE TABLE chatroom (
   messages VARCHAR(255),
   updatedAt TIMESTAMP(3) WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
+
+CREATE OR REPLACE FUNCTION trg_fn_chatroom_updatedAt()
+RETURNS TRIGGER AS $$
+BEGIN
+   NEW.updatedAt = CURRENT_TIMESTAMP; 
+   RETURN NEW;
+END;
+$$ language 'plpgsql';
+
+CREATE TRIGGER trg_update_chatroom BEFORE UPDATE
+ON chatroom FOR EACH ROW EXECUTE PROCEDURE 
+trg_fn_chatroom_updatedAt();

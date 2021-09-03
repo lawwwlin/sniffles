@@ -67,6 +67,8 @@ function ChatRoomList(props) {
       .catch((error) => console.log(error));
   }, []);
 
+  chatrooms.sort((room1, room2) => room1.updatedat - room2.updatedat).reverse()
+  
   const chatRoomItems = chatrooms.map((room) => {
     console.log("room", room)
     console.log("room msgs", typeof JSON.parse(room.messages))

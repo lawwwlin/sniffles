@@ -79,17 +79,20 @@ router.post("/chatroom", (req, res) => {
 // message = {sender_id: xxx, receiver_id: xxx, text: adfadsf}
 router.put("/chatroom/:room_id", (req, res) => {
   console.log("req.body in /chatroom:", req.body);
-  const { profile1_id, profile2_id, messages} = req.body.chatroom;
+  const { id, profile1_id, profile2_id, messages} = req.body.room;
   console.log("checking messages: ", messages);
   console.log("checking profile1:", profile1_id, "2:", profile2_id);
+  console.log("chatroom id:", id);
   for (const i in messages) {
     console.log(`checking messages ${i}: `, messages[i]);
   }
   const msgs = JSON.stringify(messages);
   console.log(`checking stringify: `, msgs);
   db.query(`
-    INSERT INTO chatroom (profile1_id, profile2_id, messages) VALUES ($1, $2, $3)
-  `, [profile1_id, profile2_id, msgs])
+    INSERT INTO chatroom (id, profile1_id, profile2_id, messages) VALUES ($1, $2, $3, $4)
+    ON CONFLICT (id, messages) DO
+    UPDATE SET messages = $4
+  `, [id, profile1_id, profile2_id, msgs])
     .then((data) => {
       const chatroom = data.rows;
       console.log("after saving to database:", chatroom);

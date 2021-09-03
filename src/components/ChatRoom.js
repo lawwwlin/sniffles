@@ -40,12 +40,12 @@ function ChatRoom({ room_id, sender_id, receiver_profile, sender_name, chatroom 
   const setValues = async () => {
     console.log('setting values');
     setName(sender_name);
-    setRoom(room_id);
+    setRoom(chatroom.id);
   };
 
   const logIn = () => {
     const name = sender_name;
-    const room = room_id;
+    const room = chatroom.id;
     socket.emit('login', { name, room }, error => {
       console.log('after log in', room, name);
       if (error) {
@@ -57,7 +57,7 @@ function ChatRoom({ room_id, sender_id, receiver_profile, sender_name, chatroom 
           )
       }
       // history.push('/chat')
-      console.log('connected to', room_id)
+      console.log('connected to', chatroom.id)
       return (
         <Alert severity="success">
           {`Welcome to ${room}`}
@@ -68,7 +68,7 @@ function ChatRoom({ room_id, sender_id, receiver_profile, sender_name, chatroom 
 
   const onClick = () => {
 
-    console.log('before setting values', sender_name, room_id)
+    console.log('before setting values', sender_name, chatroom.id)
     
     setValues()
       .then(() => {

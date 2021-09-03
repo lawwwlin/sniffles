@@ -35,31 +35,26 @@ const Chat = (props) => {
   //       setUsers(users)
   //   })
   // })
-
   useEffect(() => {
     socket.on("message", msg => {
       setMessages(messages => [...messages, msg]);
     });
     console.log("check msgs before axios:", messages);
-    const chatroom = {profile1_id: sender_id, profile2_id: recipient.id, messages: messages}
+    const room = {id: chatroom.id, profile1_id: sender_id, profile2_id: recipient.id, messages: messages}
     console.log('profile1', sender_id, 'profile2', recipient.id)
-
-    axios.put(`http://localhost:3001/api/chatroom/`, {chatroom})
+    console.log('profile1', sender_id, 'profile2', recipient.id)
+    axios.put(`http://localhost:3001/api/chatroom/${chatroom.id}`, {room})
       .then((res) => {
         console.log('chatroom saved?', res)
       })
       .catch(error => console.log(error));
   }, [socket, messages]);
-
+  
+  
   const handleSendMessage = () => {
-      socket.emit('sendMessage', message, () => setMessage(''));
-      setMessage('');
-      console.log(message);
-      axios.post(`http://localhost:3001/api/message/${sender_id}`, {sender_id, receiver_id: recipient.id, text: message})
-        .then(() => {
-          console.log('message saved?');
-        })
-        .catch(error => console.log(error));
+    socket.emit('sendMessage', message, () => setMessage(''));
+    setMessage('');
+    console.log(message);
   };
 
   const logout = () => {
