@@ -50,27 +50,25 @@ function Home(props) {
   const [open, setOpen] = React.useState(false);
   const [userID, setUserID] = useState("");
 
-  const onClick = () => {
-    
-    return console.log('clicked');
+  const onClick = (e) => {
+    e.preventDefault();
+    getUser();
+    // return console.log('clicked');
   };
 
-  const data = { email, password };
-
-  console.log("data:", data);
-
-  useEffect(() => {
-    console.log('useEffect')
+  const getUser = async () => {
     if (email && password) {
       console.log("part2:", data);
-      axios.get(`/api/profile/${email}/${password}`)
-      .then((data) => {
+      await axios.get(`/api/profile/${email}/${password}`).then((data) => {
         const profile = data.data;
         console.log("done:", profile);
         setUserID([profile]);
       });
-    };
-  }, onClick());
+    }
+  };
+  const data = { email, password };
+
+  useEffect(() => {}, []);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -148,7 +146,7 @@ function Home(props) {
             />
           </DialogContent>
           <DialogActions>
-            <Button onClick={onClick}>
+            <Button onClick={(e) => onClick(e)}>
               <ThemeProvider
                 theme={{
                   background:
