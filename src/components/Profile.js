@@ -110,16 +110,20 @@ function Profile(props) {
           <h3>description: {profile.description}</h3> */}
 
           <Card className={classes.root}>
-            <CardHeader title={profile.name} subheader="Profile" />
+            <div><h1>{profile.name}</h1></div>
+            <CardHeader title="Profile" subheader="View and edit">
+              
+            </ CardHeader>
             <CardMedia
               className={classes.media}
               image={profile.imageUrl}
               title="profile pic"
             />
             <CardContent>
-              <Typography variant="body2" color="textSecondary" component="p">
+              {/* <Typography variant="body2" color="textSecondary" component="p">
                 {profile.description}
-              </Typography>
+              </Typography> */}
+              <h1>{profile.name}</h1>
             </CardContent>
             <CardActions disableSpacing>
           
@@ -142,16 +146,17 @@ function Profile(props) {
             </CardActions>
             <Collapse in={expanded} timeout="auto" unmountOnExit>
               <CardContent>
-                <Typography paragraph>
-                  <h3>More Info:</h3>
-                </Typography>
-                <Typography paragraph>Breed: {profile.breed}</Typography>
-                <Typography paragraph>Age: {profile.age}</Typography>
-                <Typography paragraph>Gender: {profile.gender}</Typography>
-                <Typography paragraph>Size: {profile.size}</Typography>
-                <Typography paragraph>Location: {profile.location}</Typography>
-                <Typography paragraph>Owner: {profile.owner}</Typography>
-                <Typography paragraph>Email: {profile.email}</Typography>
+                
+                  <h3 paragraph>More Info:</h3>
+                  <br/>
+                  <p paragraph>About me: {profile.description}</p>
+                <p paragraph>Breed: {profile.breed}</p>
+                <p paragraph>Age: {profile.age}</p>
+                <p paragraph>Gender: {profile.gender}</p>
+                <p paragraph>Size: {profile.size}</p>
+                <p paragraph>Location: {profile.location}</p>
+                <p paragraph>Owner: {profile.owner}</p>
+                <p paragraph>Email: {profile.email}</p>
               </CardContent>
             </Collapse>
           </Card>

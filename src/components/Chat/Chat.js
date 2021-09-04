@@ -11,6 +11,16 @@ import MessageIcon from '@material-ui/icons/Message';
 import axios from 'axios';
 import { useLocation, Link } from "react-router-dom";
 
+//info popup
+import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
+import IconButton from "@material-ui/core/IconButton";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
+
 // required info: sender_id, receiver_id, room_id, sender_name
 const Chat = (props) => {
   const location = useLocation();
@@ -21,6 +31,21 @@ const Chat = (props) => {
   const [messages, setMessages] = useState(JSON.parse(chatroom.messages));
   const { setUsers } = useContext(UsersContext);
   const history = useHistory();
+
+  // open infobox
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const remove = () => {
+    console.log("remove test button");
+  };
 
   // temp function before passing in props
   const recipient = receiver_profile;
@@ -72,15 +97,36 @@ const Chat = (props) => {
     <div className='room'>
       <h4 className='heading'>
         <div className='room-title'>
+          
           <h3> room: {chatroom.id}, message to {recipient.name}</h3>
           <div className='user-title'><h4>Current User: {name}</h4></div>
         </div>
+        <IconButton onClick={handleClickOpen}><InfoOutlinedIcon /></IconButton>
         {/* remove logout button later and add back button*/}
         
         <Link to='/messages'><Button onClick={logout}> 
         Back
         </Button></Link>
       </h4>
+
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">{recipient.name}</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+          recipient info here
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={remove} autoFocus>
+            <span className="chat_delete"><DeleteForeverIcon/></span><p className="chat_delete">REMOVE</p>
+          </Button>
+        </DialogActions>
+      </Dialog>
 
       <ScrollToBottom className='messages' debug={false}>
             <div className='match-time'>
