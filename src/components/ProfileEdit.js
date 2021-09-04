@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "./ProfileEdit.css";
 import Form from "./Form.js";
 import Card from '@material-ui/core/Card';
-import Avatar from '@material-ui/core/Avatar';
 import { ThemeProvider, makeStyles } from '@material-ui/core/styles';
 
 
