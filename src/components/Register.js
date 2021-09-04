@@ -1,15 +1,14 @@
 import React, { useState } from "react";
 import Form from "./Form.js";
 import axios from "axios";
-import "./Register.css"
+import "./Register.css";
 
 import SaveIcon from "@material-ui/icons/Save";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import Card from "@material-ui/core/Card";
 import PetsIcon from "@material-ui/icons/Pets";
-import { ThemeProvider, makeStyles } from '@material-ui/core/styles';
-
+import { ThemeProvider, makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   maintext: {
@@ -17,10 +16,10 @@ const useStyles = makeStyles((theme) => ({
     border: 0,
     fontSize: 16,
     borderRadius: 6,
-    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-    color: 'white',
+    boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)",
+    color: "white",
     height: 48,
-    padding: '0 30px',
+    padding: "0 30px",
   },
 }));
 
@@ -35,19 +34,17 @@ function DeepChild() {
 }
 
 const themeInstance = {
-  background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+  background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
 };
 
 export default function onSave(profile) {
-  
-  console.log("register profile: ", profile);
   axios
     .post("/api/profile", profile)
     .then((res) => {
-      console.log("done", res);
+        console.log("done", res);
+      // should redirect to candidate or login page
+      
+/*       console.log('redirect?')
+      res.redirect("/candidate"); */
     })
-    .catch((err) => {
-      console.log("error", err.response);
-    });
-  
 }

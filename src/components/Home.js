@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Home.css";
 import PersonAddIcon from "@material-ui/icons/PersonAdd";
 import LockOpenIcon from "@material-ui/icons/LockOpen";
@@ -12,8 +12,14 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import Button from "@material-ui/core/Button";
 import PetsIcon from "@material-ui/icons/Pets";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
-import { ThemeProvider, makeStyles } from '@material-ui/core/styles';
+import { Route } from "react-router-dom";
+
+import { ThemeProvider, makeStyles } from "@material-ui/core/styles";
+
+//login stuff
+import Login from "./Login";
 
 const useStyles = makeStyles((theme) => ({
   loginSubmit: {
@@ -21,10 +27,10 @@ const useStyles = makeStyles((theme) => ({
     border: 0,
     fontSize: 16,
     borderRadius: 6,
-    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-    color: 'white',
+    boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)",
+    color: "white",
     height: 48,
-    padding: '0 30px',
+    padding: "0 30px",
   },
 }));
 
@@ -39,7 +45,29 @@ function DeepChild() {
 }
 
 function Home(props) {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [open, setOpen] = React.useState(false);
+  const [userID, setUserID] = useState("");
+
+  const onClick = () => {
+    return console.log("clicked");
+  };
+
+  const data = { email, password };
+
+  console.log("data:", data);
+
+  useEffect(() => {
+    if (email && password) {
+      console.log("part2:", data);
+      axios.get(`/api/profile/${email}/${password}`).then((data) => {
+        const profile = data.data;
+        console.log("done:", profile);
+        setUserID([profile]);
+      });
+    }
+  }, [onClick]);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -49,41 +77,35 @@ function Home(props) {
     setOpen(false);
   };
 
-  const login = () => {
-    console.log('login')
-  };
-
   return (
-    
     <div className="home">
       <div className="home_logo">
-      <PetsIcon className="home_paws" style={{ fontSize: 100 }} />
-      <div className="home_welcome">
-      <Button variant="outlined" color="secondary" >
-      <h1>Welcome to Sniffles!</h1>
-      </Button>
+        <PetsIcon className="home_paws" style={{ fontSize: 100 }} />
+        <div className="home_welcome">
+          <Button variant="outlined" color="secondary">
+            <h1>Welcome to Sniffles!</h1>
+          </Button>
+        </div>
       </div>
-      </div>
-      
-      
-      
+
       <div className="home_icon">
-      <div>
-        <Link to="/register">
-          <IconButton>
-            <PersonAddIcon className="home_newUser" style={{ fontSize: 60 }} />
+        <div>
+          <Link to="/register">
+            <IconButton>
+              <PersonAddIcon
+                className="home_newUser"
+                style={{ fontSize: 60 }}
+              />
+            </IconButton>
+          </Link>
+          <span className="icon_text">Create Account</span>
+        </div>
+        <div>
+          <IconButton onClick={handleClickOpen}>
+            <LockOpenIcon className="home_login" style={{ fontSize: 60 }} />
           </IconButton>
-        </Link>
-        <span className="icon_text">Create Account</span>
-      </div>
-      <div>
-        <IconButton onClick={handleClickOpen}>
-          <LockOpenIcon className="home_login" style={{ fontSize: 60 }} />
-        </IconButton>
-        
-        
-        
-        <span className="icon_text">Login</span>
+
+          <span className="icon_text">Login</span>
         </div>
         <Dialog
           open={open}
@@ -91,16 +113,21 @@ function Home(props) {
           aria-labelledby="form-dialog-title"
         >
           <DialogContent>
-          
-            <DialogTitle className="login_title"><PetsIcon className="login_logo" style={{ fontSize: 50 }} />
-            <p>Log in to Sniffles</p>
+            <DialogTitle className="login_title">
+              <PetsIcon className="login_logo" style={{ fontSize: 50 }} />
+              <p>Log in to Sniffles</p>
             </DialogTitle>
             <DialogContentText></DialogContentText>
+
             <TextField
               autoFocus
               margin="dense"
               id="email"
               label="Email Address"
+              value={email}
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
               type="text"
               fullWidth
             />
@@ -110,27 +137,33 @@ function Home(props) {
               id="pass"
               label="Password"
               type="password"
+              value={password}
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
               fullWidth
             />
           </DialogContent>
           <DialogActions>
-            <Button onClick={login} >
-            <ThemeProvider
-        theme={{
-          background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
-          boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-        }}
-      >
-        <ThemeProvider
-          theme={(outerTheme) => ({
-            ...outerTheme,
-            background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
-            boxShadow: '0 3px 5px 2px rgba(33, 203, 243, .3)',
-          })}
-        >
-          <DeepChild />
-        </ThemeProvider>
-      </ThemeProvider>
+            <Button onClick={() => onClick}>
+              <ThemeProvider
+                theme={{
+                  background:
+                    "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
+                  boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)",
+                }}
+              >
+                <ThemeProvider
+                  theme={(outerTheme) => ({
+                    ...outerTheme,
+                    background:
+                      "linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)",
+                    boxShadow: "0 3px 5px 2px rgba(33, 203, 243, .3)",
+                  })}
+                >
+                  <DeepChild />
+                </ThemeProvider>
+              </ThemeProvider>
             </Button>
           </DialogActions>
         </Dialog>

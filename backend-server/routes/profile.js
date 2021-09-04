@@ -29,7 +29,21 @@ router.get("/profiles/:profile", (req, res) => {
     });
 });
 
-/* get user profile */
+/* GET profile for login */
+router.get("/profile/:email/:password", (req, res) => {
+  console.log("req.params:", req.params)
+  const {email, password} = req.params;
+  db.query(`Select * from profile WHERE email=$1 AND password=$2 returning id;`, [email, password])
+    .then((data) => {
+      const profiles = data.rows;
+      res.json(profiles);
+    })
+    .catch((err) => {
+      res.status(500).json({ error: err.message });
+    });
+});
+
+/* get user profile -- for candidate msging? */
 router.get("/profile/:profile", (req, res) => {
   const profileID = req.params.profile;
   db.query(`Select * from profile WHERE id=$1`, [profileID])

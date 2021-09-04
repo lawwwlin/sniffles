@@ -17,7 +17,6 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Fab from "@material-ui/core/Fab";
 
-//ILI
 //key, id, name, imageUrl, location, info
 export default function Candidate(props) {
   console.log("props.candidate:  ", props.candidate);

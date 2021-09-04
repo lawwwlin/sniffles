@@ -2,7 +2,7 @@ import React from "react";
 import TopNav from "./TopNav";
 import Home from "./Home";
 import Form from "./Form";
-import Login from "./Login";
+import LoginPage from "./Login";
 import Profile from "./Profile";
 import ChatRoomList from "./ChatRoomList";
 import MessageScreen from "./MessageScreen";
@@ -15,10 +15,7 @@ import {
 import "./App.css";
 
 //candidate stuff
-// import getCandidatesForDog from './Candidates/helpers/selectors'
 import CandidatesList from "./Candidates/CandidatesList";
-import Candidate from "./Candidates/Candidate";
-import axios from "axios";
 
 // chat
 import Chat from "./Chat/Chat";
@@ -27,6 +24,7 @@ import { MainProvider } from "../mainContext";
 import { UsersProvider } from "../usersContext";
 import Candidates from "./Candidates/CandidatesList";
 
+//register stuff
 import onSave from "./Register";
 
 const profile = {
@@ -63,11 +61,11 @@ function App() {
           </Route>
 
           <Route path="/login">
-            <Login />
+            <LoginPage />
           </Route>
 
           <Route path="/register">
-            <Form onSave={onSave} submit={"Create"}/>
+            <Form onSave={onSave} submit={"Create"} />
           </Route>
 
           <Route path="/home">
@@ -90,7 +88,6 @@ function App() {
                 <Route path="/message">
                   <Chat />
                 </Route>
-
               </SocketProvider>
             </UsersProvider>
           </MainProvider>
