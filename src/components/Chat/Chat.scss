@@ -6,19 +6,36 @@
   align-content: stretch;
   .heading{
     display: flex;
+    
     align-items: center;
     justify-content: space-between;
-    font-family: 'DM Sans';
+    // font-family: 'DM Sans';
     color: rgb(70, 70, 70);
     font-size: 2rem;
     font-weight: 500;
     z-index: 1000;
+    border-bottom: 1px solid lightgray;
   }
 
   .room-title{
     display: flex;
+    // align-items: center;
+    // flex-direction: column;
+  }
+
+  .chat_logo {
+    color: brown;
+    display: flex;
     align-items: center;
-    flex-direction: column;
+    
+  }
+
+  .chat_logbox {
+   margin-left: 1em;
+  }
+
+  #chat_icon {
+    margin: 7px;
   }
 
   .user-title{
@@ -31,18 +48,21 @@
       .message{
         padding: 0.1em;
           .user{
+            margin-left: 2em;
             padding-left: 0.8em;
             padding-right: 0.8em;
-            padding-bottom: 0.1em;
+            padding-bottom: 0.5em;
           }
           .msg{
               color: rgba(0,0,0,.7);
               background: white;
+              margin-left: 1em;
               border-radius: 0.8em;
               padding-left: 0.8em;
               padding-right: 0.8em;
               padding-top: 0.5em;
               padding-bottom: 0.5em;
+
           }
       }
       .my-message{
@@ -53,6 +73,7 @@
           .msg{
             color: white;
             background: #408EEA;
+            margin-right: 1em;
             border-radius: 0.8em;
             padding-left: 0.8em;
             padding-right: 0.8em;
@@ -74,6 +95,7 @@
     padding: 1rem;
   }
 
+
   .match-time{
     display: flex;
     align-items: center;
@@ -81,6 +103,7 @@
     background-color: #EAEAEA;
     opacity: 0.2;
     width: 100%;
+    margin-bottom: 1em;
   }
 
   .empty-message{
@@ -99,6 +122,7 @@
       width: 100%;
       padding: 1.5rem ;
       border-radius: 0px 0px 10px 10px;
+      
 
     }
     button{
@@ -119,6 +143,10 @@
       flex: 1;
     }
 }
+}
+
+.form_text {
+  border-radius: 15px;
 }
 
 .chat_delete {
