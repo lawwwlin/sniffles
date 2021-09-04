@@ -10,6 +10,7 @@ import SendIcon from "@material-ui/icons/Send";
 import MessageIcon from "@material-ui/icons/Message";
 import axios from "axios";
 import { useLocation, Link } from "react-router-dom";
+import EmojiEmotionsIcon from '@material-ui/icons/EmojiEmotions';
 
 //info popup
 import Avatar from "@material-ui/core/Avatar";
@@ -219,13 +220,21 @@ const Chat = (props) => {
           </div>
         )}
       </ScrollToBottom>
+      
+ 
+      
       <div className="form">
+        
+       
         <TextField
         className="form_text"
           type="text"
           label="Enter Message"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
+          fullWidth
+          // multiline
+          // rows={2}
           variant="outlined"
         />
         <Button
