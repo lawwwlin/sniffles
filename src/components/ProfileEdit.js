@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import "./ProfileEdit.css";
 import Form from "./Form.js";
 import Card from '@material-ui/core/Card';
-
+import Avatar from '@material-ui/core/Avatar';
 import { ThemeProvider, makeStyles } from '@material-ui/core/styles';
+
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -55,7 +56,9 @@ function ProfileEdit(props) {
       </ThemeProvider>
   
     <Card className="edit-form-card">
+   
     <Form 
+      imageUrl = {profile.imageUrl}
       name = {profile.name}
       breed = {profile.breed}
       gender = {profile.gender}
@@ -65,7 +68,6 @@ function ProfileEdit(props) {
       owner = {profile.owner}
       email = {profile.email}
       password = {profile.password}
-      imageUrl = {profile.imageUrl}
       description = {profile.description}
       onSave = {onSave}
       submit={"Save"}
