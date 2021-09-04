@@ -14,7 +14,8 @@ import PetsIcon from "@material-ui/icons/Pets";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
-import { Route } from "react-router-dom";
+import { Redirect } from "react-router-dom";
+import App from "./App";
 
 import { ThemeProvider, makeStyles } from "@material-ui/core/styles";
 
@@ -48,22 +49,28 @@ function Home(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [open, setOpen] = React.useState(false);
-  const [userID, setUserID] = useState("");
+  const [user, setUser] = useState("");
 
-  const onClick = (e) => {
+  const onClick = (e, onClose) => {
     e.preventDefault();
-    getUser();
-    // return console.log('clicked');
+    getUser(handleClose);
   };
 
-  const getUser = async () => {
+  const getUser = async (onClose) => {
     if (email && password) {
       console.log("part2:", data);
       await axios.get(`/api/profile/${email}/${password}`).then((data) => {
         const profile = data.data;
         console.log("done:", profile);
-        setUserID([profile]);
+        setUser([profile]);
+        onClose()
       });
+      return (
+        <>
+          {console.log("Redirecting")}
+          <Redirect to="/"/>
+        </>
+      );
     }
   };
   const data = { email, password };
@@ -146,7 +153,7 @@ function Home(props) {
             />
           </DialogContent>
           <DialogActions>
-            <Button onClick={(e) => onClick(e)}>
+            <Button onClick={(e) => onClick(e)} onClose={handleClose}>
               <ThemeProvider
                 theme={{
                   background:

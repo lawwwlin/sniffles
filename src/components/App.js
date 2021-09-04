@@ -42,7 +42,7 @@ const profile = {
   description: "actually very smol",
 };
 
-function App() {
+function App(props) {
   return (
     <div className="App">
       <Router>
