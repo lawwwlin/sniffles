@@ -159,11 +159,10 @@ function Home(props) {
             />
           </DialogContent>
           <DialogActions>
-            {/*      <Link to="/Candidate"> */}
             <Button onClick={(e) => onClick(e)} onClose={handleClose}>
               {console.log(`user: ${JSON.stringify(user)}`)}
               {console.log('userpt2:', user.id)}
-              {user ? <Redirect to="/" /> : null}
+              {user ? <Redirect to="/profile" profile={user}/>: null}
               <ThemeProvider
                 theme={{
                   background:

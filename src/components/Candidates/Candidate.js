@@ -19,7 +19,7 @@ import Fab from "@material-ui/core/Fab";
 
 //key, id, name, imageUrl, location, info
 export default function Candidate(props) {
-  console.log("props.candidate:  ", props.candidate);
+ // console.log("props.candidate:  ", props.candidate);
   const { candidate: candidates } = props;
 
   const reject = () => {
