@@ -112,6 +112,7 @@ const Chat = (props) => {
   const logout = () => {
     setName("");
     setRoom("");
+    console.log('does this log out?');
     // history.push('/messages');
     // history.go(0);
   };
@@ -135,7 +136,7 @@ const Chat = (props) => {
         
         <Link to="/candidate">
           <div className="chat_logbox">
-          <IconButton>
+          <IconButton onClick={logout}>
             <PetsIcon className="chat_logo" style={{ fontSize: 60 }} />
           </IconButton>
           </div>

@@ -6,11 +6,17 @@ import { FormControl, Input, InputLabel, FormHelperText, FilledInput, OutlinedIn
 import SaveIcon from '@material-ui/icons/Save';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import Avatar from '@material-ui/core/Avatar';
 
 
 // material-ui styles
 const useStyles = makeStyles((theme) => ({
-  root: {
+  avatar: {
+    width: theme.spacing(8),
+    height: theme.spacing(8),
+    
+  },
+  form: {
     display: 'flex',
     '& .MuiTextField-root': {
       margin: theme.spacing(1),
@@ -73,7 +79,25 @@ function Form(props) {
 
   return (
     <div className="form">
-      <form autoComplete="off" className={classes.root} onSubmit={e => onSubmit(e)}>
+        <div className="form_avatar">
+      <Avatar alt={name} src={imageUrl} className={classes.avatar} />
+    </div>
+      <form autoComplete="off" className={classes.form} onSubmit={e => onSubmit(e)}>
+    
+      <FormControl>
+          <InputLabel htmlFor="imageUrl">imageUrl</InputLabel>
+          <Input
+            className="form__create-input"
+            name="imageUrl"
+            type="text"
+            value={imageUrl}
+            onChange={(e) => {
+              setimageUrl(e.target.value);
+            }}
+            placeholder="doggie profile pic"
+          />
+        </FormControl>
+
         <FormControl>
           <InputLabel htmlFor="name">Name</InputLabel>
           <Input 
@@ -95,20 +119,6 @@ function Form(props) {
             value={breed}
             onChange={(e) => {setBreed(e.target.value)}}
             placeholder="What kind of doggo?"
-          />
-        </FormControl>
-
-        <FormControl>
-          <InputLabel htmlFor="imageUrl">imageUrl</InputLabel>
-          <Input
-            className="form__create-input"
-            name="imageUrl"
-            type="text"
-            value={imageUrl}
-            onChange={(e) => {
-              setimageUrl(e.target.value);
-            }}
-            placeholder="doggie profile pic"
           />
         </FormControl>
 
