@@ -1,22 +1,27 @@
 import React, { useEffect, useState } from "react";
 import Candidate from "./Candidate";
 import axios from "axios";
+import { withRouter } from "react-router-dom";
 
-const CandidatesList = ({ props }) => {
-  /*   console.log('this props', this.props.match.params.id)
-   */
-
+const CandidateList = (props, profile) => {
   const [candidates, setCandidates] = useState([]);
-  const params = window.location.href.split("/");
-  const id = params[params.length - 1];
-  console.log("id", id);
+  console.log("props.location.state", props.location.state);
+
+  let id = '';
+
+  if ("id" in props.location.state) {
+    id = props.location.state.id;
+  } else { //can remove if we have no issues merging
+    id = profile.profileID;
+  }
+  console.log("id", id)
 
   useEffect(() => {
     axios.get(`/api/profiles/${id}`).then((data) => {
-      const profiles = data.data; 
+      const profiles = data.data;
       setCandidates([...profiles]);
     });
-  }, []);
+  }, []); 
 
   return (
     <ul className="candidates__list">
@@ -24,4 +29,5 @@ const CandidatesList = ({ props }) => {
     </ul>
   );
 };
-export default CandidatesList;
+
+export default withRouter(CandidateList);

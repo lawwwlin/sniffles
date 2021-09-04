@@ -73,11 +73,8 @@ function App(props) {
 
           <Route path="/candidate">
             <TopNav />
-            <CandidatesList profileID={profile.id} />
-          </Route>
-
-          <Route exact path="/candidate/:id" component={CandidatesList} />
-        
+            <CandidatesList />
+          </Route>       
 
           <MainProvider>
             <UsersProvider>
