@@ -1,5 +1,7 @@
 import React from "react";
 import "./Home.css";
+import Login from "./Login.js";
+
 import PersonAddIcon from "@material-ui/icons/PersonAdd";
 import LockOpenIcon from "@material-ui/icons/LockOpen";
 import IconButton from "@material-ui/core/IconButton";
@@ -76,13 +78,11 @@ function Home(props) {
         </Link>
         <span className="icon_text">Create Account</span>
       </div>
+
       <div>
         <IconButton onClick={handleClickOpen}>
           <LockOpenIcon className="home_login" style={{ fontSize: 60 }} />
         </IconButton>
-        
-        
-        
         <span className="icon_text">Login</span>
         </div>
         <Dialog
@@ -91,48 +91,8 @@ function Home(props) {
           aria-labelledby="form-dialog-title"
         >
           <DialogContent>
-          
-            <DialogTitle className="login_title"><PetsIcon className="login_logo" style={{ fontSize: 50 }} />
-            <p>Log in to Sniffles</p>
-            </DialogTitle>
-            <DialogContentText></DialogContentText>
-            <TextField
-              autoFocus
-              margin="dense"
-              id="email"
-              label="Email Address"
-              type="text"
-              fullWidth
-            />
-            <TextField
-              autoFocus
-              margin="dense"
-              id="pass"
-              label="Password"
-              type="password"
-              fullWidth
-            />
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={login} >
-            <ThemeProvider
-        theme={{
-          background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
-          boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-        }}
-      >
-        <ThemeProvider
-          theme={(outerTheme) => ({
-            ...outerTheme,
-            background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
-            boxShadow: '0 3px 5px 2px rgba(33, 203, 243, .3)',
-          })}
-        >
-          <DeepChild />
-        </ThemeProvider>
-      </ThemeProvider>
-            </Button>
-          </DialogActions>
+          <Login />
+          </DialogContent> 
         </Dialog>
       </div>
     </div>
@@ -140,3 +100,5 @@ function Home(props) {
 }
 
 export default Home;
+
+
