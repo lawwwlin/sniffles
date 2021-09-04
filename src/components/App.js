@@ -2,7 +2,7 @@ import React from "react";
 import TopNav from "./TopNav";
 import Home from "./Home";
 import Form from "./Form";
-import Login from "./Login";
+import LoginPage from "./Login";
 import Profile from "./Profile";
 import ChatRoomList from "./ChatRoomList";
 import MessageScreen from "./MessageScreen";
@@ -15,10 +15,7 @@ import {
 import "./App.css";
 
 //candidate stuff
-// import getCandidatesForDog from './Candidates/helpers/selectors'
 import CandidatesList from "./Candidates/CandidatesList";
-import Candidate from "./Candidates/Candidate";
-import axios from "axios";
 
 // chat
 import Chat from "./Chat/Chat";
@@ -27,8 +24,9 @@ import { MainProvider } from "../mainContext";
 import { UsersProvider } from "../usersContext";
 import Candidates from "./Candidates/CandidatesList";
 
+//register stuff
 import onSave from "./Register";
-
+/* 
 const profile = {
   id: 1,
   imageUrl: "https://tinyurl.com/kb7dhhck",
@@ -43,15 +41,23 @@ const profile = {
   password: "a",
   description: "actually very smol",
 };
+ */
 
-function App() {
+function App(props) {
+  console.log("props: ", props);
+  const profile = {};
   return (
     <div className="App">
       <Router>
         <Switch>
-          <Route exact path="/">
-            <Redirect from="/" to="/Candidate" />
+          <Route path="/home">
+            <Home />
           </Route>
+
+          <Route exact path="/">
+            <Redirect to="/Candidate" />
+          </Route>
+
           <Route path="/messages/:candidate">
             <TopNav />
             <MessageScreen />
@@ -62,16 +68,8 @@ function App() {
             <Profile profile={profile} />
           </Route>
 
-          <Route path="/login">
-            <Login />
-          </Route>
-
           <Route path="/register">
-            <Form onSave={onSave} submit={"Create"}/>
-          </Route>
-
-          <Route path="/home">
-            <Home />
+            <Form onSave={onSave} submit={"Create"} />
           </Route>
 
           <Route path="/Candidate">
@@ -90,7 +88,6 @@ function App() {
                 <Route path="/message">
                   <Chat />
                 </Route>
-
               </SocketProvider>
             </UsersProvider>
           </MainProvider>

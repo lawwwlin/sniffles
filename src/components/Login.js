@@ -1,6 +1,3 @@
-import React from "react";
-import "./Login.css";
-
 import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
@@ -18,6 +15,10 @@ import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 
 import { ThemeProvider, makeStyles } from '@material-ui/core/styles';
+
+
+import React, {useState, useEffect} from 'react';
+import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
   loginSubmit: {
@@ -42,11 +43,58 @@ function DeepChild() {
   );
 }
 
-const login = () => {
-  console.log('login')
-};
+/* const login = () => {
+  
+const [email, setEmail] = useState("");
+const [password, setPassword] = useState("");
+const [profile, setProfile] = useState([])
+console.log(`email: ${email} ; password: ${password}`);
+
+const data = {email, password}
+
+useEffect(() => {
+  axios.get(`/api/profile`, data).then((data) => {
+    console.log(data);
+    const profile = data.data;
+    setProfile([profile]);
+  });
+}, []);
+}; */
 
 function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [open, setOpen] = React.useState(false);
+  const [user, setUser] = useState("");
+
+  const onClick = (e, onClose) => {
+    e.preventDefault();
+    getUser(handleClose);
+  };
+
+  const getUser = async (onClose, state) => {
+    if (email && password) {
+      console.log("part2:", data);
+      await axios
+        .get(`/api/profile/${email}/${password}`)
+        .then((data) => {
+          const profile = data.data;
+          console.log("done:", profile);
+          setUser([profile]);
+          onClose();
+        })
+        .catch((err) => {
+          console.log(err.message);
+        });
+      //console.log("user:", user);
+      //return (user ? <Redirect to="/Candidate" profile={user}/> : alert("no user found"));
+    }
+  };
+  const data = { email, password };
+
+  useEffect(() => {}, []);
+
+
   return (
     <div className="login">
       
@@ -55,22 +103,30 @@ function Login() {
           <p>Log in to Sniffles</p>
           </div>
       <CardContent>  
-          <TextField
-            autoFocus
-            margin="dense"
-            id="email"
-            label="Email Address"
-            type="text"
-            fullWidth
-          />
-          <TextField
-            autoFocus
-            margin="dense"
-            id="pass"
-            label="Password"
-            type="password"
-            fullWidth
-          />
+      <TextField
+              autoFocus
+              margin="dense"
+              id="email"
+              label="Email Address"
+              value={email}
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
+              type="text"
+              fullWidth
+            />
+            <TextField
+              autoFocus
+              margin="dense"
+              id="pass"
+              label="Password"
+              type="password"
+              value={password}
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
+              fullWidth
+            />
         </CardContent>
         <CardActions>
           <Button onClick={login} >
