@@ -1,15 +1,8 @@
 import React, { useState } from "react";
-import Form from "./Form.js";
 import axios from "axios";
-import "./Register.css";
+import "./Register.css"
+import { makeStyles } from '@material-ui/core/styles';
 
-import {Redirect} from "react-router-dom";
-import SaveIcon from "@material-ui/icons/Save";
-import Visibility from "@material-ui/icons/Visibility";
-import VisibilityOff from "@material-ui/icons/VisibilityOff";
-import Card from "@material-ui/core/Card";
-import PetsIcon from "@material-ui/icons/Pets";
-import { ThemeProvider, makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   maintext: {
