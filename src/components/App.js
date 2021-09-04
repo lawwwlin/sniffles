@@ -48,7 +48,7 @@ function App(props) {
       <Router>
         <Switch>
           <Route exact path="/">
-            <Redirect from="/" to="/Candidate" />
+            <Redirect to="/Candidate" />
           </Route>
           <Route path="/messages/:candidate">
             <TopNav />

@@ -3,6 +3,7 @@ import Form from "./Form.js";
 import axios from "axios";
 import "./Register.css";
 
+import {Redirect} from "react-router-dom";
 import SaveIcon from "@material-ui/icons/Save";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
@@ -42,9 +43,9 @@ export default function onSave(profile) {
     .post("/api/profile", profile)
     .then((res) => {
         console.log("done", res);
+      })
       // should redirect to candidate or login page
-      
-/*       console.log('redirect?')
-      res.redirect("/candidate"); */
-    })
+  /*   return (
+      <Redirect to="/"/>
+    ) */
 }
