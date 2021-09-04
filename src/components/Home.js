@@ -19,7 +19,7 @@ import { Route } from "react-router-dom";
 import { ThemeProvider, makeStyles } from "@material-ui/core/styles";
 
 //login stuff
-import Login from "./Login";
+/* import Login from "./Login"; */
 
 const useStyles = makeStyles((theme) => ({
   loginSubmit: {
@@ -51,7 +51,8 @@ function Home(props) {
   const [userID, setUserID] = useState("");
 
   const onClick = () => {
-    return console.log("clicked");
+    
+    return console.log('clicked');
   };
 
   const data = { email, password };
@@ -59,15 +60,17 @@ function Home(props) {
   console.log("data:", data);
 
   useEffect(() => {
+    console.log('useEffect')
     if (email && password) {
       console.log("part2:", data);
-      axios.get(`/api/profile/${email}/${password}`).then((data) => {
+      axios.get(`/api/profile/${email}/${password}`)
+      .then((data) => {
         const profile = data.data;
         console.log("done:", profile);
         setUserID([profile]);
       });
-    }
-  }, [onClick]);
+    };
+  }, onClick());
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -145,7 +148,7 @@ function Home(props) {
             />
           </DialogContent>
           <DialogActions>
-            <Button onClick={() => onClick}>
+            <Button onClick={onClick}>
               <ThemeProvider
                 theme={{
                   background:

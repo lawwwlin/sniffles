@@ -33,7 +33,7 @@ router.get("/profiles/:profile", (req, res) => {
 router.get("/profile/:email/:password", (req, res) => {
   console.log("req.params:", req.params)
   const {email, password} = req.params;
-  db.query(`Select * from profile WHERE email=$1 AND password=$2 returning id;`, [email, password])
+  db.query(`Select * from profile WHERE email=$1 AND password=$2;`, [email, password])
     .then((data) => {
       const profiles = data.rows;
       res.json(profiles);
