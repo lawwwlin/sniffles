@@ -7,6 +7,11 @@
 
 .topNav_logo {
   color: brown;
+  
+}
+
+.logoBox {
+  padding-left: 1em;
 }
 
 .topNav_icon {

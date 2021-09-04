@@ -121,7 +121,30 @@ const Chat = (props) => {
       <div className="heading">
         <div className="room-title">
           {console.log(`room: ${chatroom.id}, message to ${recipient.name}`)}
+          <Link to="/messages">
+          <IconButton onClick={logout}>
+            <ArrowBackIosIcon id="chat_icon" style={{ fontSize: 40 }} />
+          </IconButton>
+        </Link>
+        
 
+      
+        
+        </div>
+        {/* remove logout button later and add back button*/}
+        
+        <Link to="/candidate">
+          <div className="chat_logbox">
+          <IconButton>
+            <PetsIcon className="chat_logo" style={{ fontSize: 60 }} />
+          </IconButton>
+          </div>
+        </Link>
+
+        <div >
+          
+            {/* <p>{recipient.name}</p> */}
+          
           <IconButton onClick={handleClickOpen}>
             <Avatar
               id="chat_icon"
@@ -131,22 +154,7 @@ const Chat = (props) => {
               className={classes.large}
             />
           </IconButton>
-          <div>
-            {/* <p>{recipient.name}</p> */}
           </div>
-        </div>
-        {/* remove logout button later and add back button*/}
-        <Link to="/candidate">
-          <IconButton>
-            <PetsIcon className="chat_logo" style={{ fontSize: 60 }} />
-          </IconButton>
-        </Link>
-
-        <Link to="/messages">
-          <IconButton onClick={logout}>
-            <ArrowBackIosIcon id="chat_icon" style={{ fontSize: 40 }} />
-          </IconButton>
-        </Link>
       </div>
 
       <Dialog
@@ -155,11 +163,17 @@ const Chat = (props) => {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">{recipient.name}</DialogTitle>
+        <DialogTitle id="alert-dialog-title"></DialogTitle>
         <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            recipient info here
-          </DialogContentText>
+          <h3>{recipient.name}</h3>
+          <br/>
+          <p>Location: {recipient.location}</p>
+            <p>Breed: {recipient.breed}</p>
+            <p>Gender: {recipient.gender}</p>
+            <p>Age: {recipient.age}</p>
+            <p>Size: {recipient.size}</p>
+            <p>Owner: {recipient.owner}</p>
+          
         </DialogContent>
         <DialogActions>
           <Button onClick={report} autoFocus>
@@ -179,7 +193,7 @@ const Chat = (props) => {
 
       <ScrollToBottom className="messages" debug={false}>
         <div className="match-time">
-          <h4>
+          <h4 className="match-text">
             {" "}
             You matched with {recipient.name} on -insert-timestamp-here-{" "}
           </h4>
@@ -206,6 +220,7 @@ const Chat = (props) => {
       </ScrollToBottom>
       <div className="form">
         <TextField
+        className="form_text"
           type="text"
           label="Enter Message"
           value={message}

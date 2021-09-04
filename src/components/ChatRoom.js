@@ -6,6 +6,7 @@ import Alert from '@material-ui/lab/Alert';
 import { Link, useHistory } from "react-router-dom";
 import { SocketContext } from '../socketContext';
 import { MainContext } from '../mainContext';
+import IconButton from "@material-ui/core/IconButton";
 
 
 // 
@@ -87,8 +88,11 @@ function ChatRoom({ room_id, sender_id, receiver_profile, sender_name, chatroom 
           receiver_profile
         }}}
         onClick={onClick}
-      >
-          <Avatar className="messenger_pic" alt={receiver_profile.name} src={receiver_profile.url} />
+      ><div className="messenger_pic">
+        <IconButton>
+          <Avatar  alt={receiver_profile.name} src={receiver_profile.url} />
+          </IconButton>
+          </div>
       </Link>
       <div className="messenger_info">
         <h2>{receiver_profile.name}</h2>

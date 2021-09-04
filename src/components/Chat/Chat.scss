@@ -6,6 +6,7 @@
   align-content: stretch;
   .heading{
     display: flex;
+    
     align-items: center;
     justify-content: space-between;
     // font-family: 'DM Sans';
@@ -21,14 +22,16 @@
     // align-items: center;
     // flex-direction: column;
   }
-  
-  .chat_info {
-    flex: 1;
-    margin: 0.3em;
-  }
 
   .chat_logo {
     color: brown;
+    display: flex;
+    align-items: center;
+    
+  }
+
+  .chat_logbox {
+   margin-left: 1em;
   }
 
   #chat_icon {
@@ -92,6 +95,7 @@
     padding: 1rem;
   }
 
+
   .match-time{
     display: flex;
     align-items: center;
@@ -118,6 +122,7 @@
       width: 100%;
       padding: 1.5rem ;
       border-radius: 0px 0px 10px 10px;
+      
 
     }
     button{
@@ -138,6 +143,10 @@
       flex: 1;
     }
 }
+}
+
+.form_text {
+  border-radius: 15px;
 }
 
 .chat_delete {
