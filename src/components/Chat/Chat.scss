@@ -8,17 +8,31 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    font-family: 'DM Sans';
+    // font-family: 'DM Sans';
     color: rgb(70, 70, 70);
     font-size: 2rem;
     font-weight: 500;
     z-index: 1000;
+    border-bottom: 1px solid lightgray;
   }
 
   .room-title{
     display: flex;
-    align-items: center;
-    flex-direction: column;
+    // align-items: center;
+    // flex-direction: column;
+  }
+  
+  .chat_info {
+    flex: 1;
+    margin: 0.3em;
+  }
+
+  .chat_logo {
+    color: brown;
+  }
+
+  #chat_icon {
+    margin: 7px;
   }
 
   .user-title{
@@ -31,18 +45,21 @@
       .message{
         padding: 0.1em;
           .user{
+            margin-left: 2em;
             padding-left: 0.8em;
             padding-right: 0.8em;
-            padding-bottom: 0.1em;
+            padding-bottom: 0.5em;
           }
           .msg{
               color: rgba(0,0,0,.7);
               background: white;
+              margin-left: 1em;
               border-radius: 0.8em;
               padding-left: 0.8em;
               padding-right: 0.8em;
               padding-top: 0.5em;
               padding-bottom: 0.5em;
+
           }
       }
       .my-message{
@@ -53,6 +70,7 @@
           .msg{
             color: white;
             background: #408EEA;
+            margin-right: 1em;
             border-radius: 0.8em;
             padding-left: 0.8em;
             padding-right: 0.8em;
@@ -81,6 +99,7 @@
     background-color: #EAEAEA;
     opacity: 0.2;
     width: 100%;
+    margin-bottom: 1em;
   }
 
   .empty-message{
