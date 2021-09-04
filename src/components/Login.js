@@ -6,19 +6,18 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Button from "@material-ui/core/Button";
 import PetsIcon from "@material-ui/icons/Pets";
-import { Link } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardMedia from '@material-ui/core/CardMedia';
-import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
+import Card from "@material-ui/core/Card";
+import CardHeader from "@material-ui/core/CardHeader";
+import CardMedia from "@material-ui/core/CardMedia";
+import CardContent from "@material-ui/core/CardContent";
+import CardActions from "@material-ui/core/CardActions";
 
-import { ThemeProvider, makeStyles } from '@material-ui/core/styles';
+import { ThemeProvider, makeStyles } from "@material-ui/core/styles";
 
-
-import React, {useState, useEffect} from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
   loginSubmit: {
@@ -26,10 +25,10 @@ const useStyles = makeStyles((theme) => ({
     border: 0,
     fontSize: 16,
     borderRadius: 6,
-    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-    color: 'white',
+    boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)",
+    color: "white",
     height: 48,
-    padding: '0 30px',
+    padding: "0 30px",
   },
 }));
 
@@ -64,12 +63,11 @@ useEffect(() => {
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [open, setOpen] = React.useState(false);
   const [user, setUser] = useState("");
 
   const onClick = (e, onClose) => {
     e.preventDefault();
-    getUser(handleClose);
+    getUser();
   };
 
   const getUser = async (onClose, state) => {
@@ -81,74 +79,77 @@ function Login() {
           const profile = data.data;
           console.log("done:", profile);
           setUser([profile]);
-          onClose();
+          if (profile.length > 0){
+            window.location.href=`/candidate/${profile[0].id}`
+            console.log('user logged in')
+          }else {
+            alert('Wrong password/user')
+          }
+/*           return <Redirect to="/Candidate" profile={user} />; */
         })
         .catch((err) => {
           console.log(err.message);
         });
       //console.log("user:", user);
-      //return (user ? <Redirect to="/Candidate" profile={user}/> : alert("no user found"));
     }
   };
   const data = { email, password };
 
   useEffect(() => {}, []);
 
-
   return (
     <div className="login">
-      
       <PetsIcon className="login_logo" style={{ fontSize: 50 }} />
       <div className="login_title">
-          <p>Log in to Sniffles</p>
-          </div>
-      <CardContent>  
-      <TextField
-              autoFocus
-              margin="dense"
-              id="email"
-              label="Email Address"
-              value={email}
-              onChange={(e) => {
-                setEmail(e.target.value);
-              }}
-              type="text"
-              fullWidth
-            />
-            <TextField
-              autoFocus
-              margin="dense"
-              id="pass"
-              label="Password"
-              type="password"
-              value={password}
-              onChange={(e) => {
-                setPassword(e.target.value);
-              }}
-              fullWidth
-            />
-        </CardContent>
-        <CardActions>
-          <Button onClick={login} >
+        <p>Log in to Sniffles</p>
+      </div>
+      <CardContent>
+        <TextField
+          autoFocus
+          margin="dense"
+          id="email"
+          label="Email Address"
+          value={email}
+          onChange={(e) => {
+            setEmail(e.target.value);
+          }}
+          type="text"
+          fullWidth
+        />
+        <TextField
+          autoFocus
+          margin="dense"
+          id="pass"
+          label="Password"
+          type="password"
+          value={password}
+          onChange={(e) => {
+            setPassword(e.target.value);
+          }}
+          fullWidth
+        />
+      </CardContent>
+      <CardActions>
+        <Button onClick={onClick}>
+          {/*   {user ? <Redirect to="/"/> : null} */}
           <ThemeProvider
-      theme={{
-        background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
-        boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-      }}
-    >
-      <ThemeProvider
-        theme={(outerTheme) => ({
-          ...outerTheme,
-          background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
-          boxShadow: '0 3px 5px 2px rgba(33, 203, 243, .3)',
-        })}
-      >
-        <DeepChild />
-      </ThemeProvider>
-    </ThemeProvider>
-          </Button>
-        </CardActions>
-        
+            theme={{
+              background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
+              boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)",
+            }}
+          >
+            <ThemeProvider
+              theme={(outerTheme) => ({
+                ...outerTheme,
+                background: "linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)",
+                boxShadow: "0 3px 5px 2px rgba(33, 203, 243, .3)",
+              })}
+            >
+              <DeepChild />
+            </ThemeProvider>
+          </ThemeProvider>
+        </Button>
+      </CardActions>
     </div>
   );
 }

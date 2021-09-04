@@ -26,7 +26,7 @@ import Candidates from "./Candidates/CandidatesList";
 
 //register stuff
 import onSave from "./Register";
-/* 
+
 const profile = {
   id: 1,
   imageUrl: "https://tinyurl.com/kb7dhhck",
@@ -41,11 +41,10 @@ const profile = {
   password: "a",
   description: "actually very smol",
 };
- */
+ 
 
 function App(props) {
-  console.log("props: ", props);
-  const profile = {};
+  //console.log("props: ", props);
   return (
     <div className="App">
       <Router>
@@ -72,10 +71,13 @@ function App(props) {
             <Form onSave={onSave} submit={"Create"} />
           </Route>
 
-          <Route path="/Candidate">
+          <Route path="/candidate">
             <TopNav />
             <CandidatesList profileID={profile.id} />
           </Route>
+
+          <Route exact path="/candidate/:id" component={CandidatesList} />
+        
 
           <MainProvider>
             <UsersProvider>
@@ -84,7 +86,6 @@ function App(props) {
                   <TopNav />
                   <ChatRoomList profile={profile} />
                 </Route>
-
                 <Route path="/message">
                   <Chat />
                 </Route>

@@ -120,13 +120,6 @@ function Home(props) {
           <IconButton onClick={handleClickOpen}>
             <LockOpenIcon className="home_login" style={{ fontSize: 60 }} />
           </IconButton>
-          <span className="icon_text">Create Account</span>
-        </div>
-
-        <div>
-          <IconButton onClick={handleClickOpen}>
-            <LockOpenIcon className="home_login" style={{ fontSize: 60 }} />
-          </IconButton>
           <span className="icon_text">Login</span>
         </div>
         <Dialog
