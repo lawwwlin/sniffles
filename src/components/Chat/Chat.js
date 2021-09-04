@@ -9,7 +9,7 @@ import { TextField, Button } from '@material-ui/core';
 import SendIcon from '@material-ui/icons/Send';
 import MessageIcon from '@material-ui/icons/Message';
 import axios from 'axios';
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 
 // required info: sender_id, receiver_id, room_id, sender_name
 const Chat = (props) => {
@@ -62,10 +62,10 @@ const Chat = (props) => {
   };
 
   const logout = () => {
-      setName(''); 
-      setRoom('');
-      history.push('/messages');
-      history.go(0);
+    setName(''); 
+    setRoom('');
+    // history.push('/messages');
+    // history.go(0);
   };
 
   return (
@@ -76,7 +76,10 @@ const Chat = (props) => {
           <div className='user-title'><h4>Current User: {name}</h4></div>
         </div>
         {/* remove logout button later and add back button*/}
-        <Button onClick={logout}> Back </Button>
+        
+        <Link to='/messages'><Button onClick={logout}> 
+        Back
+        </Button></Link>
       </h4>
 
       <ScrollToBottom className='messages' debug={false}>
