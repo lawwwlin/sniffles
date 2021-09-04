@@ -16,12 +16,12 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Fab from "@material-ui/core/Fab";
+import axios from "axios";
 
 //ILI
 //key, id, name, imageUrl, location, info
 export default function Candidate(props) {
-  console.log("props.candidate:  ", props.candidate);
-  const { candidate: candidates } = props;
+  const { candidate_id, name, imageUrl, location, info, breed, gender, age, size, owner, user_id } = props;
 
   const reject = () => {
     console.log("info: no button");
@@ -32,91 +32,108 @@ export default function Candidate(props) {
   };
 
   const [open, setOpen] = useState(false);
-  const [desc, setDesc] = useState([]);
+  const [approve, setApprove] = useState("");
 
   const handleClickOpen = (candidate, candidateName) => {
-    candidates.filter((dog) => {
-      if (dog.name === candidateName) {
-        setDesc(dog);
-      }
-    });
+    // candidates.filter((dog) => {
+    //   if (dog.name === candidateName) {
+    //     setDesc(dog);
+    //   }
+    // });
     setOpen(true);
+    console.log('clicked open');
   };
 
   const handleClose = () => {
     setOpen(false);
   };
 
+  useEffect(() => {
+    if (approve !== ""){
+      let like = false;
+      if (approve === "true"){
+        like = true;
+      }
+      const candidate = { approve: like, profile_id: user_id, candidate_dog_id: candidate_id };
+      axios.post(`/api/candidate`, {candidate})
+        .then((res) => {
+          // check if its a match, if its a match, create a chat room
+          console.log("candidate saved?", res);
+        })
+        .catch(error => console.log(error));
+    }
+  }, [approve]);
+
+  // create candidate on swipe
   const onSwipe = (direction) => {
     if (direction === "right") {
-      console.log("right for like");
+      console.log("right for ya");
+      setApprove("true");
     }
     if (direction === "left") {
-      console.log("left for rejected");
+      console.log("left for na");
+      setApprove("false");
     }
   };
 
   return (
-    <div className="candidate">
-      <div className="candidate_card" id="candidate_cardNone">
-        <div className="candidate_none">
-        <h1>You a bit too thirsty for doggos👀</h1>
-        <h1>Drink some water and swipe again later🥵</h1>
-        </div>
-      </div>
-      {candidates.map((candidate) => (
-        <DogCard
-          className="swipe"
-          key={candidate.name}
-          preventSwipe={["up", "down"]}
-          onSwipe={onSwipe}
+    <>
+      <DogCard
+        className="swipe"
+        key={name}
+        preventSwipe={["up", "down"]}
+        onSwipe={onSwipe}
+      >
+        <div
+          style={{ backgroundImage: `url(${imageUrl})` }}
+          className="candidate_card"
         >
-          <div
-            style={{ backgroundImage: `url(${candidate.imageurl})` }}
-            className="candidate_card"
-          >
-            <div className="candidate_info">
-            <Fab variant="extended" disabled aria-label="like" style={{ fontSize: 20 }}>
-              <h1 className="candidate_name">{candidate.name}</h1>
-              </Fab>
-              <h3>
-                <LocationOnIcon className="location" />
-                {candidate.location}
-              </h3>
-              <h3>
-                <BookmarkIcon />
-                {candidate.description}
-              </h3>
-            </div>
-
-            <div className="button">
-              <IconButton size="small" onClick={reject}>
-                <NotInterestedIcon
-                  className="button_notInterested"
-                  style={{ fontSize: 65 }}
-                />
-              </IconButton>
-
-              <IconButton
-                size="small"
-                onClick={() => handleClickOpen(candidate, candidate.name)}
-              >
-                <InfoOutlinedIcon
-                  className="button_moreInfo"
-                  style={{ fontSize: 65 }}
-                />
-              </IconButton>
-
-              <IconButton size="small" onClick={like}>
-                <LoyaltyOutlinedIcon
-                  className="button_loyalty"
-                  style={{ fontSize: 65 }}
-                />
-              </IconButton>
-            </div>
+          <div className="candidate_info">
+            <Fab
+              variant="extended"
+              disabled
+              aria-label="like"
+              style={{ fontSize: 20 }}
+            >
+              <h1 className="candidate_name">{name}</h1>
+            </Fab>
+            <h3>
+              <LocationOnIcon className="location" />
+              {location}
+            </h3>
+            <h3>
+              <BookmarkIcon />
+              {info}
+            </h3>
           </div>
-        </DogCard>
-      ))}
+
+          <div className="button">
+            <IconButton size="small" onClick={reject}>
+              <NotInterestedIcon
+                className="button_notInterested"
+                style={{ fontSize: 65 }}
+              />
+            </IconButton>
+
+            <IconButton
+              size="small"
+              onClick={() => handleClickOpen(name, name)}
+            >
+              <InfoOutlinedIcon
+                className="button_moreInfo"
+                style={{ fontSize: 65 }}
+              />
+            </IconButton>
+
+            <IconButton size="small" onClick={like}>
+              <LoyaltyOutlinedIcon
+                className="button_loyalty"
+                style={{ fontSize: 65 }}
+              />
+            </IconButton>
+          </div>
+        </div>
+      </DogCard>
 
       <Dialog
         open={open}
@@ -124,18 +141,18 @@ export default function Candidate(props) {
         // aria-labelledby="form-dialog-title"
       >
         <DialogContent className="candidate_dialog">
-          <h2>{desc.name}</h2>
-          <br/>
-          
-            <p>Location: {desc.location}</p>
-            <p>Breed: {desc.breed}</p>
-            <p>Gender: {desc.gender}</p>
-            <p>Age: {desc.age}</p>
-            <p>Size: {desc.size}</p>
-            <p>Owner: {desc.owner}</p>
-          <br/>
+          <h2>{name}</h2>
+          <br />
+
+          <p>Location: {location}</p>
+          <p>Breed: {breed}</p>
+          <p>Gender: {gender}</p>
+          <p>Age: {age}</p>
+          <p>Size: {size}</p>
+          <p>Owner: {owner}</p>
+          <br />
         </DialogContent>
       </Dialog>
-    </div>
+    </>
   );
 }

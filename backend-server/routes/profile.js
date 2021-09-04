@@ -17,9 +17,10 @@ router.get("/profiles", (req, res) => {
 /* GET profiles listing except user's*/
 router.get("/profiles/:profile", (req, res) => {
   const profileID = req.params.profile;
-  db.query(`Select * from profile EXCEPT select * from profile WHERE id=$1`, [
-    profileID,
-  ])
+  db.query(`
+    SELECT * FROM profile 
+    WHERE id != $1
+  `, [profileID,])
     .then((data) => {
       const profiles = data.rows;
       res.json(profiles);

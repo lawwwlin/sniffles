@@ -32,6 +32,9 @@ const Chat = (props) => {
   const { setUsers } = useContext(UsersContext);
   const history = useHistory();
 
+  console.log("just loaded chat compo:", JSON.parse(chatroom.messages))
+  console.log("2 loaded chat compo:", messages)
+
   // open infobox
   const [open, setOpen] = React.useState(false);
 
@@ -64,20 +67,16 @@ const Chat = (props) => {
     socket.on("message", msg => {
       setMessages(messages => [...messages, msg])
     });
-    console.log("stringify", JSON.stringify(messages))
-    console.log("msg from db", chatroom.messages)
-    if (JSON.stringify(messages) !== chatroom.messages) {
-      console.log("check msgs before axios:", messages);
+    // this step is requried, or else the seed from database will not be the same when server first starts
+    const msg = JSON.stringify(JSON.parse(chatroom.messages));
+    if (JSON.stringify(messages) !== msg) {
       const room = {id: chatroom.id, profile1_id: sender_id, profile2_id: recipient.id, messages: messages}
-      console.log('profile1', sender_id, 'profile2', recipient.id)
-      console.log('profile1', sender_id, 'profile2', recipient.id)
-      axios.put(`http://localhost:3001/api/chatroom/${chatroom.id}`, {room})
+      axios.put(`/api/chatroom/${chatroom.id}`, {room})
         .then((res) => {
-          console.log('chatroom saved?', res)
         })
         .catch(error => console.log(error));
     }
-  }, [socket, messages]);
+  }, [messages]);
   
   
   const handleSendMessage = () => {
@@ -89,6 +88,7 @@ const Chat = (props) => {
   const logout = () => {
     setName(''); 
     setRoom('');
+    console.log('after setting name and room', name, room)
     // history.push('/messages');
     // history.go(0);
   };

@@ -76,7 +76,7 @@ function App() {
 
           <Route path="/Candidate">
             <TopNav />
-            <CandidatesList profileID={profile.id} />
+            <CandidatesList profileId={profile.id} />
           </Route>
 
           <MainProvider>

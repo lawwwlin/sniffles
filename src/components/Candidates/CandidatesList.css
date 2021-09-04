@@ -1,0 +1,33 @@
+.candidate_card {
+  position:relative;
+  width: 800px;
+  /* width: 100em; */
+  padding: 10px;
+  max-width: 85vw;
+  height: 82vh;
+  border-radius: 15px;
+  background-color: cover;
+  background-position: center;
+  margin-right: 2.5em;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.candidate_none {
+
+  color: aliceblue;
+  padding-top: 20em;
+  text-align: center;
+}
+
+
+.candidate {
+  display:flex;
+  justify-content: center;
+  margin-top: 1vh;
+}
+
+#candidate_cardNone {
+  background-color: grey;
+}
