@@ -13,11 +13,16 @@ import Button from "@material-ui/core/Button";
 import PetsIcon from "@material-ui/icons/Pets";
 import { Link } from "react-router-dom";
 import axios from "axios";
-
-import { Redirect } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 import App from "./App";
 
 import { ThemeProvider, makeStyles } from "@material-ui/core/styles";
+import CandidateList from "./Candidates/CandidatesList";
 
 //login stuff
 /* import Login from "./Login"; */
@@ -56,21 +61,22 @@ function Home(props) {
     getUser(handleClose);
   };
 
-  const getUser = async (onClose) => {
+  const getUser = async (onClose, state) => {
     if (email && password) {
       console.log("part2:", data);
-      await axios.get(`/api/profile/${email}/${password}`).then((data) => {
-        const profile = data.data;
-        console.log("done:", profile);
-        setUser([profile]);
-        onClose()
-      });
-      return (
-        <>
-          {console.log("Redirecting")}
-          <Redirect to="/"/>
-        </>
-      );
+      await axios
+        .get(`/api/profile/${email}/${password}`)
+        .then((data) => {
+          const profile = data.data;
+          console.log("done:", profile);
+          setUser([profile]);
+          onClose();
+        })
+        .catch((err) => {
+          console.log(err.message);
+        });
+      //console.log("user:", user);
+      //return (user ? <Redirect to="/Candidate" profile={user}/> : alert("no user found"));
     }
   };
   const data = { email, password };
@@ -153,7 +159,11 @@ function Home(props) {
             />
           </DialogContent>
           <DialogActions>
+            {/*      <Link to="/Candidate"> */}
             <Button onClick={(e) => onClick(e)} onClose={handleClose}>
+              {console.log(`user: ${JSON.stringify(user)}`)}
+              {console.log('userpt2:', user.id)}
+              {user ? <Redirect to="/" /> : null}
               <ThemeProvider
                 theme={{
                   background:
@@ -172,6 +182,50 @@ function Home(props) {
                   <DeepChild />
                 </ThemeProvider>
               </ThemeProvider>
+              {/*        </Link> */}
+              {/*   <Link to="/Candidate">
+              {user.length === 1 ? (
+                  {/*          {state === true ? <Link to="/Candidate" /> : null} *
+                  <ThemeProvider
+                    theme={{
+                      background:
+                        "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
+                      boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)",
+                    }}
+                  >
+                    <ThemeProvider
+                      theme={(outerTheme) => ({
+                        ...outerTheme,
+                        background:
+                          "linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)",
+                        boxShadow: "0 3px 5px 2px rgba(33, 203, 243, .3)",
+                      })}
+                    >
+                      <DeepChild />
+                    </ThemeProvider>
+                  </ThemeProvider>
+                </Link>
+              ) : (
+                <ThemeProvider
+                  theme={{
+                    background:
+                      "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
+                    boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)",
+                  }}
+                >
+                  <ThemeProvider
+                    theme={(outerTheme) => ({
+                      ...outerTheme,
+                      background:
+                        "linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)",
+                      boxShadow: "0 3px 5px 2px rgba(33, 203, 243, .3)",
+                    })}
+                  >
+                    <DeepChild />
+                  </ThemeProvider>
+                </ThemeProvider>
+              )} 
+              */}
             </Button>
           </DialogActions>
         </Dialog>
