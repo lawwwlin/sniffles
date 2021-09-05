@@ -51,8 +51,8 @@ const Chat = (props) => {
   const logout = () => {
     setName('');
     setRoom('');
-    socket.emit('logout')
-    console.log('after setting name and room', name, room)
+    socket.emit('logout');
+    console.log('after setting name and room', name, room);
     // history.push('/messages');
     // history.go(0);
   };
