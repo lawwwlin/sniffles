@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
   expand: {
     transform: "rotate(0deg)",
     marginLeft: "auto",
-    marginRight: "1.3em",
+    marginRight: "1.5em",
     transition: theme.transitions.create("transform", {
       duration: theme.transitions.duration.shortest,
       
@@ -159,7 +159,7 @@ function Profile(props) {
                 aria-expanded={expanded}
                 aria-label="show more"
               >
-                <ExpandMoreIcon className="profile_expand" />
+                <ExpandMoreIcon className="profile_expand" style={{ fontSize: 35 }}/>
               </IconButton>
             </CardActions>
             <Collapse in={expanded} timeout="auto" unmountOnExit>
