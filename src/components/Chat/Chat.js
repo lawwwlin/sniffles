@@ -142,10 +142,11 @@ const Chat = (props) => {
             <Avatar
               id="chat_icon"
               alt={recipient.name}
-              src={recipient.url}
+              src={recipient.imageurl}
               style={{ fontSize: 40 }}
               className={classes.large}
             />
+            {recipient.imageUrl}
           </IconButton>
         </div>
       </div>
