@@ -34,24 +34,6 @@ function DeepChild() {
   );
 }
 
-/* const login = () => {
-  
-const [email, setEmail] = useState("");
-const [password, setPassword] = useState("");
-const [profile, setProfile] = useState([])
-console.log(`email: ${email} ; password: ${password}`);
-
-const data = {email, password}
-
-useEffect(() => {
-  axios.get(`/api/profile`, data).then((data) => {
-    console.log(data);
-    const profile = data.data;
-    setProfile([profile]);
-  });
-}, []);
-}; */
-
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -65,18 +47,15 @@ function Login() {
 
   const getUser = async (onClose, state) => {
     if (email && password) {
-      console.log("part2:", data);
       await axios
         .get(`/api/profile/${email}/${password}`)
         .then((data) => {
           const profile = data.data;
-          console.log("done:", profile);
           setUser(profile);
-          if (profile.length > 0) {
-            setRedirect(true);
-            console.log("user logged in");
+          if (profile.length > 0) {     // "authentication" - check if user can log in
+            setRedirect(true); 
           } else {
-            alert("Wrong password/user");
+            alert("Wrong user or password!");
           }
         })
         .catch((err) => {
@@ -84,7 +63,6 @@ function Login() {
         });
     }
   };
-  const data = { email, password };
 
   useEffect(() => {}, []);
 
@@ -124,7 +102,7 @@ function Login() {
         <Button onClick={onClick}>
           {user && redirect ? (
             <Redirect
-              to={{ pathname: "/candidate", state: { id: user[0].id } }}
+              to={{ pathname: "/candidate", state: { id: user[0].id } }} //returns id as props
             />
           ) : null}
           <ThemeProvider
@@ -150,55 +128,3 @@ function Login() {
 }
 
 export default Login;
-
-/*
-   <Dialog
-          open={open}
-          onClose={handleClose}
-          aria-labelledby="form-dialog-title"
-        >
-          <DialogContent>
-          
-            <DialogTitle className="login_title"><PetsIcon className="login_logo" style={{ fontSize: 50 }} />
-            <p>Log in to Sniffles</p>
-            </DialogTitle>
-            <DialogContentText></DialogContentText>
-            <TextField
-              autoFocus
-              margin="dense"
-              id="email"
-              label="Email Address"
-              type="text"
-              fullWidth
-            />
-            <TextField
-              autoFocus
-              margin="dense"
-              id="pass"
-              label="Password"
-              type="password"
-              fullWidth
-            />
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={login} >
-            <ThemeProvider
-        theme={{
-          background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
-          boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-        }}
-      >
-        <ThemeProvider
-          theme={(outerTheme) => ({
-            ...outerTheme,
-            background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
-            boxShadow: '0 3px 5px 2px rgba(33, 203, 243, .3)',
-          })}
-        >
-          <DeepChild />
-        </ThemeProvider>
-      </ThemeProvider>
-            </Button>
-          </DialogActions>
-        </Dialog>
-        */
