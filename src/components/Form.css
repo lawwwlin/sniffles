@@ -14,3 +14,7 @@ div.form form {
   justify-content: center;
   
 }
+
+.text_field {
+  text-align: left;
+}

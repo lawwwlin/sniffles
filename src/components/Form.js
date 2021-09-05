@@ -148,6 +148,7 @@ function Form(props) {
         </FormControl>
 
         <TextField
+          className="text_field"
           id="form__select-gender"
           select
           label="Gender"
@@ -181,6 +182,7 @@ function Form(props) {
         </FormControl>
 
         <TextField
+          className="text_field"
           id="form__select-size"
           select
           label="Size"

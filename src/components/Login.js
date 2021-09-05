@@ -52,7 +52,7 @@ function Login() {
       
       <PetsIcon className="login_logo" style={{ fontSize: 50 }} />
       <div className="login_title">
-          <p>Log in to Sniffles</p>
+          <h3>Log in to Sniffles</h3>
           </div>
       <CardContent>  
           <TextField

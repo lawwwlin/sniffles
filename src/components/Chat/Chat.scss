@@ -121,8 +121,9 @@
     z-index: 1000;
 
     .form_text{
-      
-      margin: 1em;
+      width: 70%;
+      margin-right: 3.5em;
+      margin-bottom: 1em;
       // width: 50%;
       // padding: 5em ;
       // margin: 5em;
@@ -131,17 +132,23 @@
     }
 
     button{
+
       position: absolute;
-      right: 1rem;
-      top: 1rem;
-      margin-top: 1em;
+      right: 1.5rem;
+      // top: 1rem;
+      margin-top: 10px;
+      
     }
   }
 }
 
-.form_text .MuiInputBase-input {
-  margin-right: 2em;
-  margin-left: 2em;
+// .form_text .MuiInputBase-input {
+
+  
+// }
+
+.chat_emoji {
+  margin-right: 30em;
 }
 
 ::placeholder {
