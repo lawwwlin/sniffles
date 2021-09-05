@@ -35,11 +35,11 @@ const Chat = (props) => {
   console.log("2 loaded chat compo:", messages)
   
   const logout = () => {
-    setName(''); 
+    setName('');
     setRoom('');
+    socket.emit('logout')
     console.log('after setting name and room', name, room)
-    // socket.disconnect();
-    history.push('/messages');
+    // history.push('/messages');
     // history.go(0);
   };
   
@@ -107,8 +107,8 @@ const Chat = (props) => {
         <IconButton onClick={handleClickOpen}><InfoOutlinedIcon /></IconButton>
         {/* remove logout button later and add back button*/}
         
-        <Link to='/messages'><Button onClick={logout}> 
-        Back
+        <Link to='/messages'><Button onClick={logout}>
+          Back
         </Button></Link>
       </h4>
 
@@ -138,7 +138,6 @@ const Chat = (props) => {
           {messages.length > 0 ?
             messages.map((msg, i) =>
             (<div key={i} className={`message ${msg.user === name ? "my-message" : ""}`}>
-              {console.log(msg)}
               <h6 className='user'>{msg.user}</h6>
               <h4 className='msg'>{msg.text}</h4>
             </div>)
