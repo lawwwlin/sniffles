@@ -18,13 +18,14 @@ router.get("/candidate", (req, res) => {
 
 
 
-/* GET candidate listing. */
+/* GET candidate listing with approve = true */
 router.get("/candidate/:profile/:candidate", (req, res) => {
   const profileId = req.params.profile;
   const candidateId = req.params.candidate;
   db.query(`
     SELECT * FROM candidate
-    WHERE profile_id = $1 AND candidate_dog_id = $2
+    WHERE profile_id = $1 
+    AND candidate_dog_id = $2
   `, [profileId, candidateId])
     .then((data) => {
       const candidates = data.rows;
@@ -55,12 +56,23 @@ router.get("/candidate/:userId", (req, res) => {
 router.post("/candidate", (req, res) => {
   const { approve, profile_id, candidate_dog_id} = req.body.candidate;
   db.query(`
-    INSERT INTO candidate (approve, profile_id, candidate_dog_id) VALUES ($1, $2, $3)
+    INSERT INTO candidate (approve, profile_id, candidate_dog_id) VALUES ($1, $2, $3);
   `, [approve, profile_id, candidate_dog_id])
-    .then((data) => {
-      const candidates = data.rows;
-      console.log("after saving to database:", candidates);
-      res.json(candidates);
+    .then(() => {
+      console.log("after saving to database, another query?");
+      db.query(`
+        SELECT * FROM candidate
+        WHERE profile_id = $2 
+        AND candidate_dog_id = $1;
+      `, [profile_id, candidate_dog_id])
+        .then((data) => {
+          const candidate = data.rows;
+          console.log('wow it worked...', candidate)
+          res.json(candidate)
+          .catch((err) => {
+            res.status(500).json({ error: err.message });
+          });
+        })
     })
     .catch((err) => {
       res.status(500).json({ error: err.message });

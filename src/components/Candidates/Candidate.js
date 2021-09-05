@@ -21,7 +21,7 @@ import axios from "axios";
 //ILI
 //key, id, name, imageUrl, location, info
 export default function Candidate(props) {
-  const { candidate_id, name, imageUrl, location, info, breed, gender, age, size, owner, user_id } = props;
+  const { candidate_id, name, imageUrl, location, info, breed, gender, age, size, owner, user_id, user } = props;
 
   const reject = () => {
     console.log("info: no button");
@@ -33,6 +33,7 @@ export default function Candidate(props) {
 
   const [open, setOpen] = useState(false);
   const [approve, setApprove] = useState("");
+  // const [match, setMatch] = useState("");
 
   const handleClickOpen = (candidate, candidateName) => {
     // candidates.filter((dog) => {
@@ -57,12 +58,35 @@ export default function Candidate(props) {
       const candidate = { approve: like, profile_id: user_id, candidate_dog_id: candidate_id };
       axios.post(`/api/candidate`, {candidate})
         .then((res) => {
+          console.log("candidate created, res:", res);
           // check if its a match, if its a match, create a chat room
-          console.log("candidate saved?", res);
+          const candidate = res.data;
+          console.log('after post, returned candidate:', candidate);
+          if (candidate.length !== 0 && candidate[0].approve === true ) {
+            console.log('candidate matched, before creating chatroom');
+            const room = { profile1_id: user_id, profile2_id: candidate_id, messages: [{user: user.name, text: "Woof, I just liked your profile!"}]}
+            axios.post(`/api/chatroom`, {room})
+              .then(() => console.log('chatroom created'))
+              .catch(error => console.log(error));
+          }
         })
         .catch(error => console.log(error));
     }
   }, [approve]);
+
+  // useEffect(() => {
+  //   axios.get(`/api/candidate/${candidate_id}/${user_id}`)
+  //     .then((res) => {
+  //       const candidate = res.data;
+  //       console.log(candidate);
+  //       if (candidate.length === 0) {
+  //         setMatch('false');
+  //       } else {
+  //         setMatch('true');
+  //       }
+  //     })
+  //     .catch(error => console.log(error));
+  // }, [approve]);
 
   // create candidate on swipe
   const onSwipe = (direction) => {

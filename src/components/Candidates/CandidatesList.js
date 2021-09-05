@@ -3,12 +3,13 @@ import Candidate from "./Candidate";
 import "./CandidatesList.css";
 import axios from "axios";
 
-export default function CandidateList({ profileId }) {
+// TO DO: add rendering page
+export default function CandidateList({ profile }) {
+  const profileId = profile.id;
   const [profiles, setProfiles] = useState([]);
   const [swiped, setSwiped] = useState([]);
 
   console.log("current user profileid:", profileId);
-  // TODO
   useEffect(() => {
     console.log("useeffect runs");
     if (profiles.length === 0) {
@@ -62,6 +63,7 @@ export default function CandidateList({ profileId }) {
         size={candidate.size}
         owner={candidate.owner}
         user_id={profileId}
+        user={profile}
       />
     );
   });
@@ -77,6 +79,7 @@ export default function CandidateList({ profileId }) {
       {candidateListItem}
     </div>
   ) : (
+    // TO DO: add rendering page
     <div></div>
   );
 }

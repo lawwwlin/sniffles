@@ -11,43 +11,34 @@ import "./ChatRoomList.css";
 // ];
 
 // sample database profiles
-const profiles = [
-  {
-    id: 2,
-    name: "dog1",
-    url: "https://images.pexels.com/photos/1805164/pexels-photo-1805164.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-    info: "I like to sniff things",
-    location: "Vancouver",
-    breed: "shiba inu",
-    gender: "femall",
-    age: 2,
-    size: "small",
-    owner: "dog1owner",
-    email: "dog1@a.com",
-  },
-  {
-    id: 3,
-    name: "dog2",
-    url: "https://images.pexels.com/photos/164186/pexels-photo-164186.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-    info: "Gimme treatz",
-    location: "Richmond",
-    breed: "corgi",
-    gender: "male",
-    age: 5,
-    size: "small",
-    owner: "dog2owner",
-    email: "dog2@a.com",
-  },
-];
-
-// find the profile of the recipient
-const getProfile = (receiver_id) => {
-  
-  const recipientProfile = profiles.find(
-    (profile) => profile.id === receiver_id
-  );
-  return recipientProfile;
-};
+// const profiles = [
+//   {
+//     id: 2,
+//     name: "dog1",
+//     url: "https://images.pexels.com/photos/1805164/pexels-photo-1805164.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+//     info: "I like to sniff things",
+//     location: "Vancouver",
+//     breed: "shiba inu",
+//     gender: "femall",
+//     age: 2,
+//     size: "small",
+//     owner: "dog1owner",
+//     email: "dog1@a.com",
+//   },
+//   {
+//     id: 3,
+//     name: "dog2",
+//     url: "https://images.pexels.com/photos/164186/pexels-photo-164186.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+//     info: "Gimme treatz",
+//     location: "Richmond",
+//     breed: "corgi",
+//     gender: "male",
+//     age: 5,
+//     size: "small",
+//     owner: "dog2owner",
+//     email: "dog2@a.com",
+//   },
+// ];
 
 // recieve profile of current logged in user
 function ChatRoomList(props) {
@@ -62,7 +53,7 @@ function ChatRoomList(props) {
       .then((res) => {
         console.log("response after axios get", res.data);
         setChatrooms(res.data);
-        console.log('after set:', chatrooms);
+        console.log('after setChatrooms:', chatrooms);
       })
       .catch((error) => console.log(error));
   }, []);
@@ -81,7 +72,7 @@ function ChatRoomList(props) {
         room_id={room.id}
         sender_id={room.profile1_id}
         sender_name={props.profile.name}
-        receiver_profile={getProfile(room.profile2_id)}
+        receiver_id={room.profile2_id}
         chatroom={room}
       />
     );

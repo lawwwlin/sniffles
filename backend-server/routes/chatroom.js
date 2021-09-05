@@ -12,8 +12,8 @@ router.get("/chatroom/:profile1_id/:profile2_id", (req, res) => {
     OR profile1_id = $2 AND profile2_id = $1
     `, [profile1_id, profile2_id])
     .then((data) => {
-      const messages = data.rows;
-      res.json(messages);
+      const chatroom = data.rows;
+      res.json(chatroom);
     })
     .catch((err) => {
       res.status(500).json({ error: err.message });
@@ -29,19 +29,20 @@ router.get("/chatroom/:profile1_id", (req, res) => {
     WHERE profile1_id = $1 OR profile2_id = $1
     `, [profile1_id])
     .then((data) => {
-      const messages = data.rows;
-      res.json(messages);
+      const chatrooms = data.rows;
+      res.json(chatrooms);
     })
     .catch((err) => {
       res.status(500).json({ error: err.message });
     });
 });
 
+/* FOR DEV: GET chatrooms for given profile id */
 router.get("/chatroom", (req, res) => {
   db.query(`SELECT * FROM chatroom`)
     .then((data) => {
-      const messages = data.rows;
-      res.json(messages);
+      const chatrooms = data.rows;
+      res.json(chatrooms);
     })
     .catch((err) => {
       res.status(500).json({ error: err.message });
@@ -52,8 +53,8 @@ router.get("/chatroom", (req, res) => {
 // axios.post(`/api/message/${sender_id}`, { message })
 // message = {sender_id: xxx, receiver_id: xxx, text: adfadsf}
 router.post("/chatroom", (req, res) => {
-  console.log("req.body in /chatroom:", req.body);
-  const { profile1_id, profile2_id, messages} = req.body.chatroom;
+  console.log("req.body in post/chatroom:", req.body);
+  const { profile1_id, profile2_id, messages} = req.body.room;
   console.log("checking messages: ", messages);
   console.log("checking profile1:", profile1_id, "2:", profile2_id);
   for (const i in messages) {
@@ -65,9 +66,9 @@ router.post("/chatroom", (req, res) => {
     INSERT INTO chatroom (profile1_id, profile2_id, messages) VALUES ($1, $2, $3)
   `, [profile1_id, profile2_id, msgs])
     .then((data) => {
-      const chatroom = data.rows;
-      console.log("after saving to database:", chatroom);
-      res.json(chatroom);
+      const chatrooms = data.rows;
+      res.json(chatrooms);
+      console.log("after saving to database chatroom.js 68")
     })
     .catch((err) => {
       res.status(500).json({ error: err.message });
@@ -78,7 +79,7 @@ router.post("/chatroom", (req, res) => {
 // axios.post(`/api/message/${sender_id}`, { message })
 // message = {sender_id: xxx, receiver_id: xxx, text: adfadsf}
 router.put("/chatroom/:room_id", (req, res) => {
-  console.log("req.body in /chatroom:", req.body);
+  console.log("req.body in put/chatroom:", req.body);
   const { id, profile1_id, profile2_id, messages} = req.body.room;
   console.log("checking messages: ", messages);
   console.log("checking profile1:", profile1_id, "2:", profile2_id);
@@ -93,11 +94,7 @@ router.put("/chatroom/:room_id", (req, res) => {
     ON CONFLICT (id) DO
     UPDATE SET messages = $4
   `, [id, profile1_id, profile2_id, msgs])
-    .then((data) => {
-      const chatroom = data.rows;
-      console.log("after saving to database:", chatroom);
-      res.json(chatroom);
-    })
+    .then(() => console.log("after saving to database chatroom.js 93"))
     .catch((err) => {
       res.status(500).json({ error: err.message });
     });

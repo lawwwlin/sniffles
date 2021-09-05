@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import "./ChatRoom.css";
 import Alert from '@material-ui/lab/Alert';
@@ -15,15 +15,17 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Button from '@material-ui/core/Button';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
+import axios from "axios";
 
 
 // 
-function ChatRoom({ room_id, sender_id, receiver_profile, sender_name, chatroom }) {
+function ChatRoom({ sender_id, receiver_id, sender_name, chatroom }) {
 
   const history = useHistory();
   const socket = useContext(SocketContext)
   const { name, setName, room, setRoom } = useContext(MainContext);
   const [open, setOpen] = React.useState(false);
+  const [recipient, setRecipient] = useState({});
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -96,6 +98,16 @@ function ChatRoom({ room_id, sender_id, receiver_profile, sender_name, chatroom 
     }
   };
 
+  console.log('101', receiver_id)
+  // find the profile of the recipient
+  useEffect(() => {
+    axios.get(`api/profile/${receiver_id}`)
+    .then((res) => {
+      setRecipient(res.data[0]);
+      console.log('after setRecipient:', recipient);
+    })
+  }, []);
+
   return (
     <div className="messenger">
       <Link 
@@ -105,14 +117,14 @@ function ChatRoom({ room_id, sender_id, receiver_profile, sender_name, chatroom 
           chatroom,
           sender_id,
           sender_name,
-          receiver_profile
+          recipient
         }}}
         onClick={onClick}
       >
-          <Avatar className="messenger_pic" alt={receiver_profile.name} src={receiver_profile.url} />
+          <Avatar className="messenger_pic" alt={recipient.name} src={recipient.imageurl} />
       </Link>
       <div className="messenger_info">
-        <h2>{receiver_profile.name}<IconButton onClick={handleClickOpen}><InfoOutlinedIcon /></IconButton></h2>
+        <h2>{recipient.name}<IconButton onClick={handleClickOpen}><InfoOutlinedIcon /></IconButton></h2>
         <p>{getLastMessageInChatroom(chatroom)}</p>
       </div>
       <p messenger_timestamp className="messenger_timestamp">
@@ -124,7 +136,7 @@ function ChatRoom({ room_id, sender_id, receiver_profile, sender_name, chatroom 
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">{receiver_profile.name}</DialogTitle>
+        <DialogTitle id="alert-dialog-title">{recipient.name}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
            receiver info here

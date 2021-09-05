@@ -24,39 +24,45 @@ import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 // required info: sender_id, receiver_id, room_id, sender_name
 const Chat = (props) => {
   const location = useLocation();
-  const { receiver_profile, sender_id, chatroom } = location.state;
+  const { recipient, sender_id, chatroom } = location.state;
   const { name, room, setName, setRoom } = useContext(MainContext);
   const socket = useContext(SocketContext);
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState(JSON.parse(chatroom.messages));
   const { setUsers } = useContext(UsersContext);
   const history = useHistory();
-
   console.log("just loaded chat compo:", JSON.parse(chatroom.messages))
   console.log("2 loaded chat compo:", messages)
-
+  
+  // logout when the active history entry changes
+  window.onpopstate = e => logout();
+  
+  const logout = () => {
+    setName(''); 
+    setRoom('');
+    console.log('after setting name and room', name, room)
+    // history.push('/messages');
+    // history.go(0);
+  };
+  
   // open infobox
   const [open, setOpen] = React.useState(false);
-
+  
   const handleClickOpen = () => {
     setOpen(true);
   };
-
+  
   const handleClose = () => {
     setOpen(false);
   };
-
+  
   const remove = () => {
     console.log("remove test button");
   };
 
-  // temp function before passing in props
-  const recipient = receiver_profile;
-
-  // logout when the active history entry changes
-  window.onpopstate = e => logout();
+  
   //Checks to see if there's a user present
-  useEffect(() => { if (!name) return history.push('/') }, [history, name]);
+  // useEffect(() => { if (!name) return history.push('/') }, [history, name]);
 
   // useEffect(() => {
   //   socket.on("users", users => {
@@ -67,31 +73,27 @@ const Chat = (props) => {
     socket.on("message", msg => {
       setMessages(messages => [...messages, msg])
     });
+  }, [socket]);
+
+  useEffect(() => {
+    console.log('line 78 when is this run?')
     // this step is requried, or else the seed from database will not be the same when server first starts
     const msg = JSON.stringify(JSON.parse(chatroom.messages));
     if (JSON.stringify(messages) !== msg) {
       const room = {id: chatroom.id, profile1_id: sender_id, profile2_id: recipient.id, messages: messages}
       axios.put(`/api/chatroom/${chatroom.id}`, {room})
-        .then((res) => {
-        })
+        .then((res) => {console.log("after put", res)})
         .catch(error => console.log(error));
     }
   }, [messages]);
   
   
   const handleSendMessage = () => {
-    socket.emit('sendMessage', message, () => setMessage(''));
+    socket.emit('sendMessage', message);
     setMessage('');
     console.log(message);
   };
 
-  const logout = () => {
-    setName(''); 
-    setRoom('');
-    console.log('after setting name and room', name, room)
-    // history.push('/messages');
-    // history.go(0);
-  };
 
   return (
     <div className='room'>
