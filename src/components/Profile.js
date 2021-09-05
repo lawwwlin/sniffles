@@ -1,20 +1,21 @@
 import React, { useState } from "react";
 import "./Profile.css";
-import EditIcon from "@material-ui/icons/Edit";
-import IconButton from "@material-ui/core/IconButton";
-import Fab from "@material-ui/core/Fab";
-import ProfileEdit from "./ProfileEdit";
 
-import { makeStyles } from "@material-ui/core/styles";
+import ProfileEdit from "./ProfileEdit";
 import clsx from "clsx";
+
+// Import components from material-ui
+import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
-import CardHeader from "@material-ui/core/CardHeader";
-import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
 import Collapse from "@material-ui/core/Collapse";
-import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import LocationOnIcon from "@material-ui/icons/LocationOn";
+import BookmarkIcon from "@material-ui/icons/Bookmark";
+import EditIcon from "@material-ui/icons/Edit";
+import IconButton from "@material-ui/core/IconButton";
+import Fab from "@material-ui/core/Fab";
 
 const useStyles = makeStyles((theme) => ({
   typography: {
@@ -25,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     width: 700,
     maxWidth: 700,
-    marginTop: 30,
+    marginTop: 15,
     marginBottom: 40,
     paddingBottom: 5,
     boxShadow: "rgb(38, 57, 77) 0px 20px 30px -10px;",
@@ -37,8 +38,10 @@ const useStyles = makeStyles((theme) => ({
   expand: {
     transform: "rotate(0deg)",
     marginLeft: "auto",
+    marginRight: "1.5em",
     transition: theme.transitions.create("transform", {
       duration: theme.transitions.duration.shortest,
+      
     }),
   },
   expandOpen: {
@@ -48,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
     "& > *": {
       margin: theme.spacing(1),
       backgroundColor: "#ff008f",
-      
+      marginLeft: "3em",
     },
   },
 }));
@@ -110,26 +113,36 @@ function Profile(props) {
           <h3>description: {profile.description}</h3> */}
 
           <Card className={classes.root}>
-            <div><h1>{profile.name}</h1></div>
-            <CardHeader title="Profile" subheader="View and edit">
-              
-            </ CardHeader>
-            <CardMedia
-              className={classes.media}
-              image={profile.imageUrl}
-              title="profile pic"
-            />
-            <CardContent>
-              {/* <Typography variant="body2" color="textSecondary" component="p">
+          <div
+            style={{ backgroundImage: `url(${profile.imageUrl})` }}
+            className="profile_card"
+          >
+            <div className="profile_info">
+            <Fab variant="extended" disabled aria-label="like" style={{ fontSize: 20 }}>
+              <h1 className="profile_name">{profile.name}</h1>
+              </Fab>
+              <h3>
+                <LocationOnIcon className="location" />
+                {profile.location}
+              </h3>
+              <h3>
+                <BookmarkIcon />
                 {profile.description}
-              </Typography> */}
-              <h1>{profile.name}</h1>
+              </h3>
+            </div>
+    
+          </div>
+          <CardContent>
+              <h3 className="profile_description">View and edit profile</h3>
             </CardContent>
+        
             <CardActions disableSpacing>
           
-                <div className={classes.edit}>
-                  <Fab color="secondary" aria-label="edit" onClick={onClick}>
-                    <EditIcon className="profile_icon" style={{ fontSize: 35 }}/>
+                <div className={classes.edit} >
+                  <Fab color="secondary" aria-label="edit" onClick={onClick} >
+                    <EditIcon style={{ fontSize: 35 }}
+                    
+                    />
                   </Fab>
                 </div>
               
@@ -141,7 +154,7 @@ function Profile(props) {
                 aria-expanded={expanded}
                 aria-label="show more"
               >
-                <ExpandMoreIcon />
+                <ExpandMoreIcon className="profile_expand" style={{ fontSize: 35 }}/>
               </IconButton>
             </CardActions>
             <Collapse in={expanded} timeout="auto" unmountOnExit>
@@ -169,22 +182,3 @@ function Profile(props) {
 
 export default Profile;
 
-/*
-         <div
-            style={{ backgroundImage: `url(${profile.imageUrl})` }}
-            className="profile_card"
-          >
-            <div className="profile_info">
-              <h1>{profile.name}</h1>
-              <h3>
-                {profile.location}
-              </h3>
-              <h3>{profile.description}</h3>
-            </div>
-            <div className="profile_button">
-              <IconButton size="small" onClick={onClick}>
-                <EditIcon className="profile_icon" style={{ fontSize: 50 }} />
-              </IconButton>
-            </div>
-          </div>
-          */

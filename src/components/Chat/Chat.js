@@ -1,25 +1,39 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import { MainContext } from '../../mainContext';
-import { SocketContext } from '../../socketContext';
-import ScrollToBottom from 'react-scroll-to-bottom';
-import './Chat.scss';
-import { UsersContext } from '../../usersContext';
-import { TextField, Button } from '@material-ui/core';
-import SendIcon from '@material-ui/icons/Send';
-import MessageIcon from '@material-ui/icons/Message';
-import axios from 'axios';
-import { useLocation, Link } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
 
-//info popup
-import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
-import IconButton from "@material-ui/core/IconButton";
-import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
+import { MainContext } from "../../mainContext";
+import { SocketContext } from "../../socketContext";
+import ScrollToBottom from "react-scroll-to-bottom";
+import "./Chat.scss";
+import { UsersContext } from "../../usersContext";
+
+import axios from "axios";
+import { useLocation, Link, useHistory } from "react-router-dom";
+
+// Import components from material-ui
+import {
+  Avatar,
+  makeStyles,
+  TextField,
+  Button,
+  IconButton,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+} from "@material-ui/core";
+import SendIcon from "@material-ui/icons/Send";
+import MessageIcon from "@material-ui/icons/Message";
+import PetsIcon from "@material-ui/icons/Pets";
+import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
+import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
+import FlagIcon from "@material-ui/icons/Flag";
+
+const useStyles = makeStyles((theme) => ({
+  large: {
+    width: theme.spacing(7),
+    height: theme.spacing(7),
+  },
+}));
 
 // required info: sender_id, receiver_id, room_id, sender_name
 const Chat = (props) => {
@@ -27,7 +41,7 @@ const Chat = (props) => {
   const { recipient, sender_id, chatroom } = location.state;
   const { name, room, setName, setRoom } = useContext(MainContext);
   const socket = useContext(SocketContext);
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState("");
   const [messages, setMessages] = useState(JSON.parse(chatroom.messages));
   const { setUsers } = useContext(UsersContext);
   const history = useHistory();
@@ -45,6 +59,7 @@ const Chat = (props) => {
   
   // logout when the active history entry changes
   window.onpopstate = e => logout();
+  const classes = useStyles();
 
   // open infobox
   const [open, setOpen] = React.useState(false);
@@ -64,6 +79,9 @@ const Chat = (props) => {
   
   //Checks to see if there's a user present
   // useEffect(() => { if (!name) return history.push('/') }, [history, name]);
+  const report = () => {
+    console.log("report test button");
+  };
 
   // useEffect(() => {
   //   socket.on("users", users => {
@@ -71,8 +89,8 @@ const Chat = (props) => {
   //   })
   // })
   useEffect(() => {
-    socket.on("message", msg => {
-      setMessages(messages => [...messages, msg])
+    socket.on("message", (msg) => {
+      setMessages((messages) => [...messages, msg]);
     });
   }, [socket]);
 
@@ -97,20 +115,40 @@ const Chat = (props) => {
 
 
   return (
-    <div className='room'>
-      <h4 className='heading'>
-        <div className='room-title'>
-          
-          <h3> room: {chatroom.id}, message to {recipient.name}</h3>
-          <div className='user-title'><h4>Current User: {name}</h4></div>
+    <div className="room">
+      <div className="heading">
+        <div className="room-title">
+          {console.log(`room: ${chatroom.id}, message to ${recipient.name}`)}
+          <Link to="/messages">
+            <IconButton onClick={logout}>
+              <ArrowBackIosIcon id="chat_icon" style={{ fontSize: 40 }} />
+            </IconButton>
+          </Link>
         </div>
-        <IconButton onClick={handleClickOpen}><InfoOutlinedIcon /></IconButton>
         {/* remove logout button later and add back button*/}
-        
-        <Link to='/messages'><Button onClick={logout}>
-          Back
-        </Button></Link>
-      </h4>
+
+        <Link to="/candidate">
+          <div className="chat_logbox">
+            <IconButton onClick={logout}>
+              <PetsIcon className="chat_logo" style={{ fontSize: 60 }} />
+            </IconButton>
+          </div>
+        </Link>
+
+        <div>
+          {/* <p>{recipient.name}</p> */}
+
+          <IconButton onClick={handleClickOpen}>
+            <Avatar
+              id="chat_icon"
+              alt={recipient.name}
+              src={recipient.url}
+              style={{ fontSize: 40 }}
+              className={classes.large}
+            />
+          </IconButton>
+        </div>
+      </div>
 
       <Dialog
         open={open}
@@ -118,57 +156,84 @@ const Chat = (props) => {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">{recipient.name}</DialogTitle>
+        <DialogTitle id="alert-dialog-title"></DialogTitle>
         <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-          recipient info here
-          </DialogContentText>
+          <h3>{recipient.name}</h3>
+          <br />
+          <p>Location: {recipient.location}</p>
+          <p>Breed: {recipient.breed}</p>
+          <p>Gender: {recipient.gender}</p>
+          <p>Age: {recipient.age}</p>
+          <p>Size: {recipient.size}</p>
+          <p>Owner: {recipient.owner}</p>
         </DialogContent>
         <DialogActions>
+          <Button onClick={report} autoFocus>
+            <span className="chat_report">
+              <FlagIcon />
+            </span>
+            <p className="chat_report">REPORT</p>
+          </Button>
           <Button onClick={remove} autoFocus>
-            <span className="chat_delete"><DeleteForeverIcon/></span><p className="chat_delete">REMOVE</p>
+            <span className="chat_delete">
+              <DeleteForeverIcon />
+            </span>
+            <p className="chat_delete">REMOVE</p>
           </Button>
         </DialogActions>
       </Dialog>
 
-      <ScrollToBottom className='messages' debug={false}>
-            <div className='match-time'>
-              <h4> You matched with {recipient.name} on -insert-timestamp-here- </h4>
+      <ScrollToBottom className="messages" debug={false}>
+        <div className="match-time">
+          <h4 className="match-text">
+            {" "}
+            You matched with {recipient.name} on -insert-timestamp-here-{" "}
+          </h4>
+        </div>
+        {messages.length > 0 ? (
+          messages.map((msg, i) => (
+            <div
+              key={i}
+              className={`message ${msg.user === name ? "my-message" : ""}`}
+            >
+              <h6 className="user">{msg.user}</h6>
+              <h4 className="msg">{msg.text}</h4>
             </div>
-          {messages.length > 0 ?
-            messages.map((msg, i) =>
-            (<div key={i} className={`message ${msg.user === name ? "my-message" : ""}`}>
-              <h6 className='user'>{msg.user}</h6>
-              <h4 className='msg'>{msg.text}</h4>
-            </div>)
-            )
-            :
-            <div className='empty-message'>
-              <div>-----</div>
-              <MessageIcon />
-              <h4> No messages </h4>
-              <div>-----</div>
-            </div>
-          }
+          ))
+        ) : (
+          <div className="empty-message">
+            <div>-----</div>
+            <MessageIcon />
+            <h4> No messages </h4>
+            <div>-----</div>
+          </div>
+        )}
       </ScrollToBottom>
-      <div className='form'>
-        <TextField 
-          type="text" 
+
+      <div className="form">
+        <TextField
+          className="form_text"
+          type="text"
           label="Enter Message"
-          value={message} onChange={e => setMessage(e.target.value)}
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          fullWidth
+          // multiline
+          // rows={2}
           variant="outlined"
         />
-        <Button 
+        <Button
           variant="contained"
-          color='primary' 
-          startIcon={<SendIcon />} 
-          onClick={handleSendMessage} 
-          disabled={message === '' ? true : false}>
+          color="primary"
+          startIcon={<SendIcon />}
+          onClick={handleSendMessage}
+          disabled={message === "" ? true : false}
+        >
           Send
-        </Button>  
+        </Button>
       </div>
     </div>
   );
 };
 
-export default Chat
+export default Chat;

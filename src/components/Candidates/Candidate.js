@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
-import classNames from "classnames";
 import "./Candidate.css";
 
-//front end stuff
+// Import component for swipe effect
+
 import DogCard from "react-tinder-card";
+
+// Import components from material-ui
 import NotInterestedIcon from "@material-ui/icons/NotInterested";
 import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined";
 import LoyaltyOutlinedIcon from "@material-ui/icons/LoyaltyOutlined";
@@ -11,10 +13,7 @@ import IconButton from "@material-ui/core/IconButton";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
 import BookmarkIcon from "@material-ui/icons/Bookmark";
 import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogTitle from "@material-ui/core/DialogTitle";
 import Fab from "@material-ui/core/Fab";
 import axios from "axios";
 
@@ -35,6 +34,7 @@ export default function Candidate(props) {
   const [approve, setApprove] = useState("");
   // const [match, setMatch] = useState("");
 
+  // OnClick function used to open dialog component
   const handleClickOpen = (candidate, candidateName) => {
     // candidates.filter((dog) => {
     //   if (dog.name === candidateName) {
@@ -45,6 +45,7 @@ export default function Candidate(props) {
     console.log('clicked open');
   };
 
+  // OnClick function used to close dialog component
   const handleClose = () => {
     setOpen(false);
   };

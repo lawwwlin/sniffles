@@ -6,19 +6,36 @@
   align-content: stretch;
   .heading{
     display: flex;
+    
     align-items: center;
     justify-content: space-between;
-    font-family: 'DM Sans';
+    // font-family: 'DM Sans';
     color: rgb(70, 70, 70);
     font-size: 2rem;
     font-weight: 500;
     z-index: 1000;
+    border-bottom: 1px solid lightgray;
   }
 
   .room-title{
     display: flex;
+    // align-items: center;
+    // flex-direction: column;
+  }
+
+  .chat_logo {
+    color: brown;
+    display: flex;
     align-items: center;
-    flex-direction: column;
+    
+  }
+
+  .chat_logbox {
+   margin-left: 1em;
+  }
+
+  #chat_icon {
+    margin: 7px;
   }
 
   .user-title{
@@ -27,22 +44,25 @@
   }
 
   .messages{
-      background:#EAEAEA;
+      background-color:pink;
       .message{
         padding: 0.1em;
           .user{
+            margin-left: 2em;
             padding-left: 0.8em;
             padding-right: 0.8em;
-            padding-bottom: 0.1em;
+            padding-bottom: 0.5em;
           }
           .msg{
-              color: rgba(0,0,0,.7);
+              color: rgba(0, 0, 0, 0.795);
               background: white;
+              margin-left: 1em;
               border-radius: 0.8em;
               padding-left: 0.8em;
               padding-right: 0.8em;
               padding-top: 0.5em;
               padding-bottom: 0.5em;
+
           }
       }
       .my-message{
@@ -53,6 +73,7 @@
           .msg{
             color: white;
             background: #408EEA;
+            margin-right: 1em;
             border-radius: 0.8em;
             padding-left: 0.8em;
             padding-right: 0.8em;
@@ -74,13 +95,16 @@
     padding: 1rem;
   }
 
+
   .match-time{
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #EAEAEA;
-    opacity: 0.2;
+    background-color:pink;
+    color: white;
+    // opacity: 60%;
     width: 100%;
+    margin-bottom: 1em;
   }
 
   .empty-message{
@@ -95,18 +119,36 @@
   .form{
     position: relative;
     z-index: 1000;
-    input{
-      width: 100%;
-      padding: 1.5rem ;
-      border-radius: 0px 0px 10px 10px;
 
+    .form_text{
+      width: 70%;
+      margin-right: 3.5em;
+      margin-bottom: 1em;
+      // width: 50%;
+      // padding: 5em ;
+      // margin: 5em;
+      border-radius: 0px 0px 10px 10px;
+      // background-color: blue;
     }
+
     button{
+
       position: absolute;
-      right: 1rem;
-      top: 1rem;
+      right: 1.5rem;
+      // top: 1rem;
+      margin-top: 10px;
+      
     }
   }
+}
+
+// .form_text .MuiInputBase-input {
+
+  
+// }
+
+.chat_emoji {
+  margin-right: 30em;
 }
 
 ::placeholder {
@@ -121,6 +163,14 @@
 }
 }
 
+.form_text {
+  border-radius: 15px;
+}
+
 .chat_delete {
   color: red;
-} 
+}
+
+.chat_report {
+  color: blue;
+}

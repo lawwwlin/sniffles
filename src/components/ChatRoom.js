@@ -1,21 +1,16 @@
 import React, { useContext, useState, useEffect } from "react";
-import Avatar from "@material-ui/core/Avatar";
+import axios from "axios";
 import "./ChatRoom.css";
 import Alert from '@material-ui/lab/Alert';
 // import Chat from './Chat/Chat'
 import { Link, useHistory } from "react-router-dom";
 import { SocketContext } from '../socketContext';
 import { MainContext } from '../mainContext';
-import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
+
+// Import components from material-ui
+import Avatar from "@material-ui/core/Avatar";
 import IconButton from "@material-ui/core/IconButton";
-import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import Button from '@material-ui/core/Button';
-import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
-import axios from "axios";
+
 
 
 // 
@@ -24,20 +19,7 @@ function ChatRoom({ sender_id, receiver_id, sender_name, chatroom }) {
   const history = useHistory();
   const socket = useContext(SocketContext)
   const { name, setName, room, setRoom } = useContext(MainContext);
-  const [open, setOpen] = React.useState(false);
   const [recipient, setRecipient] = useState({});
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const remove = () => {
-    console.log("remove");
-  };
 
   const setValues = async () => {
     console.log('setting values');
@@ -120,34 +102,20 @@ function ChatRoom({ sender_id, receiver_id, sender_name, chatroom }) {
           recipient
         }}}
         onClick={onClick}
-      >
-          <Avatar className="messenger_pic" alt={recipient.name} src={recipient.imageurl} />
+      ><div className="messenger_pic">
+        <IconButton>
+          <Avatar  alt={recipient.name} src={recipient.imageurl} />
+          </IconButton>
+          </div>
       </Link>
       <div className="messenger_info">
-        <h2>{recipient.name}<IconButton onClick={handleClickOpen}><InfoOutlinedIcon /></IconButton></h2>
+        <h2>{recipient.name}</h2>
         <p>{getLastMessageInChatroom(chatroom)}</p>
       </div>
       <p messenger_timestamp className="messenger_timestamp">
         {getTimeAgo(chatroom.updatedat)}
       </p>
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <DialogTitle id="alert-dialog-title">{recipient.name}</DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-           receiver info here
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={remove} autoFocus>
-            <span className="messenger_delete"><DeleteForeverIcon/></span><p className="messenger_delete">REMOVE</p>
-          </Button>
-        </DialogActions>
-      </Dialog>
+      
     </div>
   );
 }
