@@ -52,19 +52,19 @@ function ChatRoom({ sender_id, receiver_id, sender_name, chatroom }) {
       console.log('after log in', room, name);
       if (error) {
           console.log(error)
-          return (
-            <Alert severity="error">
-              {error}
-            </Alert>
-          )
+          // return (
+          //   <Alert severity="error">
+          //     {error}
+          //   </Alert>
+          // )
       }
       // history.push('/chat')
       console.log('connected to', chatroom.id)
-      return (
-        <Alert severity="success">
-          {`Welcome to ${room}`}
-        </Alert>
-      )
+      // return (
+      //   <Alert severity="success">
+      //     {`Welcome to ${room}`}
+      //   </Alert>
+      // )
     })
   };
 

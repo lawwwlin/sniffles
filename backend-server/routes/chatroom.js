@@ -94,7 +94,11 @@ router.put("/chatroom/:room_id", (req, res) => {
     ON CONFLICT (id) DO
     UPDATE SET messages = $4
   `, [id, profile1_id, profile2_id, msgs])
-    .then(() => console.log("after saving to database chatroom.js 93"))
+    .then((data) => {
+      const chatrooms = data.rows;
+      res.json(chatrooms);
+      console.log("after saving to database chatroom.js 93");
+    })
     .catch((err) => {
       res.status(500).json({ error: err.message });
     });

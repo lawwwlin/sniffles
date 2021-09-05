@@ -34,17 +34,18 @@ const Chat = (props) => {
   console.log("just loaded chat compo:", JSON.parse(chatroom.messages))
   console.log("2 loaded chat compo:", messages)
   
-  // logout when the active history entry changes
-  window.onpopstate = e => logout();
-  
   const logout = () => {
     setName(''); 
     setRoom('');
     console.log('after setting name and room', name, room)
-    // history.push('/messages');
+    // socket.disconnect();
+    history.push('/messages');
     // history.go(0);
   };
   
+  // logout when the active history entry changes
+  window.onpopstate = e => logout();
+
   // open infobox
   const [open, setOpen] = React.useState(false);
   
@@ -89,7 +90,7 @@ const Chat = (props) => {
   
   
   const handleSendMessage = () => {
-    socket.emit('sendMessage', message);
+    socket.emit('sendMessage', message, () => {setMessage('')});
     setMessage('');
     console.log(message);
   };
