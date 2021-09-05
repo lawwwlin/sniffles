@@ -3,6 +3,7 @@ import Candidate from "./Candidate";
 import axios from "axios";
 
 export default function CandidateList(profile) {
+  
   const [candidates, setCandidates] = useState([]);
 console.log(profile)
   useEffect(() => {

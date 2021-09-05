@@ -1,23 +1,21 @@
 import React, { useState } from "react";
 import "./Profile.css";
-import EditIcon from "@material-ui/icons/Edit";
-import IconButton from "@material-ui/core/IconButton";
-import Fab from "@material-ui/core/Fab";
-import ProfileEdit from "./ProfileEdit";
 
-import { makeStyles } from "@material-ui/core/styles";
+import ProfileEdit from "./ProfileEdit";
 import clsx from "clsx";
+
+// Import components from material-ui
+import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
-import CardHeader from "@material-ui/core/CardHeader";
-import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
 import Collapse from "@material-ui/core/Collapse";
-import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
 import BookmarkIcon from "@material-ui/icons/Bookmark";
-
+import EditIcon from "@material-ui/icons/Edit";
+import IconButton from "@material-ui/core/IconButton";
+import Fab from "@material-ui/core/Fab";
 
 const useStyles = makeStyles((theme) => ({
   typography: {
@@ -135,9 +133,6 @@ function Profile(props) {
     
           </div>
           <CardContent>
-              {/* <Typography variant="body2" color="textSecondary" component="p">
-                {profile.description}
-              </Typography> */}
               <h3 className="profile_description">View and edit profile</h3>
             </CardContent>
         
@@ -187,22 +182,3 @@ function Profile(props) {
 
 export default Profile;
 
-/*
-         <div
-            style={{ backgroundImage: `url(${profile.imageUrl})` }}
-            className="profile_card"
-          >
-            <div className="profile_info">
-              <h1>{profile.name}</h1>
-              <h3>
-                {profile.location}
-              </h3>
-              <h3>{profile.description}</h3>
-            </div>
-            <div className="profile_button">
-              <IconButton size="small" onClick={onClick}>
-                <EditIcon className="profile_icon" style={{ fontSize: 50 }} />
-              </IconButton>
-            </div>
-          </div>
-          */

@@ -19,7 +19,7 @@ const profiles = [
     info: "I like to sniff things",
     location: "Vancouver",
     breed: "shiba inu",
-    gender: "femall",
+    gender: "female",
     age: 2,
     size: "small",
     owner: "dog1owner",

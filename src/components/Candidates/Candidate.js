@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
-import classNames from "classnames";
 import "./Candidate.css";
 
-//front end stuff
+// Import component for swipe effect
+
 import DogCard from "react-tinder-card";
+
+// Import components from material-ui
 import NotInterestedIcon from "@material-ui/icons/NotInterested";
 import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined";
 import LoyaltyOutlinedIcon from "@material-ui/icons/LoyaltyOutlined";
@@ -11,10 +13,7 @@ import IconButton from "@material-ui/core/IconButton";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
 import BookmarkIcon from "@material-ui/icons/Bookmark";
 import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogTitle from "@material-ui/core/DialogTitle";
 import Fab from "@material-ui/core/Fab";
 
 //ILI
@@ -34,6 +33,7 @@ export default function Candidate(props) {
   const [open, setOpen] = useState(false);
   const [desc, setDesc] = useState([]);
 
+  // OnClick function used to open dialog component
   const handleClickOpen = (candidate, candidateName) => {
     candidates.filter((dog) => {
       if (dog.name === candidateName) {
@@ -43,10 +43,12 @@ export default function Candidate(props) {
     setOpen(true);
   };
 
+  // OnClick function used to close dialog component
   const handleClose = () => {
     setOpen(false);
   };
 
+  // Function to implement a return for swipe effect
   const onSwipe = (direction) => {
     if (direction === "right") {
       console.log("right for like");
@@ -60,8 +62,8 @@ export default function Candidate(props) {
     <div className="candidate">
       <div className="candidate_card" id="candidate_cardNone">
         <div className="candidate_none">
-        <h1>You a bit too thirsty for doggos👀</h1>
-        <h1>Drink some water and swipe again later🥵</h1>
+          <h1>You a bit too thirsty for doggos👀</h1>
+          <h1>Drink some water and swipe again later🥵</h1>
         </div>
       </div>
       {candidates.map((candidate) => (
@@ -76,8 +78,13 @@ export default function Candidate(props) {
             className="candidate_card"
           >
             <div className="candidate_info">
-            <Fab variant="extended" disabled aria-label="like" style={{ fontSize: 20 }}>
-              <h1 className="candidate_name">{candidate.name}</h1>
+              <Fab
+                variant="extended"
+                disabled
+                aria-label="like"
+                style={{ fontSize: 20 }}
+              >
+                <h1 className="candidate_name">{candidate.name}</h1>
               </Fab>
               <h3>
                 <LocationOnIcon className="location" />
@@ -125,15 +132,15 @@ export default function Candidate(props) {
       >
         <DialogContent className="candidate_dialog">
           <h2>{desc.name}</h2>
-          <br/>
-          
-            <p>Location: {desc.location}</p>
-            <p>Breed: {desc.breed}</p>
-            <p>Gender: {desc.gender}</p>
-            <p>Age: {desc.age}</p>
-            <p>Size: {desc.size}</p>
-            <p>Owner: {desc.owner}</p>
-          <br/>
+          <br />
+
+          <p>Location: {desc.location}</p>
+          <p>Breed: {desc.breed}</p>
+          <p>Gender: {desc.gender}</p>
+          <p>Age: {desc.age}</p>
+          <p>Size: {desc.size}</p>
+          <p>Owner: {desc.owner}</p>
+          <br />
         </DialogContent>
       </Dialog>
     </div>
