@@ -65,7 +65,7 @@ function ChatRoom({ sender_id, receiver_id, sender_name, chatroom }) {
       //     {`Welcome to ${room}`}
       //   </Alert>
       // )
-    })
+    });
   };
 
   const onClick = () => {
