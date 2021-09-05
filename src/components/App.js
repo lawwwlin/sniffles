@@ -5,7 +5,6 @@ import Form from "./Form";
 import Login from "./Login";
 import Profile from "./Profile";
 import ChatRoomList from "./ChatRoomList";
-import MessageScreen from "./MessageScreen";
 import {
   BrowserRouter as Router,
   Switch,
@@ -51,10 +50,6 @@ function App() {
         <Switch>
           <Route exact path="/">
             <Redirect from="/" to="/Candidate" />
-          </Route>
-          <Route path="/messages/:candidate">
-            <TopNav />
-            <MessageScreen />
           </Route>
 
           <Route path="/profile">
