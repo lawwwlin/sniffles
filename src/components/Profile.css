@@ -4,7 +4,8 @@
   
 }
 
-.profile_info{
+
+/* .profile_info{
   position: absolute;
   font-size: 25px;
   padding-left: 10px;
@@ -15,7 +16,7 @@
 .profile_card {
   position:relative;
   width: 800px;
-  /* width: 100em; */
+  
   padding: 10px;
   max-width: 85vw;
   height: 85vh;
@@ -23,7 +24,7 @@
   background-color: cover;
   background-position: center;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-}
+} */
 
 /* .profile_pic {
   position: relative;
@@ -45,4 +46,34 @@
   right: 5%;
 } */
 
+.profile_card {
+  position:relative;
+  width: 600px;
+  padding: 10px;
+  max-width: 85vw;
+  height: 62vh;
+  border-radius: 15px;
+  background-color: cover;
+  background-position: center;
+  margin-top: 1.5em;
+  margin-left: 2.5em;
+  margin-bottom: 1em;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
 
+.profile_info{
+  position: absolute;
+  font-size: 25px;
+  padding-left: 10px;
+  bottom: 25px;
+  color: white;
+}
+
+.profile_name{
+  color: white;
+}
+
+.profile_description {
+  margin-left: 1.5em;
+  margin-bottom: -1em;
+}
