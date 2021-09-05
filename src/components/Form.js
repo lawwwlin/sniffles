@@ -1,20 +1,19 @@
 import React, { useState } from "react";
 import clsx from "clsx";
 import "./Form.css";
-import { makeStyles } from "@material-ui/core/styles";
+
+// Import components from material-ui
 import {
   FormControl,
   Input,
   InputLabel,
-  FormHelperText,
-  FilledInput,
-  OutlinedInput,
   Button,
   TextField,
   MenuItem,
   InputAdornment,
   IconButton,
 } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 import SaveIcon from "@material-ui/icons/Save";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";

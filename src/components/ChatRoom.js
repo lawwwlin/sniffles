@@ -1,11 +1,13 @@
 import React, { useContext } from "react";
-import Avatar from "@material-ui/core/Avatar";
 import "./ChatRoom.css";
 import Alert from '@material-ui/lab/Alert';
 // import Chat from './Chat/Chat'
 import { Link, useHistory } from "react-router-dom";
 import { SocketContext } from '../socketContext';
 import { MainContext } from '../mainContext';
+
+// Import components from material-ui
+import Avatar from "@material-ui/core/Avatar";
 import IconButton from "@material-ui/core/IconButton";
 
 

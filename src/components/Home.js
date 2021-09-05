@@ -1,21 +1,19 @@
 import React from "react";
 import "./Home.css";
 import Login from "./Login.js";
+import { Link } from "react-router-dom";
 
+// Import components from material-ui
 import PersonAddIcon from "@material-ui/icons/PersonAdd";
 import LockOpenIcon from "@material-ui/icons/LockOpen";
 import IconButton from "@material-ui/core/IconButton";
-import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogTitle from "@material-ui/core/DialogTitle";
 import Button from "@material-ui/core/Button";
 import PetsIcon from "@material-ui/icons/Pets";
-import { Link } from "react-router-dom";
 
-import { ThemeProvider, makeStyles } from '@material-ui/core/styles';
+
+import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   loginSubmit: {
@@ -30,16 +28,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function DeepChild() {
-  const classes = useStyles();
-
-  return (
-    <button type="button" className={classes.loginSubmit}>
-      LOG IN
-    </button>
-  );
-}
-
 function Home(props) {
   const [open, setOpen] = React.useState(false);
 
@@ -49,10 +37,6 @@ function Home(props) {
 
   const handleClose = () => {
     setOpen(false);
-  };
-
-  const login = () => {
-    console.log('login')
   };
 
   return (

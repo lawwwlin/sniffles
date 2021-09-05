@@ -1,30 +1,32 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+
 import { MainContext } from "../../mainContext";
 import { SocketContext } from "../../socketContext";
 import ScrollToBottom from "react-scroll-to-bottom";
 import "./Chat.scss";
 import { UsersContext } from "../../usersContext";
-import { TextField, Button } from "@material-ui/core";
+
+import axios from "axios";
+import { useLocation, Link, useHistory } from "react-router-dom";
+
+// Import components from material-ui
+import {
+  Avatar,
+  makeStyles,
+  TextField,
+  Button,
+  IconButton,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+} from "@material-ui/core";
 import SendIcon from "@material-ui/icons/Send";
 import MessageIcon from "@material-ui/icons/Message";
-import axios from "axios";
-import { useLocation, Link } from "react-router-dom";
-import EmojiEmotionsIcon from '@material-ui/icons/EmojiEmotions';
-
-//info popup
-import Avatar from "@material-ui/core/Avatar";
 import PetsIcon from "@material-ui/icons/Pets";
-import IconButton from "@material-ui/core/IconButton";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
-import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogTitle from "@material-ui/core/DialogTitle";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import FlagIcon from "@material-ui/icons/Flag";
-import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   large: {
@@ -113,7 +115,7 @@ const Chat = (props) => {
   const logout = () => {
     setName("");
     setRoom("");
-    console.log('does this log out?');
+    console.log("does this log out?");
     // history.push('/messages');
     // history.go(0);
   };
@@ -124,29 +126,24 @@ const Chat = (props) => {
         <div className="room-title">
           {console.log(`room: ${chatroom.id}, message to ${recipient.name}`)}
           <Link to="/messages">
-          <IconButton onClick={logout}>
-            <ArrowBackIosIcon id="chat_icon" style={{ fontSize: 40 }} />
-          </IconButton>
-        </Link>
-        
-
-      
-        
+            <IconButton onClick={logout}>
+              <ArrowBackIosIcon id="chat_icon" style={{ fontSize: 40 }} />
+            </IconButton>
+          </Link>
         </div>
         {/* remove logout button later and add back button*/}
-        
+
         <Link to="/candidate">
           <div className="chat_logbox">
-          <IconButton onClick={logout}>
-            <PetsIcon className="chat_logo" style={{ fontSize: 60 }} />
-          </IconButton>
+            <IconButton onClick={logout}>
+              <PetsIcon className="chat_logo" style={{ fontSize: 60 }} />
+            </IconButton>
           </div>
         </Link>
 
-        <div >
-          
-            {/* <p>{recipient.name}</p> */}
-          
+        <div>
+          {/* <p>{recipient.name}</p> */}
+
           <IconButton onClick={handleClickOpen}>
             <Avatar
               id="chat_icon"
@@ -156,7 +153,7 @@ const Chat = (props) => {
               className={classes.large}
             />
           </IconButton>
-          </div>
+        </div>
       </div>
 
       <Dialog
@@ -168,14 +165,13 @@ const Chat = (props) => {
         <DialogTitle id="alert-dialog-title"></DialogTitle>
         <DialogContent>
           <h3>{recipient.name}</h3>
-          <br/>
+          <br />
           <p>Location: {recipient.location}</p>
-            <p>Breed: {recipient.breed}</p>
-            <p>Gender: {recipient.gender}</p>
-            <p>Age: {recipient.age}</p>
-            <p>Size: {recipient.size}</p>
-            <p>Owner: {recipient.owner}</p>
-          
+          <p>Breed: {recipient.breed}</p>
+          <p>Gender: {recipient.gender}</p>
+          <p>Age: {recipient.age}</p>
+          <p>Size: {recipient.size}</p>
+          <p>Owner: {recipient.owner}</p>
         </DialogContent>
         <DialogActions>
           <Button onClick={report} autoFocus>
@@ -220,14 +216,10 @@ const Chat = (props) => {
           </div>
         )}
       </ScrollToBottom>
-      
- 
-      
+
       <div className="form">
-        
-       
         <TextField
-        className="form_text"
+          className="form_text"
           type="text"
           label="Enter Message"
           value={message}
