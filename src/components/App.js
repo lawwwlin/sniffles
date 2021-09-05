@@ -29,23 +29,23 @@ import onSave from "./Register";
 
 const profile = {
   id: 1,
-  imageUrl: "https://tinyurl.com/kb7dhhck",
-  name: "Bigboi",
-  breed: "Maltese",
-  location: "Vancouver",
-  gender: "male",
+  imageURL: 'https://tinyurl.com/kb7dhhck',
+  name: 'Bigboi',
+  breed: 'Maltese',
+  location: 'Vancouver',
+  gender: 'male',
   age: 3,
-  size: "small",
-  owner: "BigBoiOwner",
-  email: "a@a.com",
-  password: "a",
-  description: "actually very smol",
-};
+  size: 'small',
+  owner: 'BigBoiOwner',
+  email: 'a@a.com',
+  password: 'a',
+  description: 'actually very smol'
+}
  
 
 function App(props) {
   //console.log("props: ", props);
-  return (
+  return profile.name ? ( 
     <div className="App">
       <Router>
         <Switch>
@@ -92,6 +92,6 @@ function App(props) {
         </Switch>
       </Router>
     </div>
-  );
-}
+  ) : (<div><h1>PLS LOG IN THX</h1></div>)
+};
 export default App;
