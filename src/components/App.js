@@ -6,6 +6,9 @@ import Login from "./Login";
 import Profile from "./Profile";
 import ChatRoomList from "./ChatRoomList";
 import MessageScreen from "./MessageScreen";
+
+import HomeSvg from "./home-svg/HomeSvg";
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -49,6 +52,12 @@ function App() {
     <div className="App">
       <Router>
         <Switch>
+
+        <Route path="/homesvg">
+            <HomeSvg />
+          
+          </Route>
+
           <Route exact path="/">
             <Redirect from="/" to="/Candidate" />
           </Route>
