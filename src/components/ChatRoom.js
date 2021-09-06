@@ -86,7 +86,7 @@ function ChatRoom({ sender_id, receiver_id, sender_name, chatroom }) {
     axios.get(`api/profile/${receiver_id}`)
     .then((res) => {
       setRecipient(res.data[0]);
-      console.log('after setRecipient:', recipient);
+      console.log('after setRecipient:', res.data[0]);
     })
   }, []);
 

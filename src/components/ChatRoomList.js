@@ -1,3 +1,4 @@
+import { PowerOffOutlined } from "@material-ui/icons";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import ChatRoom from "./ChatRoom";
@@ -66,13 +67,26 @@ function ChatRoomList(props) {
     console.log("JSON.PARSE ROOM", JSON.parse(room.messages))
     console.log("room time", room.updatedat)
     console.log("current time", Date.now())
+
+    let sender_id = -1;
+    let receiver_id = -1;
+    if (props.profile.id === room.profile1_id) {
+      sender_id = room.profile1_id;
+      receiver_id = room.profile2_id;
+    } else {
+      sender_id = room.profile2_id;
+      receiver_id = room.profile1_id;
+    }
+
+    console.log('sender:', sender_id, 'receiver:', receiver_id)
+
     return (
       <ChatRoom
+        sender_id={sender_id}
+        receiver_id={receiver_id}
         key={room.id}
         room_id={room.id}
-        sender_id={room.profile1_id}
         sender_name={props.profile.name}
-        receiver_id={room.profile2_id}
         chatroom={room}
       />
     );
