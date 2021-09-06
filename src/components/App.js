@@ -46,7 +46,21 @@ function App() {
   const [profile, setProfile] = useState();
 
   if(!profile) {
-    return <Home setProfile={setProfile} />
+    return (
+      <div className="home">
+        <Router>
+        <Switch>
+          <Route path="/home">
+            <Home />
+          </Route>
+
+          <Route path="/register">
+            <Form onSave={onSave} submit={"Create"} />
+          </Route>
+        </Switch>
+        </Router>
+      </div>
+    )
   }
 
   return (
@@ -66,9 +80,9 @@ function App() {
             <Profile profile={profile} />
           </Route>
 
-          <Route path="/register">
+          {/* <Route path="/register">
             <Form onSave={onSave} submit={"Create"} />
-          </Route>
+          </Route> */}
 
           {/* <Route path="/home">
             <Home />
