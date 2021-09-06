@@ -17,7 +17,6 @@ import DialogContent from "@material-ui/core/DialogContent";
 import Fab from "@material-ui/core/Fab";
 import axios from "axios";
 
-//ILI
 //key, id, name, imageUrl, location, info
 export default function Candidate(props) {
   const { candidate_id, name, imageUrl, location, info, breed, gender, age, size, owner, user_id, user } = props;

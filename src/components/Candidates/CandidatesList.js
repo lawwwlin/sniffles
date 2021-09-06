@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 import Candidate from "./Candidate";
 import "./CandidatesList.css";
 import axios from "axios";
+import { withRouter } from "react-router-dom";
 
 // TO DO: add rendering page
-export default function CandidateList({ profile }) {
+const CandidateList = (profile) => {
   const profileId = profile.id;
   const [profiles, setProfiles] = useState([]);
   const [swiped, setSwiped] = useState([]);
@@ -82,4 +83,6 @@ export default function CandidateList({ profile }) {
     // TO DO: add rendering page
     <div></div>
   );
-}
+};
+
+export default withRouter(CandidateList);

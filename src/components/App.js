@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import TopNav from "./TopNav";
 import Home from "./Home";
 import Form from "./Form";
-import Login from "./Login";
+import LoginPage from "./Login";
 import Profile from "./Profile";
 import ChatRoomList from "./ChatRoomList";
 import {
@@ -14,10 +14,7 @@ import {
 import "./App.css";
 
 //candidate stuff
-// import getCandidatesForDog from './Candidates/helpers/selectors'
 import CandidatesList from "./Candidates/CandidatesList";
-import Candidate from "./Candidates/Candidate";
-import axios from "axios";
 
 // chat
 import Chat from "./Chat/Chat";
@@ -26,6 +23,7 @@ import { MainProvider } from "../mainContext";
 import { UsersProvider } from "../usersContext";
 import Candidates from "./Candidates/CandidatesList";
 
+//register stuff
 import onSave from "./Register";
 
 const profile = {
@@ -42,6 +40,7 @@ const profile = {
   password: "a",
   description: "actually very smol",
 };
+ 
 
 function App() {
   const [profile, setProfile] = useState();
@@ -54,8 +53,12 @@ function App() {
     <div className="App">
       <Router>
         <Switch>
+          <Route path="/home">
+            <Home />
+          </Route>
+
           <Route exact path="/">
-            <Redirect from="/" to="/Candidate" />
+            <Redirect to="/Candidate" />
           </Route>
 
           <Route path="/profile">
@@ -63,12 +66,8 @@ function App() {
             <Profile profile={profile} />
           </Route>
 
-          <Route path="/login">
-            <Login />
-          </Route>
-
           <Route path="/register">
-            <Form onSave={onSave} submit={"Create"}/>
+            <Form onSave={onSave} submit={"Create"} />
           </Route>
 
           {/* <Route path="/home">
@@ -87,11 +86,9 @@ function App() {
                   <TopNav />
                   <ChatRoomList profile={profile} />
                 </Route>
-
                 <Route path="/message">
                   <Chat />
                 </Route>
-
               </SocketProvider>
             </UsersProvider>
           </MainProvider>
