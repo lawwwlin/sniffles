@@ -1,16 +1,16 @@
-import React from "react";
+import React, {useState} from "react";
 import TopNav from "./TopNav";
 import Home from "./Home";
 import Form from "./Form";
 import LoginPage from "./Login";
 import Profile from "./Profile";
 import ChatRoomList from "./ChatRoomList";
-import MessageScreen from "./MessageScreen";
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Redirect,
+  withRouter
 } from "react-router-dom";
 import "./App.css";
 
@@ -27,53 +27,48 @@ import Candidates from "./Candidates/CandidatesList";
 //register stuff
 import onSave from "./Register";
 
-const profile = {
-  id: 1,
-  imageURL: 'https://tinyurl.com/kb7dhhck',
-  name: 'Bigboi',
-  breed: 'Maltese',
-  location: 'Vancouver',
-  gender: 'male',
-  age: 3,
-  size: 'small',
-  owner: 'BigBoiOwner',
-  email: 'a@a.com',
-  password: 'a',
-  description: 'actually very smol'
-}
+// const profile = {
+//   id: 1,
+//   imageURL: 'https://tinyurl.com/kb7dhhck',
+//   name: 'Bigboi',
+//   breed: 'Maltese',
+//   location: 'Vancouver',
+//   gender: 'male',
+//   age: 3,
+//   size: 'small',
+//   owner: 'BigBoiOwner',
+//   email: 'a@a.com',
+//   password: 'a',
+//   description: 'actually very smol'
+// }
  
 
 function App(props) {
-  //console.log("props: ", props);
+  console.log('props', props)
+  console.log("props.location.state", props.location.state);
+  const [profile] = useState(props.location.state.profile[0]);
+  console.log('profile', profile);
+
   return profile.name ? ( 
     <div className="App">
-      <Router>
-        <Switch>
-          <Route path="/home">
-            <Home />
-          </Route>
-
-          <Route exact path="/">
+          {/* <Route exact path="/">
             <Redirect to="/Candidate" />
-          </Route>
+          </Route> */}
 
-          <Route path="/messages/:candidate">
-            <TopNav />
-            <MessageScreen />
-          </Route>
-
-          <Route path="/profile">
+          {/* <Route path="/profile"> */}
             <TopNav />
             <Profile profile={profile} />
-          </Route>
+          {/* </Route> */}
 
           <Route path="/register">
+            <h1> register </h1>
             <Form onSave={onSave} submit={"Create"} />
           </Route>
 
           <Route path="/candidate">
+            <h1> candidate </h1>
             <TopNav />
-            <CandidatesList />
+            <CandidatesList profile={profile} />
           </Route>       
 
           <MainProvider>
@@ -89,9 +84,7 @@ function App(props) {
               </SocketProvider>
             </UsersProvider>
           </MainProvider>
-        </Switch>
-      </Router>
     </div>
   ) : (<div><h1>PLS LOG IN THX</h1></div>)
 };
-export default App;
+export default withRouter(App);

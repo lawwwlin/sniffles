@@ -102,7 +102,7 @@ function Login() {
         <Button onClick={onClick}>
           {user && redirect ? (
             <Redirect
-              to={{ pathname: "/candidate", state: { id: user[0].id } }} //returns id as props
+              to={{ pathname: "/", state: { profile: user } }} //returns id as props
             />
           ) : null}
           <ThemeProvider

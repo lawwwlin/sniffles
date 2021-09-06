@@ -116,7 +116,7 @@ function Profile(props) {
             </ CardHeader>
             <CardMedia
               className={classes.media}
-              image={profile.imageUrl}
+              image={profile.imageurl}
               title="profile pic"
             />
             <CardContent>
