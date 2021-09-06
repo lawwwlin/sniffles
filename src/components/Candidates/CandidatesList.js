@@ -5,7 +5,7 @@ import { withRouter } from "react-router-dom";
 
 const CandidateList = ({profile}) => {
   //added profile along with props just in case if profile is passed through(?) mentor said just in case so i just left it but we can remove after 
-
+  console.log("candidatelist profile:", profile);
   const [candidates, setCandidates] = useState([]);
   // console.log("props.location.state", props.location.state);
 
