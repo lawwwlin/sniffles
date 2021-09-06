@@ -114,7 +114,13 @@ const Chat = (props) => {
   };
 
   const getMatchTime = () => {
-    return new Date(chatroom.matchedat * 1000).toString()
+    let time = new Date(chatroom.matchedat * 1000).toString()
+    console.log('indexof:', time.indexOf("G"))
+    const parseTimeIndex=time.indexOf("G")
+    time = time.slice(0, parseTimeIndex)
+    console.log('time:', time)
+
+    return time
   };
 
 
