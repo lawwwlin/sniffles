@@ -65,7 +65,7 @@ const CandidateList = (profile) => {
         size={candidate.size}
         owner={candidate.owner}
         user_id={profileId}
-        user={profile}
+        user={profile.profile[0]}
       />
     );
   });

@@ -64,7 +64,7 @@ export default function Candidate(props) {
           console.log('after post, returned candidate:', candidate);
           if (candidate.length !== 0 && candidate[0].approve === true ) {
             console.log('candidate matched, before creating chatroom');
-            const room = { profile1_id: user_id, profile2_id: candidate_id, messages: [{user: user.name, text: "Woof, I just liked your profile!"}]}
+            const room = { profile1_id: user_id, profile2_id: candidate_id, messages: [{user: user.name, text: "Woof, I just matched with you!"}]}
             axios.post(`/api/chatroom`, {room})
               .then(() => console.log('chatroom created'))
               .catch(error => console.log(error));
