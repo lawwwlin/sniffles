@@ -69,10 +69,10 @@ router.post("/candidate", (req, res) => {
           const candidate = data.rows;
           console.log('wow it worked...', candidate)
           res.json(candidate)
-          .catch((err) => {
-            res.status(500).json({ error: err.message });
-          });
         })
+        .catch((err) => {
+          res.status(500).json({ error: err.message });
+        });
     })
     .catch((err) => {
       res.status(500).json({ error: err.message });
