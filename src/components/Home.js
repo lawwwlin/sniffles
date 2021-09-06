@@ -28,9 +28,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Home(props) {
+function Home({setProfile}) {
   const [open, setOpen] = React.useState(false);
-
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -74,7 +73,7 @@ function Home(props) {
           aria-labelledby="form-dialog-title"
         >
           <DialogContent>
-            <Login />
+            <Login setProfile={setProfile}/>
           </DialogContent>
         </Dialog>
       </div>

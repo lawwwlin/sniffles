@@ -44,14 +44,14 @@ const profile = {
 
 function App() {
   const [profile, setProfile] = useState();
-
+  console.log('profile:', profile)
   if(!profile) {
     return (
       <div className="home">
         <Router>
         <Switch>
           <Route path="/home">
-            <Home />
+            <Home setProfile={setProfile}/>
           </Route>
 
           <Route path="/register">
@@ -77,7 +77,7 @@ function App() {
 
           <Route path="/profile">
             <TopNav />
-            <Profile profile={profile} />
+            <Profile profile={profile[0]} />
           </Route>
 
           {/* <Route path="/register">
@@ -98,7 +98,7 @@ function App() {
               <SocketProvider>
                 <Route path="/messages">
                   <TopNav />
-                  <ChatRoomList profile={profile} />
+                  <ChatRoomList profile={profile[0]} />
                 </Route>
                 <Route path="/message">
                   <Chat />

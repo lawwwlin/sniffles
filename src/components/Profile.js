@@ -114,7 +114,7 @@ function Profile(props) {
 
           <Card className={classes.root}>
           <div
-            style={{ backgroundImage: `url(${profile.imageUrl})` }}
+            style={{ backgroundImage: `url(${profile.imageurl})` }}
             className="profile_card"
           >
             <div className="profile_info">

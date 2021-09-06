@@ -34,7 +34,7 @@ function DeepChild() {
   );
 }
 
-function Login() {
+function Login({ setProfile }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [user, setUser] = useState("");
@@ -52,8 +52,10 @@ function Login() {
         .then((data) => {
           const profile = data.data;
           setUser(profile);
-          if (profile.length > 0) {     // "authentication" - check if user can log in
-            setRedirect(true); 
+          if (profile.length > 0) {
+            // "authentication" - check if user can log in
+            setProfile(profile);
+            setRedirect(true);
           } else {
             alert("Wrong user or password!");
           }
@@ -102,9 +104,10 @@ function Login() {
         <Button onClick={onClick}>
           {user && redirect ? (
             <Redirect
-              to={{ pathname: "/candidate", state: { id: user[0].id } }} //returns id as props
+              to={{ pathname: "/candidate" }} //returns id as props
             />
-          ) : null}
+          ) : null}{" "}
+          
           <ThemeProvider
             theme={{
               background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
