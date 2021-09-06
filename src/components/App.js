@@ -46,7 +46,8 @@ import onSave from "./Register";
 function App(props) {
   console.log('props', props)
   console.log("props.location.state", props.location.state);
-  const [profile] = useState(props.location.state.profile[0]);
+  const [profile1] = useState(props.location.state.profile[0]);
+  const profile = props.location.state.profile[0];
   console.log('profile', profile);
 
   return profile.name ? ( 
@@ -67,8 +68,8 @@ function App(props) {
 
           <Route path="/candidate">
             <h1> candidate </h1>
-            <TopNav />
-            <CandidatesList profile={profile} />
+            {/* <TopNav />
+            <CandidatesList profile={profile} /> */}
           </Route>       
 
           <MainProvider>
