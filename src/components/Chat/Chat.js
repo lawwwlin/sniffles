@@ -113,6 +113,10 @@ const Chat = (props) => {
     console.log(message);
   };
 
+  const getMatchTime = () => {
+    return new Date(chatroom.matchedat * 1000).toString()
+  };
+
 
   return (
     <div className="room">
@@ -188,7 +192,7 @@ const Chat = (props) => {
         <div className="match-time">
           <h4 className="match-text">
             {" "}
-            You matched with {recipient.name} on -insert-timestamp-here-{" "}
+            You matched with {recipient.name} on {getMatchTime()}{" "}
           </h4>
         </div>
         {messages.length > 0 ? (

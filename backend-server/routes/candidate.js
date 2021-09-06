@@ -61,9 +61,10 @@ router.post("/candidate", (req, res) => {
     .then(() => {
       console.log("after saving to database, another query?");
       db.query(`
-        SELECT * FROM candidate
-        WHERE profile_id = $2 
-        AND candidate_dog_id = $1;
+        SELECT id, approve, profile_id, candidate_dog_id, EXTRACT(epoch FROM updatedAt) as updatedAt
+        FROM candidate
+        WHERE profile_id = $2 AND candidate_dog_id = $1
+        OR profile_id = $1 AND candidate_dog_id = $2;
       `, [profile_id, candidate_dog_id])
         .then((data) => {
           const candidate = data.rows;

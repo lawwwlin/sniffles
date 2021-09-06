@@ -99,7 +99,7 @@ function ChatRoom({ sender_id, receiver_id, sender_name, chatroom }) {
           chatroom,
           sender_id,
           sender_name,
-          recipient
+          recipient,
         }}}
         onClick={onClick}
       ><div className="messenger_pic">

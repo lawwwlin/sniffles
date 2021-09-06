@@ -24,7 +24,7 @@ router.get("/chatroom/:profile1_id/:profile2_id", (req, res) => {
 router.get("/chatroom/:profile1_id", (req, res) => {
   const profile1_id = req.params.profile1_id;
   db.query(`
-    SELECT id, profile1_id, profile2_id, messages, EXTRACT(epoch FROM updatedAt) as updatedAt
+    SELECT id, profile1_id, profile2_id, messages, EXTRACT(epoch FROM updatedAt) as updatedAt, EXTRACT(epoch FROM matchedAt) as matchedAt
     FROM chatroom
     WHERE profile1_id = $1 OR profile2_id = $1
     `, [profile1_id])
@@ -54,17 +54,12 @@ router.get("/chatroom", (req, res) => {
 // message = {sender_id: xxx, receiver_id: xxx, text: adfadsf}
 router.post("/chatroom", (req, res) => {
   console.log("req.body in post/chatroom:", req.body);
-  const { profile1_id, profile2_id, messages} = req.body.room;
-  console.log("checking messages: ", messages);
-  console.log("checking profile1:", profile1_id, "2:", profile2_id);
-  for (const i in messages) {
-    console.log(`checking messages ${i}: `, messages[i]);
-  }
+  const { profile1_id, profile2_id, messages, matchedAt} = req.body.room;
+  console.log("checking matchedAt: ", matchedAt);
   const msgs = JSON.stringify(messages);
-  console.log(`checking stringify: `, msgs);
   db.query(`
-    INSERT INTO chatroom (profile1_id, profile2_id, messages) VALUES ($1, $2, $3)
-  `, [profile1_id, profile2_id, msgs])
+    INSERT INTO chatroom (profile1_id, profile2_id, messages, matchedAt) VALUES ($1, $2, $3, $4)
+  `, [profile1_id, profile2_id, msgs, matchedAt])
     .then((data) => {
       const chatrooms = data.rows;
       res.json(chatrooms);

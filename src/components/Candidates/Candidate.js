@@ -60,11 +60,18 @@ export default function Candidate(props) {
         .then((res) => {
           console.log("candidate created, res:", res);
           // check if its a match, if its a match, create a chat room
-          const candidate = res.data;
+          const candidates = res.data;
           console.log('after post, returned candidate:', candidate);
-          if (candidate.length !== 0 && candidate[0].approve === true ) {
+          if (candidates.length === 2 && candidates[0].approve === true && candidates[1].approve === true) {
+            let candidate = {};
+            // check which candidate is created last
+            if (candidates[0].updatedat > candidates[0].updatedat) {
+              candidate = candidates[0];
+            } else {
+              candidate = candidates[1];
+            }
             console.log('candidate matched, before creating chatroom');
-            const room = { profile1_id: user_id, profile2_id: candidate_id, messages: [{user: user.name, text: "Woof, I just matched with you!"}]}
+            const room = { profile1_id: user_id, profile2_id: candidate_id, messages: [{user: user.name, text: "Woof, I just matched with you!"}], matchedAt: candidate.updatedat}
             axios.post(`/api/chatroom`, {room})
               .then(() => console.log('chatroom created'))
               .catch(error => console.log(error));
