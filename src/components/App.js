@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import TopNav from "./TopNav";
 import Home from "./Home";
 import Form from "./Form";
@@ -44,6 +44,12 @@ const profile = {
 };
 
 function App() {
+  const [profile, setProfile] = useState();
+
+  if(!profile) {
+    return <Home setProfile={setProfile} />
+  }
+
   return (
     <div className="App">
       <Router>
@@ -65,9 +71,9 @@ function App() {
             <Form onSave={onSave} submit={"Create"}/>
           </Route>
 
-          <Route path="/home">
+          {/* <Route path="/home">
             <Home />
-          </Route>
+          </Route> */}
 
           <Route path="/Candidate">
             <TopNav />
