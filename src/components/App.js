@@ -7,7 +7,8 @@ import Profile from "./Profile";
 import ChatRoomList from "./ChatRoomList";
 import MessageScreen from "./MessageScreen";
 
-import HomeSvg from "./home-svg/HomeSvg";
+// import HomeSvg from "./home-svg/HomeSvg";
+import BathDog from "./home-svg/BathDog";
 
 import {
   BrowserRouter as Router,
@@ -53,10 +54,13 @@ function App() {
       <Router>
         <Switch>
 
-        <Route path="/homesvg">
-            <HomeSvg />
-          
+        <Route path="/bathdog">
+            <BathDog />
           </Route>
+
+        {/* <Route path="/homesvg">
+            <HomeSvg />
+          </Route> */}
 
           <Route exact path="/">
             <Redirect from="/" to="/Candidate" />
