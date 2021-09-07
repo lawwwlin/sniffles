@@ -18,6 +18,7 @@ import SaveIcon from "@material-ui/icons/Save";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import Avatar from "@material-ui/core/Avatar";
+import PhotoCamera from "@material-ui/icons/PhotoCamera";
 
 // material-ui styles
 const useStyles = makeStyles((theme) => ({
@@ -59,17 +60,20 @@ function Form(props) {
   const [email, setEmail] = useState(props.email || "");
   const [description, setDescription] = useState(props.description || "");
   const [imageUrl, setimageUrl] = useState(props.imageUrl || "");
+  const [image, setImage] = useState("");
   const [values, setValues] = useState({
     password: props.password || "",
     showPassword: false,
   });
+  const [redirect, setRedirect] = useState(false);
+
+  const [hide, setHide] = useState(false);  //avatar or upload button
 
   const dogGender = ["male", "female"];
   const dogSizes = ["small", "medium", "large"];
 
   const onSubmit = function (event) {
     event.preventDefault();
-    console.log("submit clicked");
     const profile = {
       name,
       breed,
@@ -83,7 +87,26 @@ function Form(props) {
       password: values.password,
       imageUrl,
     };
+    console.log("submit clicked");
     props.onSave(profile);
+  };
+
+  //uploads to cloud so we can get url back
+  const uploadImage = () => {
+    const data = new FormData();
+    data.append("file", image);
+    data.append("upload_preset", "Sniffles"); // uploads into a folder called sniffles to create url
+    data.append("cloud_name", "dhpo0hga3"); // user cloud name
+    fetch("https://api.cloudinary.com/v1_1/dhpo0hga3/image/upload", {
+      method: "post",
+      body: data,
+    })
+      .then((resp) => resp.json())
+      .then((data) => {
+        setimageUrl(data.url);
+        setHide(true)
+      })
+      .catch((err) => console.log(err));
   };
 
   const handleChange = (prop) => (event) => {
@@ -97,25 +120,64 @@ function Form(props) {
   return (
     <div className="form">
       <div className="form_avatar">
-        <Avatar alt={name} src={imageUrl} className={classes.avatar} />
+        {
+          (hide ? (
+            <Avatar alt={name} src={imageUrl} className={classes.avatar} />
+          ) : (
+            <>
+              <Input
+                id="file-upload"
+                className="form__create-input"
+                name="imageUrl"
+                type="file"
+                onChange={(e) => setImage(e.target.files[0])}
+                placeholder="doggie profile pic"
+                accept="image/*"
+              />
+
+              <label htmlFor="file-upload">
+                <IconButton
+                  color="primary"
+                  aria-label="upload picture"
+                  component="span"
+                >
+                  <PhotoCamera />
+                </IconButton>
+              </label>
+            </>
+          ))
+        }
       </div>
       <form
         autoComplete="off"
         className={classes.form}
-        onSubmit={(e) => onSubmit(e)}
+        onSubmit={(e) => {
+          imageUrl &&
+          name &&
+          breed &&
+          gender &&
+          age &&
+          size &&
+          location &&
+          owner &&
+          description &&
+          email &&
+          values.password
+            ? onSubmit(e)
+            : alert("Seems like a field is missing!");
+          e.preventDefault();
+        }}
       >
         <FormControl>
-          <InputLabel htmlFor="imageUrl">imageUrl</InputLabel>
-          <Input
-            className="form__create-input"
-            name="imageUrl"
-            type="text"
-            value={imageUrl}
-            onChange={(e) => {
-              setimageUrl(e.target.value);
-            }}
-            placeholder="doggie profile pic"
-          />
+          <Button
+            id="file-upload-button"
+            variant="contained"
+            color="primary"
+            type="button"
+            onClick={uploadImage}
+          >
+            Upload
+          </Button>
         </FormControl>
 
         <FormControl>
@@ -155,9 +217,6 @@ function Form(props) {
           onChange={(e) => {
             setGender(e.target.value);
           }}
-          // SelectProps={{
-          //   native: true,
-          // }}
         >
           {dogGender.map((option) => (
             <MenuItem key={option} value={option}>

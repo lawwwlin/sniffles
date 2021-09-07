@@ -1,15 +1,18 @@
 .register {
   /* display: flex; */
   text-align: center;
-  
 }
 
 .register_create {
   justify-content: center;
-  padding-bottom: 1em; 
+  padding-bottom: 1em;
 }
 
 .register_icon {
   color: brown;
   margin-top: 0.5em;
+}
+
+input[type="file"] {
+  display: none;
 }
