@@ -1,6 +1,6 @@
 .home_icon {
   position: fixed;
-  top: 82%;
+  top: 81%;
   left: 50%;
   margin-top: -50px;
   margin-left: -100px;
@@ -9,7 +9,7 @@
 .home_logo {
   color: brown;
   text-align: center;
-  margin-top: 1em;
+  margin-top: .5em;
 }
 
 .home_welcome {
