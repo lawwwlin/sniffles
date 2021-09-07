@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "./Register.css"
-import { makeStyles } from '@material-ui/core/styles';
+import "./Register.css";
+import { Redirect } from "react-router-dom";
+/* import { makeStyles } from '@material-ui/core/styles';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -29,16 +30,16 @@ const useStyles = makeStyles((theme) => ({
 
 const themeInstance = {
   background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
-};
+}; */
+/* const [redirect, setRedirect] = useState(false); */
 
 export default function onSave(profile) {
   axios
     .post("/api/profile", profile)
     .then((res) => {
-        console.log("done", res);
-      })
-      // should redirect to candidate or login page
-  /*   return (
-      <Redirect to="/"/>
-    ) */
+      console.log("done", res);
+    })
+/*     .then(() => {
+      return <Redirect to="/" />;
+    }); */
 }

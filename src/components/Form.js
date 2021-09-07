@@ -19,6 +19,7 @@ import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import Avatar from "@material-ui/core/Avatar";
 import PhotoCamera from "@material-ui/icons/PhotoCamera";
+import {Redirect} from 'react-router-dom'
 
 // material-ui styles
 const useStyles = makeStyles((theme) => ({
@@ -65,8 +66,8 @@ function Form(props) {
     password: props.password || "",
     showPassword: false,
   });
-  const [redirect, setRedirect] = useState(false);
 
+  const [redirect, setRedirect] = useState(false);
   const [hide, setHide] = useState(false);  //avatar or upload button
 
   const dogGender = ["male", "female"];
@@ -89,6 +90,7 @@ function Form(props) {
     };
     console.log("submit clicked");
     props.onSave(profile);
+    setRedirect(true);
   };
 
   //uploads to cloud so we can get url back
@@ -343,6 +345,7 @@ function Form(props) {
           color="primary"
           startIcon={<SaveIcon />}
         >
+          {redirect ? <Redirect to="/"/> : null}
           {props.submit}
         </Button>
       </form>
