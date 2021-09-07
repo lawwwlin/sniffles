@@ -6,8 +6,6 @@ import LoginPage from "./Login";
 import Profile from "./Profile";
 import ChatRoomList from "./ChatRoomList";
 
-import MessageScreen from "./MessageScreen";
-
 // import HomeSvg from "./home-svg/HomeSvg";
 import BathDog from "./home-svg/BathDog";
 
@@ -84,7 +82,6 @@ function App() {
 
           <Route path="/messages/:candidate">
             <TopNav />
-            <MessageScreen />
           </Route>
 
           <Route path="/home">
