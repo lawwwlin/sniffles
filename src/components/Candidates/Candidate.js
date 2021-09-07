@@ -15,6 +15,8 @@ import BookmarkIcon from "@material-ui/icons/Bookmark";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
 import Fab from "@material-ui/core/Fab";
+import Snackbar from '@material-ui/core/Snackbar';
+import Alert from '@material-ui/lab/Alert';
 import axios from "axios";
 
 //key, id, name, imageUrl, location, info
@@ -30,16 +32,11 @@ export default function Candidate(props) {
   };
 
   const [open, setOpen] = useState(false);
+  const [openAlert, setOpenAlert] = useState(false);
   const [approve, setApprove] = useState("");
-  // const [match, setMatch] = useState("");
 
   // OnClick function used to open dialog component
   const handleClickOpen = (candidate, candidateName) => {
-    // candidates.filter((dog) => {
-    //   if (dog.name === candidateName) {
-    //     setDesc(dog);
-    //   }
-    // });
     setOpen(true);
     console.log('clicked open');
   };
@@ -47,6 +44,14 @@ export default function Candidate(props) {
   // OnClick function used to close dialog component
   const handleClose = () => {
     setOpen(false);
+  };
+
+  const handleCloseAlert = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpenAlert(false);
   };
 
   useEffect(() => {
@@ -65,13 +70,15 @@ export default function Candidate(props) {
           if (candidates.length === 2 && candidates[0].approve === true && candidates[1].approve === true) {
             let candidate = {};
             // check which candidate is created last
-            if (candidates[0].updatedat > candidates[0].updatedat) {
+            if (candidates[0].updatedat > candidates[1].updatedat) {
               candidate = candidates[0];
             } else {
               candidate = candidates[1];
             }
+            // alert(`You matched with ${name}`);
+            setOpenAlert(true);
             console.log('candidate matched, before creating chatroom');
-            const room = { profile1_id: user_id, profile2_id: candidate_id, messages: [{user: user.name, text: "Woof, I just matched with you!"}], matchedAt: candidate.updatedat}
+            const room = { profile1_id: user_id, profile2_id: candidate_id, messages: [{user: user.name, text: "Woof, I just matched with you!"}]}
             axios.post(`/api/chatroom`, {room})
               .then(() => console.log('chatroom created'))
               .catch(error => console.log(error));
@@ -80,20 +87,6 @@ export default function Candidate(props) {
         .catch(error => console.log(error));
     }
   }, [approve]);
-
-  // useEffect(() => {
-  //   axios.get(`/api/candidate/${candidate_id}/${user_id}`)
-  //     .then((res) => {
-  //       const candidate = res.data;
-  //       console.log(candidate);
-  //       if (candidate.length === 0) {
-  //         setMatch('false');
-  //       } else {
-  //         setMatch('true');
-  //       }
-  //     })
-  //     .catch(error => console.log(error));
-  // }, [approve]);
 
   // create candidate on swipe
   const onSwipe = (direction) => {
@@ -184,6 +177,12 @@ export default function Candidate(props) {
           <br />
         </DialogContent>
       </Dialog>
+
+      <Snackbar anchorOrigin={{ vertical: 'center', horizontal: 'center' }} open={openAlert} autoHideDuration={8000} onClose={handleCloseAlert}>
+        <Alert onClose={handleCloseAlert} severity="success" variant="filled">
+          You matched with {name}
+        </Alert>
+      </Snackbar>
     </>
   );
 }
