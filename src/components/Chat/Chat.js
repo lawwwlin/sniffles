@@ -51,8 +51,8 @@ const Chat = (props) => {
   const logout = () => {
     setName('');
     setRoom('');
-    socket.emit('logout')
-    console.log('after setting name and room', name, room)
+    socket.emit('logout');
+    console.log('after setting name and room', name, room);
     // history.push('/messages');
     // history.go(0);
   };
@@ -111,6 +111,16 @@ const Chat = (props) => {
     socket.emit('sendMessage', message, () => {setMessage('')});
     setMessage('');
     console.log(message);
+  };
+
+  const getMatchTime = () => {
+    let time = new Date(chatroom.matchedat * 1000).toString()
+    console.log('indexof:', time.indexOf("G"))
+    const parseTimeIndex=time.indexOf("G")
+    time = time.slice(0, parseTimeIndex)
+    console.log('time:', time)
+
+    return time
   };
 
 
@@ -188,7 +198,7 @@ const Chat = (props) => {
         <div className="match-time">
           <h4 className="match-text">
             {" "}
-            You matched with {recipient.name} on -insert-timestamp-here-{" "}
+            You matched with {recipient.name} on {getMatchTime()}{" "}
           </h4>
         </div>
         {messages.length > 0 ? (

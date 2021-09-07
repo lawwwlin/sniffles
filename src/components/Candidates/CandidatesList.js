@@ -2,20 +2,22 @@ import React, { useEffect, useState } from "react";
 import Candidate from "./Candidate";
 import "./CandidatesList.css";
 import axios from "axios";
+import { withRouter } from "react-router-dom";
 
 // TO DO: add rendering page
-export default function CandidateList({ profile }) {
-  const profileId = profile.id;
+const CandidateList = (profile) => {
+  const profileId = profile.profile[0].id;
+  console.log('candidate profile', profile.profile)
   const [profiles, setProfiles] = useState([]);
   const [swiped, setSwiped] = useState([]);
 
   console.log("current user profileid:", profileId);
   useEffect(() => {
-    console.log("useeffect runs");
+    // console.log("useeffect runs");
     if (profiles.length === 0) {
       // get all profiles except current user's
       axios.get(`/api/profiles/${profileId}`).then((res) => {
-        console.log("profiles res", res);
+        // console.log("profiles res", res);
         const profiles = res.data;
         setProfiles([...profiles]);
       });
@@ -23,7 +25,7 @@ export default function CandidateList({ profile }) {
     if (swiped.length === 0) {
       // get all candidates ids the current user has swiped
       axios.get(`/api/candidate/${profileId}`).then((res) => {
-        console.log("candidates res", res);
+        // console.log("candidates res", res);
         const profiles = res.data;
         setSwiped([...profiles]);
       });
@@ -34,7 +36,7 @@ export default function CandidateList({ profile }) {
 
   // }, []);
 
-  console.log("all profiles except user:", profiles);
+  //console.log("all profiles except user:", profiles);
 
   // remove profiles that the user swiped before
   swiped.forEach((swipee) => {
@@ -46,8 +48,8 @@ export default function CandidateList({ profile }) {
     }
   });
 
-  console.log("swiped users:", swiped);
-  console.log("leftover profiles:", profiles);
+ /*  console.log("swiped users:", swiped);
+  console.log("leftover profiles:", profiles); */
   const candidateListItem = profiles.map((candidate) => {
     return (
       <Candidate
@@ -63,7 +65,7 @@ export default function CandidateList({ profile }) {
         size={candidate.size}
         owner={candidate.owner}
         user_id={profileId}
-        user={profile}
+        user={profile.profile[0]}
       />
     );
   });
@@ -80,6 +82,8 @@ export default function CandidateList({ profile }) {
     </div>
   ) : (
     // TO DO: add rendering page
-    <div></div>
+    <div>LOADING PAGE</div>
   );
-}
+};
+
+export default withRouter(CandidateList);

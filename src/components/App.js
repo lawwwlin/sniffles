@@ -1,14 +1,16 @@
-import React from "react";
+import React, {useState} from "react";
 import TopNav from "./TopNav";
 import Home from "./Home";
 import Form from "./Form";
-import Login from "./Login";
+import LoginPage from "./Login";
 import Profile from "./Profile";
 import ChatRoomList from "./ChatRoomList";
+
 import MessageScreen from "./MessageScreen";
 
 // import HomeSvg from "./home-svg/HomeSvg";
 import BathDog from "./home-svg/BathDog";
+
 
 import {
   BrowserRouter as Router,
@@ -19,10 +21,7 @@ import {
 import "./App.css";
 
 //candidate stuff
-// import getCandidatesForDog from './Candidates/helpers/selectors'
 import CandidatesList from "./Candidates/CandidatesList";
-import Candidate from "./Candidates/Candidate";
-import axios from "axios";
 
 // chat
 import Chat from "./Chat/Chat";
@@ -31,6 +30,7 @@ import { MainProvider } from "../mainContext";
 import { UsersProvider } from "../usersContext";
 import Candidates from "./Candidates/CandidatesList";
 
+//register stuff
 import onSave from "./Register";
 
 const profile = {
@@ -47,8 +47,31 @@ const profile = {
   password: "a",
   description: "actually very smol",
 };
+ 
 
 function App() {
+  const [profile, setProfile] = useState();
+  console.log('profile:', profile)
+  if(!profile) {
+    return (
+      <div className="home">
+        <Router>
+        <Switch>
+          <Route path="/home">
+            <Home setProfile={setProfile}/>
+          </Route>
+
+          <Route path="/register">
+            <Form onSave={onSave} submit={"Create"} />
+          </Route>
+
+          <Redirect from="*" to="home" />
+        </Switch>
+        </Router>
+      </div>
+    )
+  }
+
   return (
     <div className="App">
       <Router>
@@ -68,26 +91,29 @@ function App() {
           <Route path="/messages/:candidate">
             <TopNav />
             <MessageScreen />
-          </Route>
+
+          <Route path="/home">
+            <Redirect to="/candidate" />
+
+
+          {/* <Route exact path="/">
+            <Redirect to="/Candidate" />
+          </Route> */}
 
           <Route path="/profile">
             <TopNav />
-            <Profile profile={profile} />
+            <Profile profile={profile[0]} />
           </Route>
 
-          <Route path="/login">
-            <Login />
-          </Route>
+          {/* <Route path="/register">
+            <Form onSave={onSave} submit={"Create"} />
+          </Route> */}
 
-          <Route path="/register">
-            <Form onSave={onSave} submit={"Create"}/>
-          </Route>
-
-          <Route path="/home">
+          {/* <Route path="/home">
             <Home />
-          </Route>
+          </Route> */}
 
-          <Route path="/Candidate">
+          <Route path="/candidate">
             <TopNav />
             <CandidatesList profile={profile} />
           </Route>
@@ -97,13 +123,11 @@ function App() {
               <SocketProvider>
                 <Route path="/messages">
                   <TopNav />
-                  <ChatRoomList profile={profile} />
+                  <ChatRoomList profile={profile[0]} />
                 </Route>
-
                 <Route path="/message">
                   <Chat />
                 </Route>
-
               </SocketProvider>
             </UsersProvider>
           </MainProvider>

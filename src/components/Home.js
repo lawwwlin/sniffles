@@ -29,9 +29,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Home(props) {
+function Home({setProfile}) {
   const [open, setOpen] = React.useState(false);
-
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -41,9 +40,9 @@ function Home(props) {
   };
 
   return (
-    
     <div className="home">
       <div className="home_logo">
+
       <PetsIcon className="home_paws" style={{ fontSize: 100 }} />
       {/* <div className="home_welcome">
       <Button variant="outlined" color="secondary" >
@@ -54,21 +53,24 @@ function Home(props) {
       
       
       <BathDog />
-      <div className="home_icon">
-      <div>
-        <Link to="/register">
-          <IconButton>
-            <PersonAddIcon className="home_newUser" style={{ fontSize: 60 }} />
-          </IconButton>
-        </Link>
-        <span className="icon_text">Create Account</span>
-      </div>
 
-      <div>
-        <IconButton onClick={handleClickOpen}>
-          <LockOpenIcon className="home_login" style={{ fontSize: 60 }} />
-        </IconButton>
-        <span className="icon_text">Login</span>
+      <div className="home_icon">
+        <div>
+          <Link to="/register">
+            <IconButton>
+              <PersonAddIcon
+                className="home_newUser"
+                style={{ fontSize: 60 }}
+              />
+            </IconButton>
+          </Link>
+          <span className="icon_text">Create Account</span>
+        </div>
+        <div>
+          <IconButton onClick={handleClickOpen}>
+            <LockOpenIcon className="home_login" style={{ fontSize: 60 }} />
+          </IconButton>
+          <span className="icon_text">Login</span>
         </div>
         <Dialog
           open={open}
@@ -76,8 +78,8 @@ function Home(props) {
           aria-labelledby="form-dialog-title"
         >
           <DialogContent>
-          <Login />
-          </DialogContent> 
+            <Login setProfile={setProfile}/>
+          </DialogContent>
         </Dialog>
       </div>
     </div>
@@ -85,5 +87,3 @@ function Home(props) {
 }
 
 export default Home;
-
-
