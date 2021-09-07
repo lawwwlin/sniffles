@@ -6,33 +6,33 @@ function BathDog() {
     <div className="bathDog">
 
       
-      <div class="contenedor">
+      <div className="contenedor">
       <h1 className="welcome">Welcome to Sniffles!</h1>
-        <div class="todo">
-          <div class="dog">
-            <span class="leg3"></span>
-            <div class="body">
-              <span class="cola"></span>
-              <span class="leg"></span>
+        <div className="todo">
+          <div className="dog">
+            <span className="leg3"></span>
+            <div className="body">
+              <span className="cola"></span>
+              <span className="leg"></span>
             </div>
-            <div class="cabezota">
-              <div class="orejas">
-                <span class="orejitas"></span>
+            <div className="cabezota">
+              <div className="orejas">
+                <span className="orejitas"></span>
               </div>
-              <div class="orejas3">
-                <span class="orejitas3"></span>
+              <div className="orejas3">
+                <span className="orejitas3"></span>
               </div>
-              <div class="cabeza">
-                <span class="cabeza3"></span>
-                <span class="ojos">
-                  <span class="iris"></span>
+              <div className="cabeza">
+                <span className="cabeza3"></span>
+                <span className="ojos">
+                  <span className="iris"></span>
                 </span>
-                <span class="nariz"></span>
-                <span class="nariz3"></span>
+                <span className="nariz"></span>
+                <span className="nariz3"></span>
               </div>
             </div>
 
-            <div class="canasta"></div>
+            <div className="canasta"></div>
           </div>
         </div>
       </div>
