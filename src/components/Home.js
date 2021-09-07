@@ -1,6 +1,7 @@
 import React from "react";
 import "./Home.css";
 import Login from "./Login.js";
+import BathDog from "./home-svg/BathDog"
 import { Link } from "react-router-dom";
 
 // Import components from material-ui
@@ -41,13 +42,17 @@ function Home({setProfile}) {
   return (
     <div className="home">
       <div className="home_logo">
-        <PetsIcon className="home_paws" style={{ fontSize: 100 }} />
-        <div className="home_welcome">
-          <Button variant="outlined" color="secondary">
-            <h1>Welcome to Sniffles!</h1>
-          </Button>
-        </div>
+
+      <PetsIcon className="home_paws" style={{ fontSize: 100 }} />
+      {/* <div className="home_welcome">
+      <Button variant="outlined" color="secondary" >
+      <h1>Welcome to Sniffles!</h1>
+      </Button>
+      </div> */}
       </div>
+      
+      
+      <BathDog />
 
       <div className="home_icon">
         <div>

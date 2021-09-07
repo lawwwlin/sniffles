@@ -5,6 +5,13 @@ import Form from "./Form";
 import LoginPage from "./Login";
 import Profile from "./Profile";
 import ChatRoomList from "./ChatRoomList";
+
+import MessageScreen from "./MessageScreen";
+
+// import HomeSvg from "./home-svg/HomeSvg";
+import BathDog from "./home-svg/BathDog";
+
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -69,9 +76,25 @@ function App() {
     <div className="App">
       <Router>
         <Switch>
+
+        <Route path="/bathdog">
+            <BathDog />
+          </Route>
+
+        {/* <Route path="/homesvg">
+            <HomeSvg />
+          </Route> */}
+
+          <Route exact path="/">
+            <Redirect from="/" to="/Candidate" />
+          </Route>
+          <Route path="/messages/:candidate">
+            <TopNav />
+            <MessageScreen />
+
           <Route path="/home">
             <Redirect to="/candidate" />
-          </Route>
+
 
           {/* <Route exact path="/">
             <Redirect to="/Candidate" />
