@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import TopNav from "./TopNav";
 import Home from "./Home";
 import Form from "./Form";
@@ -10,7 +10,6 @@ import MessageScreen from "./MessageScreen";
 
 // import HomeSvg from "./home-svg/HomeSvg";
 import BathDog from "./home-svg/BathDog";
-
 
 import {
   BrowserRouter as Router,
@@ -47,71 +46,55 @@ const profile = {
   password: "a",
   description: "actually very smol",
 };
- 
 
 function App() {
   const [profile, setProfile] = useState();
-  console.log('profile:', profile)
-  if(!profile) {
+  console.log("profile:", profile);
+  if (!profile) {
     return (
       <div className="home">
         <Router>
-        <Switch>
-          <Route path="/home">
-            <Home setProfile={setProfile}/>
-          </Route>
+          <Switch>
+            <Route path="/home">
+              <Home setProfile={setProfile} />
+            </Route>
 
-          <Route path="/register">
-            <Form onSave={onSave} submit={"Create"} />
-          </Route>
+            <Route path="/register">
+              <Form onSave={onSave} submit={"Create"} />
+            </Route>
 
-          <Redirect from="*" to="home" />
-        </Switch>
+            <Redirect from="*" to="home" />
+          </Switch>
         </Router>
       </div>
-    )
+    );
   }
 
   return (
     <div className="App">
       <Router>
         <Switch>
-
-        <Route path="/bathdog">
+          <Route path="/bathdog">
             <BathDog />
           </Route>
-
-        {/* <Route path="/homesvg">
-            <HomeSvg />
-          </Route> */}
 
           <Route exact path="/">
             <Redirect from="/" to="/Candidate" />
           </Route>
+
           <Route path="/messages/:candidate">
             <TopNav />
             <MessageScreen />
+          </Route>
 
           <Route path="/home">
             <Redirect to="/candidate" />
-
-
-          {/* <Route exact path="/">
-            <Redirect to="/Candidate" />
-          </Route> */}
+          </Route>
 
           <Route path="/profile">
             <TopNav />
             <Profile profile={profile[0]} />
           </Route>
-
-          {/* <Route path="/register">
-            <Form onSave={onSave} submit={"Create"} />
-          </Route> */}
-
-          {/* <Route path="/home">
-            <Home />
-          </Route> */}
 
           <Route path="/candidate">
             <TopNav />
