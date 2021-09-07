@@ -58,11 +58,13 @@ function Form(props) {
   const [owner, setOwner] = useState(props.owner || "");
   const [email, setEmail] = useState(props.email || "");
   const [description, setDescription] = useState(props.description || "");
-  const [imageUrl, setimageUrl] = useState(props.imageUrl || "");
+
   const [values, setValues] = useState({
     password: props.password || "",
     showPassword: false,
   });
+
+  const [imgFile, setImgFile] = useState("");
 
   const dogGender = ["male", "female"];
   const dogSizes = ["small", "medium", "large"];
@@ -86,6 +88,62 @@ function Form(props) {
     props.onSave(profile);
   };
 
+  ///////////////////////////////////////////////////////////////////////////
+  /*   const [image, setImage] = useState("");
+  const [url, setUrl] = useState("");
+  console.log(url)
+  const uploadImage = () => {
+    const data = new FormData();
+    data.append("file", image);
+    data.append("upload_preset", "Sniffles");
+    data.append("cloud_name", "dhpo0hga3");
+    fetch("https://api.cloudinary.com/v1_1/dhpo0hga3/image/upload", {
+      method: "post",
+      body: data,
+    })
+      .then((resp) => resp.json())
+      .then((data) => {
+        setUrl(data.url);
+      })
+      .catch((err) => console.log(err));
+  };
+  return (
+    <div>
+      <div>
+        <input
+          type="file"
+          onChange={(e) => setImage(e.target.files[0])}
+        ></input>
+        <button onClick={uploadImage}>Upload</button>
+      </div>
+      <div>
+        <h1>Uploaded image will be displayed here</h1>
+        <img src={url} />
+      </div>
+    </div>
+  ); */
+  const [imageUrl, setimageUrl] = useState(props.imageUrl || "");
+  const [image, setImage] = useState("");
+
+  console.log("imageurl:", imageUrl);
+  const uploadImage = () => {
+    const data = new FormData();
+    data.append("file", image);
+    data.append("upload_preset", "Sniffles");
+    data.append("cloud_name", "dhpo0hga3");
+    fetch("https://api.cloudinary.com/v1_1/dhpo0hga3/image/upload", {
+      method: "post",
+      body: data,
+    })
+      .then((resp) => resp.json())
+      .then((data) => {
+        console.log(`data.url: ${data.url}`)
+        setimageUrl(data.url);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  //////////////////////////////////////////////////////////////////////////
   const handleChange = (prop) => (event) => {
     setValues({ ...values, [prop]: event.target.value });
   };
@@ -105,17 +163,15 @@ function Form(props) {
         onSubmit={(e) => onSubmit(e)}
       >
         <FormControl>
-          <InputLabel htmlFor="imageUrl">imageUrl</InputLabel>
+          <InputLabel htmlFor="imageUrl">Profile Picture</InputLabel>
           <Input
             className="form__create-input"
             name="imageUrl"
-            type="text"
-            value={imageUrl}
-            onChange={(e) => {
-              setimageUrl(e.target.value);
-            }}
+            type="file"
+            onChange={(e) => setImage(e.target.files[0])}
             placeholder="doggie profile pic"
           />
+          <button type="button" onClick={uploadImage}>Upload</button>
         </FormControl>
 
         <FormControl>
