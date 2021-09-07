@@ -2,6 +2,7 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import PetsIcon from "@material-ui/icons/Pets";
 import { Redirect } from "react-router-dom";
+import "./Login.css";
 
 import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
@@ -72,7 +73,7 @@ function Login({ setProfile }) {
     <div className="login">
       <PetsIcon className="login_logo" style={{ fontSize: 50 }} />
       <div className="login_title">
-        <p>Log in to Sniffles</p>
+        <h3>Log in to Sniffles</h3>
       </div>
       <CardContent>
         <TextField
