@@ -3,10 +3,9 @@
 }
 .edit-form-card {
   max-width: 100%;
-  margin-left: 10px;
-  margin-right: 10px;
-  padding-top: 0.5em;
+  /* margin-left: 10px;
+  margin-right: 10px; */
   padding-bottom: 2em;
- 
+ margin-left: 1em;
 }
 

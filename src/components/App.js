@@ -6,7 +6,6 @@ import LoginPage from "./Login";
 import Profile from "./Profile";
 import ChatRoomList from "./ChatRoomList";
 
-// import HomeSvg from "./home-svg/HomeSvg";
 import BathDog from "./home-svg/BathDog";
 
 import {
@@ -72,9 +71,6 @@ function App() {
     <div className="App">
       <Router>
         <Switch>
-          <Route path="/bathdog">
-            <BathDog />
-          </Route>
 
           <Route exact path="/">
             <Redirect from="/" to="/Candidate" />
