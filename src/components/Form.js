@@ -67,7 +67,7 @@ function Form(props) {
   });
   const [redirect, setRedirect] = useState(false);
 
-  const [hide, setHide] = useState(false);
+  const [hide, setHide] = useState(false);  //avatar or upload button
 
   const dogGender = ["male", "female"];
   const dogSizes = ["small", "medium", "large"];
