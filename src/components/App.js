@@ -57,6 +57,8 @@ function App() {
           <Route path="/register">
             <Form onSave={onSave} submit={"Create"} />
           </Route>
+
+          <Redirect from="*" to="home" />
         </Switch>
         </Router>
       </div>
@@ -68,12 +70,12 @@ function App() {
       <Router>
         <Switch>
           <Route path="/home">
-            <Home />
+            <Redirect to="/candidate" />
           </Route>
 
-          <Route exact path="/">
+          {/* <Route exact path="/">
             <Redirect to="/Candidate" />
-          </Route>
+          </Route> */}
 
           <Route path="/profile">
             <TopNav />
@@ -88,7 +90,7 @@ function App() {
             <Home />
           </Route> */}
 
-          <Route path="/Candidate">
+          <Route path="/candidate">
             <TopNav />
             <CandidatesList profile={profile} />
           </Route>

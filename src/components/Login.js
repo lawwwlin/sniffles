@@ -104,7 +104,7 @@ function Login({ setProfile }) {
         <Button onClick={onClick}>
           {user && redirect ? (
             <Redirect
-              to={{ pathname: "/candidate" }} //returns id as props
+              to={{ pathname: "/" }} //returns id as props
             />
           ) : null}{" "}
           

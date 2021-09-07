@@ -82,7 +82,7 @@ const CandidateList = (profile) => {
     </div>
   ) : (
     // TO DO: add rendering page
-    <div></div>
+    <div>LOADING PAGE</div>
   );
 };
 
