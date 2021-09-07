@@ -1,7 +1,6 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import ChatRoom from "./ChatRoom";
-import "./ChatRoomList.css";
 
 // recieve profile of current logged in user
 function ChatRoomList(props) {

@@ -14,7 +14,7 @@
     font-size: 2rem;
     font-weight: 500;
     z-index: 1000;
-    border-bottom: 1px solid lightgray;
+   /*  border-bottom: 1px solid lightgray; */
   }
 
   .room-title{
@@ -24,7 +24,7 @@
   }
 
   .chat_logo {
-    color: brown;
+    color: rgb(241, 121, 141);;
     display: flex;
     align-items: center;
     
@@ -44,7 +44,10 @@
   }
 
   .messages{
-      background-color:pink;
+      background-color:#EA9C40;
+/*       border-bottom-left-radius: 1em;
+      border-bottom-right-radius: 1em; */
+      border-radius:1em;
       .message{
         padding: 0.1em;
           .user{
@@ -100,7 +103,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color:pink;
+    background-color:#EA9C40;
     color: white;
     // opacity: 60%;
     width: 100%;
