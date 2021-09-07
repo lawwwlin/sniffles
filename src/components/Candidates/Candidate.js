@@ -178,7 +178,7 @@ export default function Candidate(props) {
         </DialogContent>
       </Dialog>
 
-      <Snackbar anchorOrigin={{ vertical: 'center', horizontal: 'center' }} open={openAlert} autoHideDuration={8000} onClose={handleCloseAlert}>
+      <Snackbar anchorOrigin={{ vertical: 'center', horizontal: 'center' }} open={openAlert} autoHideDuration={6000} onClose={handleCloseAlert}>
         <Alert onClose={handleCloseAlert} severity="success" variant="filled">
           You matched with {name}
         </Alert>
