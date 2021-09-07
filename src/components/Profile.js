@@ -19,9 +19,7 @@ import Fab from "@material-ui/core/Fab";
 
 const useStyles = makeStyles((theme) => ({
   typography: {
-    fontFamily: [
-      'Quicksand',
-    ].join(','),
+    fontFamily: ["Quicksand"].join(","),
   },
   root: {
     width: 700,
@@ -41,7 +39,6 @@ const useStyles = makeStyles((theme) => ({
     marginRight: "1.5em",
     transition: theme.transitions.create("transform", {
       duration: theme.transitions.duration.shortest,
-      
     }),
   },
   expandOpen: {
@@ -56,21 +53,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-// const profile = {
-//   id: 1,
-//   imageURL: 'https://tinyurl.com/kb7dhhck',
-//   name: 'Bigboi',
-//   breed: 'Maltese',
-//   location: 'Vancouver',
-//   gender: 'male',
-//   age: 3,
-//   size: 'small',
-//   owner: 'BigBoiOwner',
-//   email: 'a@a.com',
-//   password: 'a',
-//   description: 'actually very smol'
-// }
-
 function Profile(props) {
   const [editMode, setEditMode] = useState(false);
   const [profile, setProfile] = useState(props.profile);
@@ -82,14 +64,11 @@ function Profile(props) {
   };
 
   function onClick() {
-    console.log("profile click");
     setEditMode(true);
   }
 
   function save(profile) {
-    console.log("profile is:", profile);
     setProfile(profile);
-    // call axios
     setEditMode(false);
   }
 
@@ -97,55 +76,41 @@ function Profile(props) {
     <article>
       {!editMode && (
         <div className="profile">
-          {/* <h3>Profile page</h3>
-          <img className="profile_pic" 
-          src={profile.imageUrl}
-          alt={profile.name}
-          />
-          <h3>name: {profile.name}</h3>
-          <h3>breed: {profile.breed}</h3>
-          <h3>gender: {profile.gender}</h3>
-          <h3>age: {profile.age}</h3>
-          <h3>size: {profile.size}</h3>
-          <h3>location: {profile.location}</h3>
-          <h3>owner: {profile.owner}</h3>
-          <h3>email: {profile.email}</h3>
-          <h3>description: {profile.description}</h3> */}
-
           <Card className={classes.root}>
-          <div
-            style={{ backgroundImage: `url(${profile.imageurl})` }}
-            className="profile_card"
-          >
-            <div className="profile_info">
-            <Fab variant="extended" disabled aria-label="like" style={{ fontSize: 20 }}>
-              <h1 className="profile_name">{profile.name}</h1>
-              </Fab>
-              <h3>
-                <LocationOnIcon className="location" />
-                {profile.location}
-              </h3>
-              <h3>
-                <BookmarkIcon />
-                {profile.description}
-              </h3>
+            <div
+              style={{ backgroundImage: `url(${profile.imageurl})` }}
+              className="profile_card"
+            >
+              <div className="profile_info">
+                <Fab
+                  variant="extended"
+                  disabled
+                  aria-label="like"
+                  style={{ fontSize: 20 }}
+                >
+                  <h1 className="profile_name">{profile.name}</h1>
+                </Fab>
+                <h3>
+                  <LocationOnIcon className="location" />
+                  {profile.location}
+                </h3>
+                <h3>
+                  <BookmarkIcon />
+                  {profile.description}
+                </h3>
+              </div>
             </div>
-    
-          </div>
-          <CardContent>
+            <CardContent>
               <h3 className="profile_description">View and edit profile</h3>
             </CardContent>
-        
+
             <CardActions disableSpacing>
-          
-                <div className={classes.edit} >
-                  <Fab color="secondary" aria-label="edit" onClick={onClick} >
-                    <EditIcon style={{ fontSize: 35 }}
-                    
-                    />
-                  </Fab>
-                </div>
-              
+              <div className={classes.edit}>
+                <Fab color="secondary" aria-label="edit" onClick={onClick}>
+                  <EditIcon style={{ fontSize: 35 }} />
+                </Fab>
+              </div>
+
               <IconButton
                 className={clsx(classes.expand, {
                   [classes.expandOpen]: expanded,
@@ -154,15 +119,17 @@ function Profile(props) {
                 aria-expanded={expanded}
                 aria-label="show more"
               >
-                <ExpandMoreIcon className="profile_expand" style={{ fontSize: 35 }}/>
+                <ExpandMoreIcon
+                  className="profile_expand"
+                  style={{ fontSize: 35 }}
+                />
               </IconButton>
             </CardActions>
             <Collapse in={expanded} timeout="auto" unmountOnExit>
               <CardContent>
-                
-                  <h3 paragraph>More Info:</h3>
-                  <br/>
-                  <p paragraph>About me: {profile.description}</p>
+                <h3 paragraph>More Info:</h3>
+                <br />
+                <p paragraph>About me: {profile.description}</p>
                 <p paragraph>Breed: {profile.breed}</p>
                 <p paragraph>Age: {profile.age}</p>
                 <p paragraph>Gender: {profile.gender}</p>
@@ -181,4 +148,3 @@ function Profile(props) {
 }
 
 export default Profile;
-

@@ -19,7 +19,7 @@ import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import Avatar from "@material-ui/core/Avatar";
 import PhotoCamera from "@material-ui/icons/PhotoCamera";
-import {Redirect} from 'react-router-dom'
+import { Redirect } from "react-router-dom";
 
 // material-ui styles
 const useStyles = makeStyles((theme) => ({
@@ -68,7 +68,7 @@ function Form(props) {
   });
 
   const [redirect, setRedirect] = useState(false);
-  const [hide, setHide] = useState(false);  //avatar or upload button
+  const [hide, setHide] = useState(false); //avatar or upload button
 
   const dogGender = ["male", "female"];
   const dogSizes = ["small", "medium", "large"];
@@ -88,7 +88,6 @@ function Form(props) {
       password: values.password,
       imageUrl,
     };
-    console.log("submit clicked");
     props.onSave(profile);
     setRedirect(true);
   };
@@ -106,7 +105,7 @@ function Form(props) {
       .then((resp) => resp.json())
       .then((data) => {
         setimageUrl(data.url);
-        setHide(true)
+        setHide(true);
       })
       .catch((err) => console.log(err));
   };
@@ -122,33 +121,31 @@ function Form(props) {
   return (
     <div className="form">
       <div className="form_avatar">
-        {
-          (hide ? (
-            <Avatar alt={name} src={imageUrl} className={classes.avatar} />
-          ) : (
-            <>
-              <Input
-                id="file-upload"
-                className="form__create-input"
-                name="imageUrl"
-                type="file"
-                onChange={(e) => setImage(e.target.files[0])}
-                placeholder="doggie profile pic"
-                accept="image/*"
-              />
+        {hide ? (
+          <Avatar alt={name} src={imageUrl} className={classes.avatar} />
+        ) : (
+          <>
+            <Input
+              id="file-upload"
+              className="form__create-input"
+              name="imageUrl"
+              type="file"
+              onChange={(e) => setImage(e.target.files[0])}
+              placeholder="doggie profile pic"
+              accept="image/*"
+            />
 
-              <label htmlFor="file-upload">
-                <IconButton
-                  color="primary"
-                  aria-label="upload picture"
-                  component="span"
-                >
-                  <PhotoCamera />
-                </IconButton>
-              </label>
-            </>
-          ))
-        }
+            <label htmlFor="file-upload">
+              <IconButton
+                color="primary"
+                aria-label="upload picture"
+                component="span"
+              >
+                <PhotoCamera />
+              </IconButton>
+            </label>
+          </>
+        )}
       </div>
       <form
         autoComplete="off"
@@ -345,7 +342,7 @@ function Form(props) {
           color="primary"
           startIcon={<SaveIcon />}
         >
-          {redirect ? <Redirect to="/"/> : null}
+          {redirect ? <Redirect to="/" /> : null}
           {props.submit}
         </Button>
       </form>

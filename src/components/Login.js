@@ -54,7 +54,6 @@ function Login({ setProfile }) {
           const profile = data.data;
           setUser(profile);
           if (profile.length > 0) {
-            // "authentication" - check if user can log in
             setProfile(profile);
             setRedirect(true);
           } else {
@@ -105,7 +104,7 @@ function Login({ setProfile }) {
         <Button onClick={onClick}>
           {user && redirect ? (
             <Redirect
-              to={{ pathname: "/" }} //returns id as props
+              to={{ pathname: "/" }}
             />
           ) : null}{" "}
           

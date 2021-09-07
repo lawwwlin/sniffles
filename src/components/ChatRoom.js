@@ -1,28 +1,22 @@
 import React, { useContext, useState, useEffect } from "react";
 import axios from "axios";
 import "./ChatRoom.css";
-import Alert from '@material-ui/lab/Alert';
+
 // import Chat from './Chat/Chat'
 import { Link, useHistory } from "react-router-dom";
-import { SocketContext } from '../socketContext';
-import { MainContext } from '../mainContext';
+import { SocketContext } from "../socketContext";
+import { MainContext } from "../mainContext";
 
 // Import components from material-ui
 import Avatar from "@material-ui/core/Avatar";
 import IconButton from "@material-ui/core/IconButton";
 
-
-
-// 
 function ChatRoom({ sender_id, receiver_id, sender_name, chatroom }) {
-
-  const history = useHistory();
-  const socket = useContext(SocketContext)
-  const { name, setName, room, setRoom } = useContext(MainContext);
+  const socket = useContext(SocketContext);
+  const { setName, setRoom } = useContext(MainContext);
   const [recipient, setRecipient] = useState({});
 
   const setValues = async () => {
-    console.log('setting values');
     setName(sender_name);
     setRoom(chatroom.id);
   };
@@ -30,45 +24,23 @@ function ChatRoom({ sender_id, receiver_id, sender_name, chatroom }) {
   const logIn = () => {
     const name = sender_name;
     const room = chatroom.id;
-    socket.emit('login', { name, room }, error => {
-      console.log('after log in', room, name);
-      if (error) {
-          console.log(error)
-          // return (
-          //   <Alert severity="error">
-          //     {error}
-          //   </Alert>
-          // )
-      }
-      // history.push('/chat')
-      console.log('connected to', chatroom.id)
-      // return (
-      //   <Alert severity="success">
-      //     {`Welcome to ${room}`}
-      //   </Alert>
-      // )
-    });
+    socket.emit("login", { name, room }, (error) => {});
   };
 
   const onClick = () => {
-
-    console.log('before setting values', sender_name, chatroom.id)
-    
-    setValues()
-      .then(() => {
-        logIn();
-      })
+    setValues().then(() => {
+      logIn();
+    });
   };
 
   const getLastMessageInChatroom = (room) => {
     const messages = JSON.parse(room.messages);
-    return messages[messages.length-1].text;
+    return messages[messages.length - 1].text;
   };
 
   const getTimeAgo = (time) => {
     // time in seconds
-    const timeAgo = (Date.now()/1000 - time)
-    console.log("timeAgo:",timeAgo)
+    const timeAgo = Date.now() / 1000 - time;
     if (timeAgo < 60) {
       return `${parseInt(timeAgo)} seconds ago`;
     }
@@ -80,33 +52,32 @@ function ChatRoom({ sender_id, receiver_id, sender_name, chatroom }) {
     }
   };
 
-  console.log('101', receiver_id)
   // find the profile of the recipient
   useEffect(() => {
-    axios.get(`api/profile/${receiver_id}`)
-    .then((res) => {
+    axios.get(`api/profile/${receiver_id}`).then((res) => {
       setRecipient(res.data[0]);
-      console.log('after setRecipient:', res.data[0]);
-    })
+    });
   }, []);
 
   return (
     <div className="messenger">
-      <Link 
+      <Link
         to={{
-        pathname: "/message",
-        state: {
-          chatroom,
-          sender_id,
-          sender_name,
-          recipient,
-        }}}
+          pathname: "/message",
+          state: {
+            chatroom,
+            sender_id,
+            sender_name,
+            recipient,
+          },
+        }}
         onClick={onClick}
-      ><div className="messenger_pic">
-        <IconButton>
-          <Avatar  alt={recipient.name} src={recipient.imageurl} />
+      >
+        <div className="messenger_pic">
+          <IconButton>
+            <Avatar alt={recipient.name} src={recipient.imageurl} />
           </IconButton>
-          </div>
+        </div>
       </Link>
       <div className="messenger_info">
         <h2>{recipient.name}</h2>
@@ -115,7 +86,6 @@ function ChatRoom({ sender_id, receiver_id, sender_name, chatroom }) {
       <p messenger_timestamp className="messenger_timestamp">
         {getTimeAgo(chatroom.updatedat)}
       </p>
-      
     </div>
   );
 }

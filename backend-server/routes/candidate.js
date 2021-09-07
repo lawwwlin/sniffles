@@ -59,7 +59,6 @@ router.post("/candidate", (req, res) => {
     INSERT INTO candidate (approve, profile_id, candidate_dog_id) VALUES ($1, $2, $3);
   `, [approve, profile_id, candidate_dog_id])
     .then(() => {
-      console.log("after saving to database, another query?");
       db.query(`
         SELECT id, approve, profile_id, candidate_dog_id, EXTRACT(epoch FROM updatedAt) as updatedAt
         FROM candidate
@@ -68,7 +67,6 @@ router.post("/candidate", (req, res) => {
       `, [profile_id, candidate_dog_id])
         .then((data) => {
           const candidate = data.rows;
-          console.log('wow it worked...', candidate)
           res.json(candidate)
         })
         .catch((err) => {

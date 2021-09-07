@@ -15,20 +15,33 @@ import BookmarkIcon from "@material-ui/icons/Bookmark";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
 import Fab from "@material-ui/core/Fab";
-import Snackbar from '@material-ui/core/Snackbar';
-import Alert from '@material-ui/lab/Alert';
+import Snackbar from "@material-ui/core/Snackbar";
+import Alert from "@material-ui/lab/Alert";
 import axios from "axios";
 
 //key, id, name, imageUrl, location, info
 export default function Candidate(props) {
-  const { candidate_id, name, imageUrl, location, info, breed, gender, age, size, owner, user_id, user } = props;
+  const {
+    candidate_id,
+    name,
+    imageUrl,
+    location,
+    info,
+    breed,
+    gender,
+    age,
+    size,
+    owner,
+    user_id,
+    user,
+  } = props;
 
   const reject = () => {
-    console.log("info: no button");
+    /* onSwipe("left") */
   };
 
   const like = () => {
-    console.log("info: like button");
+    /* onSwipe("right") */
   };
 
   const [open, setOpen] = useState(false);
@@ -38,7 +51,6 @@ export default function Candidate(props) {
   // OnClick function used to open dialog component
   const handleClickOpen = (candidate, candidateName) => {
     setOpen(true);
-    console.log('clicked open');
   };
 
   // OnClick function used to close dialog component
@@ -47,7 +59,7 @@ export default function Candidate(props) {
   };
 
   const handleCloseAlert = (event, reason) => {
-    if (reason === 'clickaway') {
+    if (reason === "clickaway") {
       return;
     }
 
@@ -55,19 +67,26 @@ export default function Candidate(props) {
   };
 
   useEffect(() => {
-    if (approve !== ""){
+    if (approve !== "") {
       let like = false;
-      if (approve === "true"){
+      if (approve === "true") {
         like = true;
       }
-      const candidate = { approve: like, profile_id: user_id, candidate_dog_id: candidate_id };
-      axios.post(`/api/candidate`, {candidate})
+      const candidate = {
+        approve: like,
+        profile_id: user_id,
+        candidate_dog_id: candidate_id,
+      };
+      axios
+        .post(`/api/candidate`, { candidate })
         .then((res) => {
-          console.log("candidate created, res:", res);
           // check if its a match, if its a match, create a chat room
           const candidates = res.data;
-          console.log('after post, returned candidate:', candidate);
-          if (candidates.length === 2 && candidates[0].approve === true && candidates[1].approve === true) {
+          if (
+            candidates.length === 2 &&
+            candidates[0].approve === true &&
+            candidates[1].approve === true
+          ) {
             let candidate = {};
             // check which candidate is created last
             if (candidates[0].updatedat > candidates[1].updatedat) {
@@ -75,27 +94,30 @@ export default function Candidate(props) {
             } else {
               candidate = candidates[1];
             }
-            // alert(`You matched with ${name}`);
+            
             setOpenAlert(true);
-            console.log('candidate matched, before creating chatroom');
-            const room = { profile1_id: user_id, profile2_id: candidate_id, messages: [{user: user.name, text: "Woof, I just matched with you!"}]}
-            axios.post(`/api/chatroom`, {room})
-              .then(() => console.log('chatroom created'))
-              .catch(error => console.log(error));
+            const room = {
+              profile1_id: user_id,
+              profile2_id: candidate_id,
+              messages: [
+                { user: user.name, text: "Woof, I just matched with you!" },
+              ],
+            };
+            axios
+              .post(`/api/chatroom`, { room })
+              .catch((error) => console.log(error));
           }
         })
-        .catch(error => console.log(error));
+        .catch((error) => console.log(error));
     }
   }, [approve]);
 
   // create candidate on swipe
   const onSwipe = (direction) => {
     if (direction === "right") {
-      console.log("right for ya");
       setApprove("true");
     }
     if (direction === "left") {
-      console.log("left for na");
       setApprove("false");
     }
   };
@@ -159,11 +181,7 @@ export default function Candidate(props) {
         </div>
       </DogCard>
 
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        // aria-labelledby="form-dialog-title"
-      >
+      <Dialog open={open} onClose={handleClose}>
         <DialogContent className="candidate_dialog">
           <h2>{name}</h2>
           <br />
@@ -178,7 +196,12 @@ export default function Candidate(props) {
         </DialogContent>
       </Dialog>
 
-      <Snackbar anchorOrigin={{ vertical: 'center', horizontal: 'center' }} open={openAlert} autoHideDuration={6000} onClose={handleCloseAlert}>
+      <Snackbar
+        anchorOrigin={{ vertical: "center", horizontal: "center" }}
+        open={openAlert}
+        autoHideDuration={6000}
+        onClose={handleCloseAlert}
+      >
         <Alert onClose={handleCloseAlert} severity="success" variant="filled">
           You matched with {name}
         </Alert>
