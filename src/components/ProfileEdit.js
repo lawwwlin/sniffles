@@ -12,7 +12,7 @@ function ProfileEdit(props) {
     <div className="profileEdit">
       <Card className="edit-form-card">
         <Form
-          imageUrl={profile.imageUrl}
+          imageUrl={profile.imageurl}
           name={profile.name}
           breed={profile.breed}
           gender={profile.gender}

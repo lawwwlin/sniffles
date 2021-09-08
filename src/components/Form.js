@@ -60,7 +60,7 @@ function Form(props) {
   const [owner, setOwner] = useState(props.owner || "");
   const [email, setEmail] = useState(props.email || "");
   const [description, setDescription] = useState(props.description || "");
-  const [imageUrl, setimageUrl] = useState(props.imageUrl || "");
+  const [imageUrl, setimageUrl] = useState(props.imageurl || "");
   const [image, setImage] = useState("");
   const [values, setValues] = useState({
     password: props.password || "",
@@ -72,7 +72,6 @@ function Form(props) {
 
   const dogGender = ["male", "female"];
   const dogSizes = ["small", "medium", "large"];
-
   const onSubmit = function (event) {
     event.preventDefault();
     const profile = {
@@ -89,6 +88,7 @@ function Form(props) {
       imageUrl,
     };
     props.onSave(profile);
+    props.setProfile(profile);
     setRedirect(true);
   };
 
@@ -342,7 +342,7 @@ function Form(props) {
           color="primary"
           startIcon={<SaveIcon />}
         >
-          {redirect ? <Redirect to="/" /> : null}
+          {redirect ? <Redirect to="/profile" /> : null}
           {props.submit}
         </Button>
       </form>
