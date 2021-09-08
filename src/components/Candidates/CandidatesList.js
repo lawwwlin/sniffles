@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Candidate from "./Candidate";
 import "./CandidatesList.css";
 import axios from "axios";
+import BathDog from "../home-svg/BathDog"
 import { withRouter } from "react-router-dom";
 
 // TO DO: add rendering page
@@ -80,7 +81,16 @@ const CandidateList = (profile) => {
     </div>
   ) : (
     // TO DO: add rendering page
-    <div>LOADING PAGE</div>
+
+    <div class="container">
+      <h1>Loading...</h1>
+      <br/>    
+    <div class="progress progress-striped">
+      <div class="progress-bar">
+      </div>                       
+    </div> 
+  </div>
+
   );
 };
 
