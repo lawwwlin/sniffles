@@ -2,7 +2,7 @@ INSERT INTO profile (name, breed, location, gender, age, size, owner, email, pas
 VALUES 
 ('Bigboi', 'Maltese', 'Vancouver', 'male', 3, 'small', 'BigBoiOwner', 'a@a.com', 'a', 'https://tinyurl.com/kb7dhhck', 'actually very smol'),
 ('Monty', 'Husky', 'Burnaby', 'male', 5, 'large', 'Dani', 'b@b.com', '123', 'https://images.unsplash.com/photo-1489924034176-2e678c29d4c6?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1951&q=80', 'I am doggo'),
-('Biscuit', 'Chihuahua', 'Surrey', 'female', 4, 'small', 'Bob', 'c@c.com', '123', 'https://images.pexels.com/photos/4255534/pexels-photo-4255534.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940', 'I like toys'),
+('Tyler', 'Labrador', 'Coquitlam', 'male', 1, 'small', 'Creator', 'c@c.com', '123', 'https://images.unsplash.com/photo-1512341350577-a09358311cb1?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1260&q=80', 'looking for homies'),
 ('Ace', 'Shiba Inu', 'Port Coquitlam', 'male', 5, 'medium', 'Luffy', 'd@d.com', '123', 'https://images.pexels.com/photos/4587993/pexels-photo-4587993.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260', 'I like long walks'),
 ('Diesel', 'Husky', 'Vancouver', 'male', 2, 'medium', 'Fam', 'e@e.com', '123', 'https://images.pexels.com/photos/4681107/pexels-photo-4681107.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940', 'We outside please'),
 ('Gucci', 'Maltese', 'Richmond', 'female', 1, 'small', 'Mane', 'f@f.com', '123', 'https://images.pexels.com/photos/2877086/pexels-photo-2877086.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940', 'Gimme food plz'),
@@ -11,7 +11,7 @@ VALUES
 ('Avery', 'Golden Retriever', 'Port Moody', 'female', 7, 'big', 'Ashley', 'i@i.com', '123', 'https://images.pexels.com/photos/1001976/pexels-photo-1001976.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940', 'Looking for doggo homie'),
 ('Cody', 'Pug', 'Vancouver', 'male', 4, 'small', 'Nick', 'j@j.com', '123', 'https://images.pexels.com/photos/374898/pexels-photo-374898.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940', 'I actually like to be inside'),
 ('Eva', 'Beagle', 'Burnaby', 'female', 5, 'small', 'Ella', 'k@k.com', '123', 'https://images.pexels.com/photos/7421920/pexels-photo-7421920.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940', 'It has been ruff out here'),
-('Axel', 'Labrador', 'Coquitlam', 'male', 1, 'small', 'Tyler', 'l@l.com', '123', 'https://images.unsplash.com/photo-1512341350577-a09358311cb1?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1260&q=80', 'looking for homies'),
+('Sasa', 'Chihuahua', 'Richmond', 'female', 5, 'small', 'Uniqueen', '1@1.com', '123', 'https://i.imgur.com/RoNehQD.jpg', 'Follow me on ig xd'),
 ('Puma', 'Dalmation', 'White Rock', 'female', 6, 'medium', 'James', 'm@m.com', '123', 'https://images.unsplash.com/photo-1599765625577-61a6e65e3567?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1080&q=80', 'I am too easy to spot');
 
 
