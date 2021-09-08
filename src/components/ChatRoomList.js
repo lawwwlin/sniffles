@@ -45,15 +45,16 @@ function ChatRoomList(props) {
   return chatrooms.length !== 0 ? (
     <p className="messengerList">{chatRoomItems}</p>
   ) : (
-    <div className="messenger">
-      <div className="messenger_pic">
-        <button> icon here </button>
+    <div className="candidate">
+      <div className="candidate_card" id="candidate_cardNone" style={{ backgroundImage: `url('https://images.squarespace-cdn.com/content/v1/5b631cba5b409b413bb3a633/1537968401007-7CNIR58SO7FN3OEU4TIE/daniel-brunsteiner-1055275-unsplash.jpg?format=1500w')` }}>
+        <div className="candidate_none">
+          <div className="candidate_none_text">
+          <h1>you a bit too thirsty for doggos👀</h1>
+          <h1>drink some water, take a break🥵</h1>
+          <h1>and come back later!</h1>
+          </div>
+        </div>
       </div>
-      <div className="messenger_info">
-        <h2>You don't have a date yet!</h2>
-      </div>
-      <p messenger_timestamp className="messenger_timestamp">
-      </p>
     </div>
   );
 }
