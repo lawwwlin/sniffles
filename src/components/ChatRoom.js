@@ -19,7 +19,7 @@ function ChatRoom({ sender_id, receiver_id, sender_name, chatroom }) {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
-      let timer1 = setTimeout(() => setShow(true), 1.5 * 1000);
+      let timer1 = setTimeout(() => setShow(true), 0.5 * 1000);
       return () => {
         clearTimeout(timer1);
       };
