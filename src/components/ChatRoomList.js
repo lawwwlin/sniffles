@@ -42,7 +42,7 @@ function ChatRoomList(props) {
     );
   });
 
-  return <ul className="messengerList">{chatRoomItems}</ul>;
+  return (<p className="messengerList">{chatRoomItems}</p>)
 }
 
 export default ChatRoomList;
