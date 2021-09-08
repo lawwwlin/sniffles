@@ -23,13 +23,7 @@ import axios from "axios";
 export default function Candidate(props) {
   const { candidate_id, name, imageUrl, location, info, breed, gender, age, size, owner, user_id, user } = props;
 
-  const reject = () => {
-    console.log("info: no button");
-  };
 
-  const like = () => {
-    console.log("info: like button");
-  };
 
   const [open, setOpen] = useState(false);
   const [openAlert, setOpenAlert] = useState(false);
@@ -98,6 +92,14 @@ export default function Candidate(props) {
       console.log("left for na");
       setApprove("false");
     }
+  };
+
+  const reject = () => {
+    console.log("info: no button");
+  };
+
+  const like = () => {
+    console.log("info: like button");
   };
 
   return (
