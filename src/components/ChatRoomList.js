@@ -65,7 +65,14 @@ function ChatRoomList(props) {
       </div>
     </div>
   )) : (
-    <div>Loading page</div>
+    <div className="container">
+      <h1>Loading...</h1>
+      <br/>    
+      <div className="progress progress-striped">
+        <div className="progress-bar">
+        </div>                       
+      </div> 
+    </div>
   );
 }
 
