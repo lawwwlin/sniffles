@@ -163,15 +163,12 @@
   border-radius: 15px;
 }
 
-.chat_delete {
-  color: red;
-}
-
-.chat_report {
-  color: blue;
-}
 
 @media only screen and (min-width: 1025px) {
+  #heading {
+    border-bottom: 1px solid lightgray;
+  }
+
   .messages {
     margin-right: 20em;
     margin-left: 20em;

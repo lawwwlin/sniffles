@@ -100,7 +100,7 @@ const Chat = () => {
 
   return (
     <div className="room">
-      <div className="heading">
+      <div className="heading" id="heading">
         <div className="room-title">
           <Link to="/messages">
             <IconButton onClick={logout}>
