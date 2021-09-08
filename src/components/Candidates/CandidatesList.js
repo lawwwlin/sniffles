@@ -16,7 +16,7 @@ const CandidateList = (profile) => {
       return () => {
         clearTimeout(timer1);
       };
-    }, []);
+  }, []);
 
   useEffect(() => {
     if (profiles.length === 0) {
