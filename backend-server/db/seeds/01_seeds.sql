@@ -22,8 +22,8 @@ VALUES
 (true, 2, 1),
 (true, 1, 3),
 (true, 3, 1),
-(true, 11, 1),
-(false, 10, 1);
+(true, 1, 5),
+(true, 5, 1);
 
 INSERT INTO chatroom (profile1_id, profile2_id, messages)
 VALUES
