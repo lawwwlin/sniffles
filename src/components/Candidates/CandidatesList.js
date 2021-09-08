@@ -80,17 +80,14 @@ const CandidateList = (profile) => {
       {candidateListItem}
     </div>
   ) : (
-    // TO DO: add rendering page
-
-    <div class="container">
+    <div className="container">
       <h1>Loading...</h1>
       <br/>    
-    <div class="progress progress-striped">
-      <div class="progress-bar">
+    <div className="progress progress-striped">
+      <div className="progress-bar">
       </div>                       
     </div> 
   </div>
-
   );
 };
 
