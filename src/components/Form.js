@@ -74,6 +74,7 @@ function Form(props) {
   const dogSizes = ["small", "medium", "large"];
   const onSubmit = function (event) {
     event.preventDefault();
+    setRedirect(true);
     const profile = {
       name,
       breed,
