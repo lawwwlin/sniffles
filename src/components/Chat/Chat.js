@@ -6,7 +6,7 @@ import ScrollToBottom from "react-scroll-to-bottom";
 import "./Chat.scss";
 
 import axios from "axios";
-import { useLocation, Link, useHistory } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 
 // Import components from material-ui
 import {
@@ -16,7 +16,6 @@ import {
   Button,
   IconButton,
   Dialog,
-  DialogActions,
   DialogContent,
   DialogTitle,
 } from "@material-ui/core";
@@ -24,8 +23,6 @@ import SendIcon from "@material-ui/icons/Send";
 import MessageIcon from "@material-ui/icons/Message";
 import PetsIcon from "@material-ui/icons/Pets";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
-import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
-import FlagIcon from "@material-ui/icons/Flag";
 
 const useStyles = makeStyles((theme) => ({
   large: {
@@ -63,16 +60,6 @@ const Chat = () => {
 
   const handleClose = () => {
     setOpen(false);
-  };
-
-  const remove = () => {
-    console.log("remove test button");
-  };
-
-  //Checks to see if there's a user present
-
-  const report = () => {
-    console.log("report test button");
   };
 
   useEffect(() => {
@@ -160,20 +147,6 @@ const Chat = () => {
           <p>Size: {recipient.size}</p>
           <p>Owner: {recipient.owner}</p>
         </DialogContent>
-        <DialogActions>
-          <Button onClick={report} autoFocus>
-            <span className="chat_report">
-              <FlagIcon />
-            </span>
-            <p className="chat_report">REPORT</p>
-          </Button>
-          <Button onClick={remove} autoFocus>
-            <span className="chat_delete">
-              <DeleteForeverIcon />
-            </span>
-            <p className="chat_delete">REMOVE</p>
-          </Button>
-        </DialogActions>
       </Dialog>
 
       <ScrollToBottom className="messages" debug={false}>

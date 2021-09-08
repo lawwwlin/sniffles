@@ -9,6 +9,14 @@ const CandidateList = (profile) => {
   const profileId = profile.profile[0].id;
   const [profiles, setProfiles] = useState([]);
   const [swiped, setSwiped] = useState([]);
+  const [show, setShow] = useState(false);
+
+  useEffect(() => {
+      let timer1 = setTimeout(() => setShow(true), 1.5 * 1000);
+      return () => {
+        clearTimeout(timer1);
+      };
+    }, []);
 
   useEffect(() => {
     if (profiles.length === 0) {
@@ -57,7 +65,7 @@ const CandidateList = (profile) => {
     );
   });
 
-  return profiles.length > 0 && swiped.length > 0 ? (
+  return show ? (
     <div className="candidate">
       <div className="candidate_card" id="candidate_cardNone">
         <div className="candidate_none">

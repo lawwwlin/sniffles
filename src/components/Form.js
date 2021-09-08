@@ -88,7 +88,7 @@ function Form(props) {
       imageUrl,
     };
     props.onSave(profile);
-    props.setProfile(profile);
+    // props.setProfile(profile);
     setRedirect(true);
   };
 
