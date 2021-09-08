@@ -29,4 +29,4 @@ INSERT INTO chatroom (profile1_id, profile2_id, messages)
 VALUES
 (1, 2, '[{"user":"Nally","text":"So what are your further developments?"}, {"user":"Bigboi","text":"Matching algorithm"}, {"user":"Bigboi","text":"Realtime notification on messages & matches"}, {"user":"Nally","text":"No way. Hold my beer."}]'),
 (1, 3, '[{"user":"Lindsay","text":"How was working as a team?"}, {"user":"Bigboi","text":"Me love team long time"}]'),
-(1, 5, '[{"user":"Jipp","text":"What tech stacks did you use?"}, {"user":"Bigboi","text":"React"}, {"user":"Bigboi","text":"(S)CSS"}, {"user":"Bigboi","text":"socket.io"}, {"user":"Bigboi","text":"Nodejs"},  {"user":"Bigboi","text":"Express"}, {"user":"Bigboi","text":"PSQL"}, {"user":"Jipp","text":"Sweet"}, ]' );
+(1, 5, '[{"user":"Jipp","text":"What tech stacks did you use?"}, {"user":"Bigboi","text":"React"}, {"user":"Bigboi","text":"(S)CSS"}, {"user":"Bigboi","text":"socket.io"}, {"user":"Bigboi","text":"Nodejs"},  {"user":"Bigboi","text":"Express"}, {"user":"Bigboi","text":"PSQL"}, {"user":"Jipp","text":"Kinda cool"}, ]' );
