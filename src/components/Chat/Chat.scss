@@ -1,12 +1,12 @@
-.room{
-  box-shadow: 1px 1px 10px rgba(0,0,0,.1);
+.room {
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   display: flex;
   flex-direction: column;
   align-content: stretch;
-  .heading{
+  .heading {
     display: flex;
-    
+
     align-items: center;
     justify-content: space-between;
     // font-family: 'DM Sans';
@@ -14,118 +14,114 @@
     font-size: 2rem;
     font-weight: 500;
     z-index: 1000;
-   /*  border-bottom: 1px solid lightgray; */
+    /*  border-bottom: 1px solid lightgray; */
   }
 
-  .room-title{
+  .room-title {
     display: flex;
     // align-items: center;
     // flex-direction: column;
   }
 
   .chat_logo {
-    color: rgb(241, 121, 141);;
+    color: rgb(241, 121, 141);
     display: flex;
     align-items: center;
-    
   }
 
   .chat_logbox {
-   margin-left: 1em;
+    margin-left: 1em;
   }
 
   #chat_icon {
     margin: 7px;
   }
 
-  .user-title{
+  .user-title {
     display: flex;
     align-items: center;
   }
 
-  .messages{
-      background-color:#EA9C40;
-/*       border-bottom-left-radius: 1em;
+  .messages {
+    background-color: #ea9c40;
+    /*       border-bottom-left-radius: 1em;
       border-bottom-right-radius: 1em; */
-      border-radius:1em;
-      .message{
-        padding: 0.1em;
-          .user{
-            margin-left: 2em;
-            padding-left: 0.8em;
-            padding-right: 0.8em;
-            padding-bottom: 0.5em;
-          }
-          .msg{
-              color: rgba(0, 0, 0, 0.795);
-              background: white;
-              margin-left: 1em;
-              border-radius: 0.8em;
-              padding-left: 0.8em;
-              padding-right: 0.8em;
-              padding-top: 0.5em;
-              padding-bottom: 0.5em;
-
-          }
+    border-radius: 1em;
+    .message {
+      padding: 0.1em;
+      .user {
+        margin-left: 1em;
+        padding-left: 0.8em;
+        padding-right: 0.8em;
+        padding-bottom: 0.5em;
       }
-      .my-message{
-          align-self: flex-end;
-          .user{
-              display: none;
-          }
-          .msg{
-            color: white;
-            background: #408EEA;
-            margin-right: 1em;
-            border-radius: 0.8em;
-            padding-left: 0.8em;
-            padding-right: 0.8em;
-            padding-top: 0.5em;
-            padding-bottom: 0.5em;
-          }
+      .msg {
+        color: rgba(0, 0, 0, 0.795);
+        background: white;
+        margin-left: 1em;
+        border-radius: 0.8em;
+        padding-left: 0.8em;
+        padding-right: 0.8em;
+        padding-top: 0.5em;
+        padding-bottom: 0.5em;
       }
-
+    }
+    .my-message {
+      align-self: flex-end;
+      .user {
+        display: none;
+      }
+      .msg {
+        color: white;
+        background: #408eea;
+        margin-right: 1em;
+        border-radius: 0.8em;
+        padding-left: 0.8em;
+        padding-right: 0.8em;
+        padding-top: 0.5em;
+        padding-bottom: 0.5em;
+      }
+    }
   }
 
-  .messages > div{
+  .messages > div {
     display: flex;
     align-items: flex-start;
     flex-direction: column;
     width: auto !important;
-    overflow:auto;
+    overflow: auto;
     min-height: 70vh;
     max-height: 70vh;
     padding: 1rem;
   }
 
-
-  .match-time{
+  .match-time {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color:#EA9C40;
+    background-color: #ea9c40;
     color: white;
     // opacity: 60%;
     width: 100%;
     margin-bottom: 1em;
   }
 
-  .empty-message{
+  .empty-message {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #EAEAEA;
+    background-color: #eaeaea;
     opacity: 0.2;
     width: 100%;
   }
-  
-  .form{
+
+  .form {
     position: relative;
     z-index: 1000;
 
-    .form_text{
-      width: 70%;
-      margin-right: 3.5em;
+    .form_text {
+      width: 65%;
+      // margin-right: 3.5em;
       margin-bottom: 1em;
       // width: 50%;
       // padding: 5em ;
@@ -134,20 +130,17 @@
       // background-color: blue;
     }
 
-    button{
-
+    button {
       position: absolute;
       right: 1.5rem;
       // top: 1rem;
       margin-top: 10px;
-      
     }
   }
 }
 
 // .form_text .MuiInputBase-input {
 
-  
 // }
 
 .chat_emoji {
@@ -155,15 +148,15 @@
 }
 
 ::placeholder {
-  opacity: .5; 
+  opacity: 0.5;
 }
 
-@media(max-width : 30em){
-  .room{
-    .messages{
+@media (max-width: 30em) {
+  .room {
+    .messages {
       flex: 1;
     }
-}
+  }
 }
 
 .form_text {
@@ -176,4 +169,34 @@
 
 .chat_report {
   color: blue;
+}
+
+@media only screen and (min-width: 1025px) {
+  .messages {
+    margin-right: 20em;
+    margin-left: 20em;
+    .message {
+      #user {
+        margin-left: 4em;
+   
+      }
+      #msg {
+
+        margin-left: 3em;
+  
+      }
+    }
+    .my-message {
+      #msg {
+
+        margin-right: 3em;
+
+      }
+    }
+  }
+
+  #text_button {
+    right: 15em;
+  }
+
 }

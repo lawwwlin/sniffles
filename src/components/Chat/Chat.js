@@ -162,8 +162,8 @@ const Chat = () => {
               key={i}
               className={`message ${msg.user === name ? "my-message" : ""}`}
             >
-              <h6 className="user">{msg.user}</h6>
-              <h4 className="msg">{msg.text}</h4>
+              <h6 className="user" id="user">{msg.user}</h6>
+              <h4 className="msg" id="msg">{msg.text}</h4>
             </div>
           ))
         ) : (
@@ -187,6 +187,7 @@ const Chat = () => {
           variant="outlined"
         />
         <Button
+        id="text_button"
           variant="contained"
           color="primary"
           startIcon={<SendIcon />}
