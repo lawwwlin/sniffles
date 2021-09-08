@@ -10,11 +10,20 @@ import { MainContext } from "../mainContext";
 // Import components from material-ui
 import Avatar from "@material-ui/core/Avatar";
 import IconButton from "@material-ui/core/IconButton";
+import LoopIcon from '@material-ui/icons/Loop';
 
 function ChatRoom({ sender_id, receiver_id, sender_name, chatroom }) {
   const socket = useContext(SocketContext);
   const { setName, setRoom } = useContext(MainContext);
   const [recipient, setRecipient] = useState({});
+  const [show, setShow] = useState(false);
+
+  useEffect(() => {
+      let timer1 = setTimeout(() => setShow(true), 1.5 * 1000);
+      return () => {
+        clearTimeout(timer1);
+      };
+  }, []);
 
   const setValues = async () => {
     setName(sender_name);
@@ -59,7 +68,7 @@ function ChatRoom({ sender_id, receiver_id, sender_name, chatroom }) {
     });
   }, []);
 
-  return (
+  return show? (
     <div className="messenger">
       <Link
         to={{
@@ -81,10 +90,22 @@ function ChatRoom({ sender_id, receiver_id, sender_name, chatroom }) {
       </Link>
       <div className="messenger_info">
         <h2>{recipient.name}</h2>
-        <p>{getLastMessageInChatroom(chatroom)}</p>
+        <p className="messenger_msg">{getLastMessageInChatroom(chatroom)}</p>
       </div>
       <p messenger_timestamp className="messenger_timestamp">
         {getTimeAgo(chatroom.updatedat)}
+      </p>
+    </div>
+  ): (
+    // loading chat
+    <div className="messenger">
+      <div className="messenger_pic">
+        <LoopIcon />
+      </div>
+      <div className="messenger_info">
+        <h2>good boy is fetching messages, please sit!</h2>
+      </div>
+      <p messenger_timestamp className="messenger_timestamp">
       </p>
     </div>
   );
