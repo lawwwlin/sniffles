@@ -1,0 +1,31 @@
+.messenger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  height: 70px;
+  border-bottom: 1px solid #DFDFDF;
+}
+
+.messenger:hover {
+  background-color: #a39f9f;
+  cursor: pointer;
+  opacity: 50%;
+  color: white;
+}
+
+.messenger:hover > p {
+  color: white;
+}
+
+.messenger_info {
+  flex: 1;
+}
+
+.messenger_timestamp {
+  color: #4D4D4D;
+}
+
+.messenger_pic {
+  margin-right: 20px;
+}

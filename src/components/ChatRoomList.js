@@ -42,7 +42,20 @@ function ChatRoomList(props) {
     );
   });
 
-  return (<p className="messengerList">{chatRoomItems}</p>)
+  return chatrooms.length !== 0 ? (
+    <p className="messengerList">{chatRoomItems}</p>
+  ) : (
+    <div className="messenger">
+      <div className="messenger_pic">
+        <button> icon here </button>
+      </div>
+      <div className="messenger_info">
+        <h2>You don't have a date yet!</h2>
+      </div>
+      <p messenger_timestamp className="messenger_timestamp">
+      </p>
+    </div>
+  );
 }
 
 export default ChatRoomList;

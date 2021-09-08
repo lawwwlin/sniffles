@@ -15,12 +15,15 @@
 }
 
 .candidate_none {
-
   color: aliceblue;
   padding-top: 20em;
   text-align: center;
 }
 
+.candidate_none_text {
+  background-color: rgba(0, 0, 0, 0.301);
+  border-radius: 24px;
+}
 
 .candidate {
   display:flex;
