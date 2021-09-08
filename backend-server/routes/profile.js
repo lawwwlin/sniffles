@@ -56,6 +56,54 @@ router.get("/profile/:profile", (req, res) => {
     });
 });
 
+/* update profile */
+router.put("/profile/:id", (req, res) => {
+  console.log(req.body)
+  const {
+    id,
+    name,
+    breed,
+    gender,
+    location,
+    age,
+    size,
+    owner,
+    email,
+    description,
+    password,
+    imageurl,
+  } = req.body;
+  db.query(`
+    UPDATE profile 
+    SET age = $2, breed = $3, description = $4, email = $5, gender = $6, imageUrl = $7, location = $8, name = $9, owner = $10, password = $11, size = $12
+    WHERE id = $1;
+    `,
+    [
+      id,
+      age,
+      breed,
+      description,
+      email,
+      gender,
+      imageurl,
+      location,
+      name,
+      owner,
+      password,
+      size,
+    ]
+  )
+    .then((data) => {
+      const profile = data.rows;
+      res.json(profile);
+      console.log(profile)
+    })
+    .catch((err) => {
+      res.status(500).json({ error: err.message });
+    });
+});
+module.exports = router;
+
 /* Create profile */
 router.post("/profile", (req, res) => {
   const {
@@ -72,7 +120,7 @@ router.post("/profile", (req, res) => {
     imageUrl,
   } = req.body;
   db.query(
-    `INSERT INTO profile (age, breed, description, email, gender, imageurl, location, name, owner, password, size) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING id;`,
+    `INSERT INTO profile (age, breed, description, email, gender, imageUrl, location, name, owner, password, size) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING id;`,
     [
       age,
       breed,
