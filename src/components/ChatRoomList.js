@@ -1,10 +1,19 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import ChatRoom from "./ChatRoom";
+import "./ChatRoomList.css"
 
 // recieve profile of current logged in user
 function ChatRoomList(props) {
   const [chatrooms, setChatrooms] = useState([]);
+  const [show, setShow] = useState(false);
+
+  useEffect(() => {
+      let timer1 = setTimeout(() => setShow(true), 1 * 1000);
+      return () => {
+        clearTimeout(timer1);
+      };
+  }, []);
 
   // get all chatrooms for current user from database
   useEffect(() => {
@@ -42,20 +51,21 @@ function ChatRoomList(props) {
     );
   });
 
-  return chatrooms.length !== 0 ? (
+  return show? (chatrooms.length !== 0 ? (
     <p className="messengerList">{chatRoomItems}</p>
   ) : (
-    <div className="candidate">
-      <div className="candidate_card" id="candidate_cardNone" style={{ backgroundImage: `url('https://images.squarespace-cdn.com/content/v1/5b631cba5b409b413bb3a633/1537968401007-7CNIR58SO7FN3OEU4TIE/daniel-brunsteiner-1055275-unsplash.jpg?format=1500w')` }}>
-        <div className="candidate_none">
-          <div className="candidate_none_text">
-          <h1>you a bit too thirsty for doggos👀</h1>
-          <h1>drink some water, take a break🥵</h1>
-          <h1>and come back later!</h1>
+    <div className="chat_empty">
+      <div className="chat_empty_card" style={{ backgroundImage: `url('https://www.newdoggy.com/wp-content/uploads/2018/03/Taking-your-dog-on-a-date-with-a-lady.jpg')` }}>
+        <div className="chat_empty_none">
+          <div className="chat_empty_none_text">
+          <h1>you don't have a date yet!🤭</h1>
+          <h1>check back when you have a match!😏</h1>
           </div>
         </div>
       </div>
     </div>
+  )) : (
+    <div>Loading page</div>
   );
 }
 

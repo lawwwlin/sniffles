@@ -1,4 +1,4 @@
-.candidate_card {
+.chat_empty_card {
   position:relative;
   width: 800px;
   /* width: 100em; */
@@ -14,23 +14,19 @@
   margin-bottom: 1em;
 }
 
-.candidate_none {
+.chat_empty_none {
   color: aliceblue;
   padding-top: 20em;
   text-align: center;
 }
 
-.candidate_none_text {
+.chat_empty_none_text {
   background-color: rgba(0, 0, 0, 0.301);
   border-radius: 24px;
 }
 
-.candidate {
+.chat_empty {
   display:flex;
   justify-content: center;
   margin-top: 1vh;
-}
-
-#candidate_cardNone {
-  background-color: grey;
 }
