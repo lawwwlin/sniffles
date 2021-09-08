@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Profile.css";
 
 import ProfileEdit from "./ProfileEdit";
@@ -16,6 +16,7 @@ import BookmarkIcon from "@material-ui/icons/Bookmark";
 import EditIcon from "@material-ui/icons/Edit";
 import IconButton from "@material-ui/core/IconButton";
 import Fab from "@material-ui/core/Fab";
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
   typography: {
@@ -53,11 +54,19 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+/* function Profile({ profile, setProfile }) { */
 function Profile(props) {
   const [editMode, setEditMode] = useState(false);
   const [profile, setProfile] = useState(props.profile);
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
+  console.log('profile props', profile)
+
+  // useEffect(() => {
+  //   axios.put(`/api/profile/${profile.id}`, {profile})
+  //     .then(() => {setProfile(profile)})
+  //     .catch(err => (console.log(err)));
+  // }, [editMode]);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -142,7 +151,7 @@ function Profile(props) {
           </Card>
         </div>
       )}
-      {editMode && <ProfileEdit profile={profile} onSave={save} />}
+      {editMode && <ProfileEdit profile={profile} onSave={save} setProfile={setProfile}/>}
     </article>
   );
 }
