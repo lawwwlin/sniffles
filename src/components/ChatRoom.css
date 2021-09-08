@@ -7,12 +7,19 @@
   border-bottom: 1px solid #DFDFDF;
 }
 
-.messenger_info {
-  flex: 1;
+.messenger:hover {
+  background-color: #a39f9f;
+  cursor: pointer;
+  opacity: 50%;
+  color: white;
 }
 
-.messenger_info > p{
-  color: gray;
+.messenger:hover > p {
+  color: white;
+}
+
+.messenger_info {
+  flex: 1;
 }
 
 .messenger_timestamp {
