@@ -34,12 +34,6 @@ const themeInstance = {
 /* const [redirect, setRedirect] = useState(false); */
 
 export default function onSave(profile) {
-  axios
-    .post("/api/profile", profile)
-    .then((res) => {
-      console.log("done", res);
-    })
-/*     .then(() => {
-      return <Redirect to="/" />;
-    }); */
+  axios.post("/api/profile", profile)
+  .then(console.log('done post'))
 }

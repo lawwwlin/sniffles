@@ -44,15 +44,20 @@ const profile = {
 
 function App() {
   const [profile, setProfile] = useState();
-  console.log('profile:', profile)
-  if(!profile) {
+  console.log('profile in app', profile)
+  
+  if (!profile) {
     return (
       <div className="home">
         <Router>
-        <Switch>
-          <Route path="/home">
-            <Home setProfile={setProfile}/>
-          </Route>
+          <Switch>
+            <Route path="/home">
+              <Home setProfile={setProfile} />
+            </Route>
+
+            <Route path="/register">
+              <Form onSave={onSave} setProfile={setProfile}  submit={"Create"} />
+            </Route>
 
           <Route path="/register">
             <Form onSave={onSave} submit={"Create"} />

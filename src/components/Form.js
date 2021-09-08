@@ -19,7 +19,8 @@ import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import Avatar from "@material-ui/core/Avatar";
 import PhotoCamera from "@material-ui/icons/PhotoCamera";
-import {Redirect} from 'react-router-dom'
+import { Redirect, Link } from "react-router-dom";
+
 
 // material-ui styles
 const useStyles = makeStyles((theme) => ({
@@ -72,9 +73,11 @@ function Form(props) {
 
   const dogGender = ["male", "female"];
   const dogSizes = ["small", "medium", "large"];
+  console.log(`setdirect: ${redirect}`);
 
   const onSubmit = function (event) {
     event.preventDefault();
+    setRedirect(true);
     const profile = {
       name,
       breed,
@@ -90,7 +93,10 @@ function Form(props) {
     };
     console.log("submit clicked");
     props.onSave(profile);
-    setRedirect(true);
+    props.setProfile(profile);
+
+    console.log(`setdirect b4: ${redirect}`);
+    console.log(`setdirect after: ${redirect}`);
   };
 
   //uploads to cloud so we can get url back
@@ -339,15 +345,17 @@ function Form(props) {
             }
           />
         </FormControl>
-        <Button
-          type="submit"
-          variant="contained"
-          color="primary"
-          startIcon={<SaveIcon />}
-        >
-          {redirect ? <Redirect to="/"/> : null}
-          {props.submit}
-        </Button>
+        <Link to="/">
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            startIcon={<SaveIcon />}
+          >
+            {/* {redirect ? <Redirect to="/" /> : null} */}
+            {props.submit}
+          </Button>
+        </Link>
       </form>
     </div>
   );
