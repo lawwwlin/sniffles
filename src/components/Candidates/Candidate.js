@@ -143,14 +143,32 @@ export default function Candidate(props) {
             >
               <h1 className="candidate_name">{name}</h1>
             </Fab>
-            <h3>
-              <LocationOnIcon className="location" />
+            <div>
+            <Fab
+              variant="extended"
+              disabled
+              aria-label="like"
+              
+            >
+            <h3 className="candidate_font">
+              <LocationOnIcon />
               {location}
             </h3>
-            <h3>
+            </Fab>
+            </div>
+            <div>
+            <Fab
+              variant="extended"
+              disabled
+              aria-label="like"
+              
+            >
+            <h3 className="candidate_font">
               <BookmarkIcon />
               {info}
             </h3>
+            </Fab>
+            </div>
           </div>
 
           <div className="button">
