@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Candidate from "./Candidate";
-import "./CandidatesList.scss";
+import "./CandidatesList.css";
 import axios from "axios";
 import BathDog from "../home-svg/BathDog"
 import { withRouter } from "react-router-dom";

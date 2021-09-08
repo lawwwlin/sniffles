@@ -61,7 +61,7 @@
         transparent 25%, transparent 50%, 
         rgb(252,163,17) 50%, rgb(252,163,17) 75%,
         transparent 75%, transparent); 
-  animation: progressAnimationStrike 1.5s;
+  animation: progressAnimationStrike 1.55s;
 }
 
 @keyframes progressAnimationStrike {
