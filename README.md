@@ -1,4 +1,5 @@
 # Sniffles
+### Created by: [Antony Chan](https://github.com/AcChrome), [Catherine Hu](https://github.com/cthu97), [Lawrence Lin](https://github.com/lawwwlin)
 
 Sniffles is an application to connect dog and their owners with new playmates nearby. 
 
@@ -36,18 +37,18 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ### Than install all the dependencies on the server
 
-* `cd backend-server`
-* `npm install`
+`cd backend-server`
+`npm install`
 
 ### Follow .env.example to make your own .env
 
 ### Start up cilent and server in their own directory
 
-* Start client in `/sniffles/`
-* `npm start`
+Start client in `/sniffles/`
+`npm start`
 
-* Start server in `/sniffles/backend-server/`
-* `npm start`
+Start server in `/sniffles/backend-server/`
+`npm start`
 
 ### Start up the app in your browser [http://localhost:3000](http://localhost:3000)
 
