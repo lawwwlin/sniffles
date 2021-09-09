@@ -9,7 +9,7 @@ It is features a real time live chat update using Socket.io and updates on new m
 ![Home page](https://github.com/AcChrome/sniffles/blob/master/images/home.png)
 ![Candidates page](https://github.com/AcChrome/sniffles/blob/master/images/candidates.png)
 ![Messages List](https://github.com/AcChrome/sniffles/blob/master/images/ML.png)
-![Messages](https://github.com/AcChrome/sniffles/blob/master/images/Messages.pnghttps://github.com/AcChrome/sniffles/blob/master/images/Messages.png)
+![Messages](https://github.com/AcChrome/sniffles/blob/master/images/Messages.png)
 
 
 ## Tech Stack
