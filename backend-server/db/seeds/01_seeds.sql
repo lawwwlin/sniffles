@@ -30,6 +30,6 @@ VALUES
 INSERT INTO chatroom (profile1_id, profile2_id, messages)
 VALUES
 (1, 2, '[{"user":"Nally","text":"So what are your further developments?"}, {"user":"Bigboi","text":"Matching algorithm"}, {"user":"Bigboi","text":"Realtime notification on messages & matches"}, {"user":"Nally","text":"No way. Hold my beer."}]'),
-(1, 3, '[{"user":"Lindsay","text":"How was working as a team?"}, {"user":"Bigboi","text":"Me love team long time"}, {"user":"Lindsay","text":"Awesome!"}]'),
+(1, 3, '[{"user":"Lindsay","text":"How was the working environment?"}, {"user":"Bigboi","text":"Teamwork makes the dream work!"}, {"user":"Lindsay","text":"Awesome!"}]'),
 (1, 5, '[{"user":"Jipp","text":"What tech stacks did you use?"}, {"user":"Bigboi","text":"React"}, {"user":"Bigboi","text":"(S)CSS"}, {"user":"Bigboi","text":"socket.io"}, {"user":"Bigboi","text":"Nodejs"},  {"user":"Bigboi","text":"Express"}, {"user":"Bigboi","text":"PSQL"}, {"user":"Jipp","text":"Kinda cool! I wonder what Kanye would say."}]'),
 (1, 7, '[{"user":"Sniffles","text":"Join sniffles room?"}, {"user":"Bigboi","text":"Join sniffles room"}, {"user":"Bigboi","text":"We have snacks"}, {"user":"Sniffles","text":"No we dont"}, {"user":"Bigboi","text":"Just bring your own then"},  {"user":"Sniffles","text":"Ok on my way"}, {"user":"Bigboi","text":"Hope to see everyone there!"}]');
