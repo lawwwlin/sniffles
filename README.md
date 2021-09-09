@@ -4,9 +4,12 @@ Sniffles is an application to connect dog and their owners with new playmates ne
 
 It is features a real time live chat update using Socket.io and updates on new matches with a traditional swipe feature.
 
-## Overview
+## Final Product 
 
-
+![Home page](https://github.com/AcChrome/sniffles/blob/master/images/home.png)
+![Candidates page](https://github.com/AcChrome/sniffles/blob/master/images/candidates.png)
+![Messages List](https://github.com/AcChrome/sniffles/blob/master/images/ML.png)
+![Messages](https://github.com/AcChrome/sniffles/blob/master/images/Messages.pnghttps://github.com/AcChrome/sniffles/blob/master/images/Messages.png)
 
 
 ## Tech Stack
@@ -23,25 +26,32 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Getting Started
 
-Firsty, clone the project
+### Clone the project
 
 `git@github.com:AcChrome/sniffles.git`
 
-Install all the dependencies on the client
+### Install all the dependencies on the client
 
 `npm install`
 
-Than install all the dependencies on the server
+### Than install all the dependencies on the server
 
-`cd backend-server`
-`npm install`
+* `cd backend-server`
+* `npm install`
 
-Start up cilent and server in their own directory
+### Follow .env.example to make your own .env
 
-`npm start`
+### Start up cilent and server in their own directory
 
-Start up the app in your browser [http://localhost:3000](http://localhost:3000)
+* Start client in `/sniffles/`
+* `npm start`
+
+* Start server in `/sniffles/backend-server/`
+* `npm start`
+
+### Start up the app in your browser [http://localhost:3000](http://localhost:3000)
+
 
 ## License
 
-MIT
+[MIT](https://choosealicense.com/licenses/mit/)
