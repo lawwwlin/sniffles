@@ -19,7 +19,6 @@
 }
 
 .home_newUser{
-  
   display: inline-block;
   border-radius: 60px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
@@ -29,7 +28,6 @@
 }
 
 .home_login {
-  
   display: inline-block;
   border-radius: 60px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;

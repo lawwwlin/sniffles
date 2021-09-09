@@ -4,6 +4,7 @@ import Home from "./Home";
 import Form from "./Form";
 import Profile from "./Profile";
 import ChatRoomList from "./ChatRoomList";
+import HomeSvg from "./home-svg/HomeSvg";
 
 import {
   BrowserRouter as Router,
@@ -11,7 +12,6 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
-import "./App.css";
 
 //candidate
 import CandidatesList from "./Candidates/CandidatesList";
@@ -40,6 +40,7 @@ function App() {
             </Route>
 
             <Redirect from="*" to="home" />
+        <HomeSvg />
           </Switch>
         </Router>
       </div>
@@ -83,6 +84,7 @@ function App() {
               </Route>
             </SocketProvider>
           </MainProvider>
+      <HomeSvg />
         </Switch>
       </Router>
     </div>
