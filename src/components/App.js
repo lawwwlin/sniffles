@@ -4,6 +4,8 @@ import Home from "./Home";
 import Form from "./Form";
 import Profile from "./Profile";
 import ChatRoomList from "./ChatRoomList";
+import HomeSvgLeft from "./home-svg/HomeSvgLeft";
+import HomeSvgRight from "./home-svg/HomeSvgRight";
 
 import {
   BrowserRouter as Router,
@@ -11,7 +13,6 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
-import "./App.css";
 
 //candidate
 import CandidatesList from "./Candidates/CandidatesList";
@@ -33,10 +34,14 @@ function App() {
           <Switch>
             <Route path="/home">
               <Home setProfile={setProfile} />
+              <HomeSvgLeft />
+              <HomeSvgRight />
             </Route>
 
             <Route path="/register">
               <Form onSave={onSave} submit={"Create"} />
+              <HomeSvgLeft />
+              <HomeSvgRight />
             </Route>
 
             <Redirect from="*" to="home" />
