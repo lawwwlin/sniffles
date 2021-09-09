@@ -1,5 +1,5 @@
 # Sniffles
-### Created by: [Antony Chan](https://github.com/AcChrome), [Catherine Hu](https://github.com/cthu97), [Lawrence Lin](https://github.com/lawwwlin)
+#### Created by: [Antony Chan](https://github.com/AcChrome), [Catherine Hu](https://github.com/cthu97), [Lawrence Lin](https://github.com/lawwwlin)
 
 Sniffles is an application to connect dog and their owners with new playmates nearby. 
 
