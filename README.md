@@ -3,7 +3,7 @@
 
 Sniffles is an application to connect dog and their owners with new playmates nearby. 
 
-It is features a real time live chat update using Socket.io and updates on new matches with a traditional swipe feature.
+It features a real time live chat update using Socket.io and updates on new matches with a traditional swipe feature.
 
 ## Final Product 
 
