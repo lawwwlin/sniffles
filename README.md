@@ -21,7 +21,7 @@ It features a real time live chat update using Socket.io and updates on new matc
 * Express
 * HTML/CSS
 * Axios
-* PostgresSql
+* PostgreSql
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
